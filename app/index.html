@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="adminApp" ng-controller="HeaderCtrl as vm">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="loading" ng-if="::false">
+      <h1>Splino Reticulato...</h1>
+    </div>
+
+
+    <div class="wrapper" flex layout="column" ng-cloak>
+      <div class="ribbon"><span>Beta</span></div>
+      <md-toolbar class="md-whiteframe-z3 main-toolbar">
+          <div class="md-toolbar-tools" >
+
+              <md-button class="menu" hide-gt-sm ng-click="vm.toggleList()" aria-label="Show User List">
+                <md-icon md-svg-icon="menu" ></md-icon> Menu
+              </md-button>
+
+              <md-button ui-sref="dashboard" title="HopUps" class="md-icon-button"  aria-label="Data">
+                <md-icon md-menu-origin md-svg-icon="home"></md-icon>
+              </md-button>
+
+              <!--md-button ui-sref="metrics" title="HopUps" class="md-icon-button"  aria-label="Data">
+                <md-icon md-menu-origin md-svg-icon="chart"></md-icon>
+              </md-button-->
+
+            <span flex>
+              <h1>{{$root.title}}</h1>
+            </span>
+            <md-menu md-position-mode="target-right target" flex>
+              <md-button aria-label="menu" class="md-icon-button" ng-click="$mdOpenMenu()" >
+                <md-icon md-menu-origin md-svg-icon="menu"></md-icon>
+              </md-button>
+              <md-menu-content width="4">
+                <md-menu-item>
+                  <md-button ng-click="ul.go('/settings')">
+                    <md-icon md-svg-icon="settings" ></md-icon>
+                    Settings
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-item>
+                  <md-button ng-click="ul.go('/')">
+                    <md-icon md-svg-icon="help" ></md-icon>
+                    About
+                  </md-button>
+                </md-menu-item>
+
+                <md-menu-divider></md-menu-divider>
+
+                <!--oauth2
+                  authorization-url="{{ul._settingsService.get().vouchBaseUri}}connect/authorize"
+                  sign-out-url="{{ul._settingsService.get().vouchBaseUri}}connect/endsession"
+                  sign-out-append-token="true"
+                  sign-out-redirect-url="{{ul._settingsService.get().codifyBaseUri}}"
+                  silent-token-redirect-url="{{ul._settingsService.get().codifyBaseUri}}/#/silent-renew&"
+                  client-id="codify"
+                  redirect-url="{{ul._settingsService.get().codifyBaseUri}}"
+                  response-type="id_token token"
+                  scope="openid api api.codeapi resource_name resource_roles"
+                  template="./src/views/signinandout.html">
+                </oauth2-->
+
+                <oauth2
+                  authorization-url="https://www.facebook.com/dialog/oauth"
+                  sign-out-url="https://saserver1/vouch/connect/endsession"
+                  sign-out-append-token="true"
+                  sign-out-redirect-url="{{my_address}}"
+                  client-id="1681828878722456"
+                  redirect-url="{{my_address}}"
+                  response-type="token"
+                  scope="public_profile"
+                  template="/views/partials/loginandout.html"
+                />
+              </md-menu-content>
+            </md-menu>
+          </div>
+      </md-toolbar>
+
+      <div flex ui-view layout="row" style="min-height:0;overflow-y: auto;">
+      </div>
+
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
+    <script src="bower_components/angular-highlightjs/build/angular-highlightjs.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/highlightjs/highlight.pack.js"></script>
+    <script src="bower_components/moment-range/dist/moment-range.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/controllers/header.js"></script>
+    <!-- endbuild -->
+
+    <!--other scripts -->
+    <script src="scripts/lib/angularJsOAuth2.js"></script>
+
+    <!-- generated from ngconstant -->
+    <script src="/scripts/config.js"></script>
+
+</body>
+</html>

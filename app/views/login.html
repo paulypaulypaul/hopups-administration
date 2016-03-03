@@ -1,0 +1,27 @@
+<md-content layout="column" layout-align="center center" class="seethru" flex>
+
+      <md-card class="md-cyan-theme" >
+        <md-toolbar class="md-cyan-theme">
+                  <div class="md-toolbar-tools">
+                    <h2>
+                      Login or Register with:
+                      <md-icon md-menu-origin md-svg-icon="facebook-box"></md-icon>
+                    </h2>
+                  </div>
+        </md-toolbar>
+        <md-card-content style="background-color: rgb(255,255,255)">
+          <oauth2
+            authorization-url="https://www.facebook.com/dialog/oauth"
+            sign-out-url="https://saserver1/vouch/connect/endsession"
+            sign-out-append-token="true"
+            sign-out-redirect-url="{{my_address}}"
+            client-id="1681828878722456"
+            redirect-url="{{my_address}}"
+            response-type="token"
+            scope="public_profile"
+            template="/views/partials/loginandout.html"
+          />
+        </md-card-content>
+      </md-card>
+
+</md-content>

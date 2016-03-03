@@ -1,0 +1,10 @@
+<md-menu-item>
+  <md-button ng-hide="signedIn" ng-click="signIn()">
+    <md-icon md-svg-icon="login"></md-icon>
+    {{signInText}}
+  </md-button>
+  <md-button ng-show="signedIn" ng-click="signOut()">
+    <md-icon md-svg-icon="logout" ></md-icon>
+    {{signOutText}}
+  </md-button>
+</md-menu-item>

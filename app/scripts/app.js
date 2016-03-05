@@ -19,28 +19,39 @@ angular
     'afOAuth2',
     'adminAppConfig'
   ])
-  .constant('ENV', {name:'development',apiEndpoint:'http://your-development.api.endpoint:3000'})
-
   .run(function($rootScope){
-    $rootScope.theme = "default";
-    $rootScope.title = "HopUps";
+    $rootScope.theme = 'default';
+    $rootScope.title = 'HopUps';
   })
   .config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
     .state('login', {
       templateUrl:'views/login.html',
-      url:'/login/'
+      url:'/login'
     })
+    .state('sites', {
+      templateUrl: 'views/sites.html',
+      controller: 'SitesCtrl',
+      controllerAs: 'vm',
+      url: '/sites'
+    })
+    .state('site', {
+      templateUrl: 'views/site.html',
+      controller: 'SiteCtrl',
+      controllerAs: 'vm',
+      url: '/site/:siteId'
+    });
+
   })
   .run(['$rootScope', '$injector', '$state', function($rootScope,$injector, $state) {
-        $injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
+        $injector.get('$http').defaults.transformRequest = function(data, headersGetter) {
           if (sessionStorage.token) {
             var token = JSON.parse(sessionStorage.token);
             if (token && token.access_token){
-              headersGetter().Authorization = "Bearer " + token.access_token;
+              headersGetter().Authorization = 'Bearer ' + token.access_token;
             }
           }
           if (data) {
@@ -54,7 +65,7 @@ angular
             $state.go('login');
           } else if (sessionStorage.token && sessionStorage.token !== 'null' && toState.name === 'login') {
             event.preventDefault();
-            $state.go('dashboard');
+            $state.go('sites');
           }
         });
 

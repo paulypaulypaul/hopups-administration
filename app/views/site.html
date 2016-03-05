@@ -1,0 +1,144 @@
+<div md-theme="{{$root.theme='default'}}" md="{{$root.title=title}}"></div>
+
+  <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-click="ul.toggleList()" class="md-whiteframe-4dp" >
+
+      <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }" ng-click="vm.showSiteDetails(site)">
+          <span>Site Details</span>
+          <md-tooltip md-direction="right">
+            {{site.siteId}}
+          </md-tooltip>
+      </md-button>
+
+      <md-divider></md-divider>
+
+      <md-button class="side-menu-link" ng-click="vm.showAll('events')" ng-class="{ 'md-hue-2': type.displayList() }">
+          <span>Events</span>
+      </md-button>
+
+      <md-list>
+          <md-list-item ng-repeat="event in site.events">
+              <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(event, 'events')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
+              <md-button ng-click="vm.selectOne(event, 'event')">
+                  {{event.name}}
+                  <md-tooltip md-direction="right">
+                    {{event._id}}
+                  </md-tooltip>
+              </md-button>
+              <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(event, 'events')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+          </md-list-item>
+          <md-list-item>
+              &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'event')" class="md-accent">Add new event</span>
+          </md-list-item>
+      </md-list>
+
+      <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }">
+          <span>Segments</span>
+      </md-button>
+
+      <md-list>
+          <md-list-item ng-repeat="segment in site.segments">
+              <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(segment, 'segments')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
+              <md-button ng-click="vm.selectOne(segment, 'segment')">
+                  {{segment.name}}
+                  <md-tooltip md-direction="right">
+                    {{segment._id}}
+                  </md-tooltip>
+              </md-button>
+              <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(segment, 'segments')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+          </md-list-item>
+          <md-list-item>
+              &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'segment')" class="md-accent">Add new segment</span>
+          </md-list-item>
+      </md-list>
+
+      <md-divider></md-divider>
+
+      <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }">
+          <span>Actions</span>
+      </md-button>
+
+
+      <md-list>
+          <md-list-item ng-repeat="action in site.actions">
+              <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(action, 'actions')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
+              <md-button ng-click="vm.selectOne(action, 'action')">
+                  {{action.name}}
+                  <md-tooltip md-direction="right">
+                    {{action._id}}
+                  </md-tooltip>
+              </md-button>
+              <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(action, 'actions')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+          </md-list-item>
+          <md-list-item>
+              &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'action')" class="md-accent">Add new action</span>
+          </md-list-item>
+      </md-list>
+
+      <md-divider></md-divider>
+
+  <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }">
+      <span>HopUps</span>
+  </md-button>
+
+  <md-list>
+      <md-list-item ng-repeat="hopup in site.hopups">
+          <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(hopup, 'hopups')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
+          <md-button ng-click="vm.selectOne(hopup, 'hopup')">
+              {{hopup.name}}
+              <md-tooltip md-direction="right">
+                {{hopup._id}}
+              </md-tooltip>
+          </md-button>
+          <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(hopup, 'hopups')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+      </md-list-item>
+      <md-list-item>
+          &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'hopup')" class="md-accent">Add new hopup</span>
+      </md-list-item>
+  </md-list>
+
+<md-divider></md-divider>
+
+</md-sidenav>
+
+  <md-content flex layout-padding layout="column" md-scroll-y class="seethru">
+
+  <div ng-show="vm.shouldDisplay('site')" layout-padding flex layout>
+    <site-editor site="site" flex layout>
+    </site-editor>
+  </div>
+
+  <div ng-show="vm.shouldDisplay('events')" layout-padding flex layout="column">
+    <events-editor site="site" flex layout="column">
+    </events-editor>
+  </div>
+
+  <div ng-show="vm.shouldDisplay('event')" layout-padding flex layout>
+    <event-editor site="site" flex layout>
+    </event-editor>
+  </div>
+
+  <div ng-show="vm.shouldDisplay('segment')" layout-padding flex layout>
+    <segment-editor site="site" flex layout>
+    </segment-editor>
+  </div>
+
+  <div ng-show="vm.shouldDisplay('action')" layout-padding flex layout>
+    <action-editor site="site" flex layout>
+    </action-editor>
+  </div>
+
+  <div ng-show="vm.shouldDisplay('hopup')" layout-padding flex layout>
+    <hopup-editor site="site" flex layout>
+    </hopup-editor>
+  </div>
+
+    <!--md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" md-open="type.fabIsOpen" ng-mouseenter="type.fabIsOpen=true" ng-mouseleave="type.fabIsOpen=false">
+        <md-fab-trigger>
+            <md-button aria-label="save" class="md-fab md-raised md-mini md-accent" ng-click="vm.save()">
+                <md-tooltip md-direction="left" md-visible="tooltipVisible">Save</md-tooltip>
+                <md-icon md-svg-icon="content-save"></md-icon>
+            </md-button>
+        </md-fab-trigger>
+    </md-fab-speed-dial -->
+
+</md-content>

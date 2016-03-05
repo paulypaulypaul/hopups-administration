@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: AboutCtrl', function () {
+describe('Controller: EventEditorCtrl', function () {
 
   // load the controller's module
   beforeEach(module('adminApp'));
 
-  var AboutCtrl,
+  var EventeditorCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AboutCtrl = $controller('AboutCtrl', {
+    EventeditorCtrl = $controller('EventEditorCtrl', {
       $scope: scope
     });
   }));

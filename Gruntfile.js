@@ -399,7 +399,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://numero-ph.thisisnumero.internal:3000'
+            apiEndpoint: 'http://numero-ph:3000/api/admin/',
+            facebookAppId: '1682324782006199'
           }
         }
       },
@@ -410,7 +411,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://hopups-server.datpoint.com'
+            apiEndpoint: 'http://hopups-server.datpoint.com',
+            facebookAppId: '1681828878722456'
           }
         }
       }
@@ -457,6 +459,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
+    'ngconstant:production',
     'ngAnnotate',
     'copy:dist',
     'cdnify',

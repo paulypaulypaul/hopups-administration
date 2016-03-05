@@ -1,0 +1,50 @@
+<div md-theme="{{$root.theme='default'}}" md="{{$root.title= vm.title}}"></div>
+
+<!--md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-click="ul.toggleList()" class="md-whiteframe-4dp" >
+  <md-content role="navigation">
+    <ul class="side-menu">
+      <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
+          ng-class="{'parentActive' : vm.isSectionSelected(section)}">
+        <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }" ng-click="vm.showSiteDetails(site)" ng-if="section.type === 'heading'"
+            id="heading_{{ section.name | nospace }}">
+          {{section}}
+        </md-button>
+        <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+        <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+      </li>
+    </ul>
+  </md-content>
+</md-sidenav-->
+
+<md-content flex="" layout-padding="" layout="column" md-scroll-y="" class="seethru layout-padding ng-scope layout-column flex md-default-theme">
+
+
+<md-card  class="md-cyan-theme" ng-repeat="site in vm.sites track by site._id" flex>
+  <div layout="" layout-xs="column" flex="" class="layout-xs-column layout-row flex" >
+    <md-card-content flex style="max-height: 210px;overflow-y:auto;">
+      <h3 flex >{{site.name}}</h3>
+      <p>{{site.description}}</p>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-primary" ui-sref="site({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="build"></md-icon> Configure</md-button>
+      <md-button class="md-primary" ng-click="dashboard(site._id)"><md-icon md-menu-origin md-svg-icon="chart"></md-icon> Analyse</md-button>
+      <md-switch ng-model="site.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
+    </md-card-actions>
+  </div>
+</md-card>
+
+</md-content>
+
+  <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" md-open="apps.fabIsOpen" ng-mouseenter="apps.fabIsOpen=true" ng-mouseleave="apps.fabIsOpen=false">
+    <md-fab-trigger>
+        <md-button aria-label="Add" class="md-fab" ng-click="createNewSite()">
+            <md-icon md-svg-icon="plus"></md-icon>
+        </md-button>
+    </md-fab-trigger>
+    <!--md-fab-actions>
+        <md-button aria-label="import" class="md-fab md-raised md-mini md-accent" ng-click="import()">
+            <md-icon md-svg-icon="import"></md-icon>
+        </md-button>
+    </md-fab-actions-->
+  </md-fab-speed-dial>
+</div>

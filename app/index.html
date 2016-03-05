@@ -86,7 +86,7 @@
                   sign-out-url="https://saserver1/vouch/connect/endsession"
                   sign-out-append-token="true"
                   sign-out-redirect-url="{{my_address}}"
-                  client-id="1681828878722456"
+                  client-id="{{facebookAppId}}"
                   redirect-url="{{my_address}}"
                   response-type="token"
                   scope="public_profile"
@@ -138,15 +138,18 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/lib/angularJsOAuth2.js"></script>
+
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/user.js"></script>
+    <script src="scripts/services/hopups.js"></script>
     <script src="scripts/controllers/header.js"></script>
+    <script src="scripts/controllers/sites.js"></script>
+    <script src="scripts/controllers/site.js"></script>
+    <script src="scripts/directives/eventeditor.js"></script>
+    <script src="scripts/controllers/eventeditor.js"></script>
     <!-- endbuild -->
 
     <!--other scripts -->
-    <script src="scripts/lib/angularJsOAuth2.js"></script>
 
     <!-- generated from ngconstant -->
     <script src="/scripts/config.js"></script>

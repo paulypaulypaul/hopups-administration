@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name adminApp.controller:MainCtrl
+ * @name adminApp.controller:EventEditorCtrl
  * @description
- * # MainCtrl
+ * # EventEditorCtrl
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('EventEditorCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

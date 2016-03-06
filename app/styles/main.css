@@ -1,0 +1,482 @@
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 100;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+  opacity: 0.6;
+}
+.ribbon span {
+   font-size: 10px;
+   font-weight: bold;
+   color: #FFF;
+   color: #000;
+   text-transform: uppercase;
+   text-align: center;
+   line-height: 20px;
+   transform: rotate(-45deg);
+   width: 100px;
+   display: block;
+   background: #79A70A;
+   background: linear-gradient(#F70505 0%, #8F0808 100%);
+   background: #dedede;
+   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+   position: absolute;
+   top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #8F0808;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #8F0808;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #8F0808;
+}
+
+//burger to the right
+.main-toolbar >.md-toolbar-tools>md-menu {
+  display:flex;
+  justify-content: flex-end;
+}
+
+
+//scroll bar styles
+
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: rgb(200, 200, 200);
+}
+::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: rgb(200, 200, 200);
+}
+::-webkit-scrollbar-thumb
+{
+  background-color: rgb(100, 100, 100);
+}
+
+
+//from codify - see what we need
+
+html, body, .wrapper {
+  font-family: 'Roboto', sans-serif;
+  font-size:14px;
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  overflow:hidden;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+button,select,html,textarea,input {
+    font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif
+}
+.side-menu-link {
+    display: block;
+    text-align: left;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    margin: 0;
+    text-transform: none;
+    border-radius: 0!important;
+    white-space: normal;
+    line-height: 48px;
+    position: relative;
+    z-index: 2;
+    box-shadow: none!important;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    background-color: rgb(255,64,129);
+    border: none;
+    color: #fff;
+}
+.loading {
+  flex:1;
+  display:flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  justify-content: center;
+  max-width: 100%;
+  color: white;
+  background-color: rgb(0,187,206);
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* Toolbar area */
+
+.main-toolbar .menu {
+  background-color: transparent;
+  border: none;
+  height: 38px;
+  margin: 16px;
+  width: 36px;
+}
+
+.main-toolbar md-menu {
+  width:40px;
+}
+.main-toolbar >.md-toolbar-tools>md-menu {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.main-toolbar  h1 {
+  margin: auto;
+  text-align: center;
+}
+.main-toolbar {
+  z-index: 65; /* side-nov has z-index 60 so we need this to be higher */
+}
+.main-toolbar  .md-toolbar-tools{
+  padding-left: 60px;
+}
+
+/* Grid Lists */
+md-grid-list md-grid-tile figure {
+  flex-direction:column;
+  align-items: initial;
+}
+
+/* Footer always see through regardless of theme */
+md-grid-list md-grid-tile md-grid-tile-footer{
+  color: #000;
+  background: rgba(0, 0, 0, 0);
+}
+
+md-grid-list md-grid-tile md-grid-tile-header,
+md-grid-list md-grid-tile .application.grid-tile-title,
+md-grid-list md-grid-tile .stash-type.grid-tile-title {
+  color: #000;
+  background: rgba(0, 0, 0, 0.1);
+  padding-left: 8px;
+}
+
+md-grid-list md-grid-tile md-grid-tile-header md-icon,
+md-grid-list md-grid-tile .application.grid-tile-title md-icon,
+md-grid-list md-grid-tile .stash-type.grid-tile-title md-icon {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+md-grid-list md-grid-tile .application.grid-tile-content,
+md-grid-list md-grid-tile .stash-type.grid-tile-content {
+  overflow-y:scroll;
+}
+
+
+/* Sidenav area */
+md-list .md-button {
+  color: inherit;
+  font-weight: 500;
+  text-align: left;
+  width: 100%;
+}
+  md-list .md-button.selected {
+    color: #03a9f4;
+  }
+
+  md-sidenav  md-list {
+    padding: 0px 0px 8px 0px;
+  }
+
+  md-sidenav md-list-item {
+    padding-left: 5px;
+  }
+
+  md-sidenav md-list-item .md-button {
+    text-transform: inherit;
+  }
+
+.test-expander .md-button {
+  text-align: center;
+}
+.test-results md-list-item {
+	min-height: 0px;
+}
+
+/* Primary content area */
+
+#content {
+  overflow: hidden;
+}
+
+#content  {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+}
+
+#content .md-button.contact {
+  background-color: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  margin: 8px auto 16px 0;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+}
+
+#content md-icon.avatar {
+  margin-top: 10px;
+}
+
+#content .md-button.contact > md-icon {
+  fill:black;
+  width:36px;
+  height:36px;
+}
+
+md-button.menuBtn > md-icon {
+  fill:white;
+  width:24px;
+  height:24px;
+}
+
+#content .md-button.contact:active > md-icon {
+  background-color: #dadada;
+  border-radius: 75%;
+  padding:4px;
+  transition: all 100ms ease-out 30ms;
+}
+
+#content img {
+  display: block;
+  height: auto;
+  max-width: 500px;
+}
+
+/* Utils */
+
+.content-wrapper {
+  position: relative;
+}
+
+/* Typography support coming in 0.8.0 */
+
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+}
+
+.avatar {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0px;
+  vertical-align: middle;
+  zoom:0.70;
+  transform: translateZ(0);
+  -webkit-transform: scale(0.70);
+  -moz-transform:scale(0.70);
+}
+
+
+md-bottom-sheet  md-icon {
+  margin-right:20px;
+}
+
+span.name {
+  font-weight: bold;
+  font-size:1.1em;
+  padding-left:5px;
+}
+
+md-dialog.fullscreen-dialog {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.compilerErrorCtrl.ace_tooltip {
+  visibility:hidden !important;
+  display:  hidden !important;
+ }
+
+[layout-nearly-fill] {
+  min-height: 95%;
+}
+
+[md-theme="default"]{
+  background-image: url('images/mb-bg-fb-16-min.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(0,187,206);
+}
+md-dialog.md-default-theme, md-toast.md-default-theme {
+  background-image: none;
+}
+
+[md-theme="code"]{
+  background-image: url('images/mb-bg-fb-23-min.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(0,187,206);
+}
+
+[md-theme="data"]{
+  background-image: url('images/mb-bg-fb-20-min.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(102,57,187);
+}
+
+md-content.seethru, .seethru{
+  background: rgba(255, 255, 255, 0);
+}
+
+.leak{
+  background: rgba(255, 255, 255, 0.90);
+}
+
+md-content > div {
+  background: rgba(255, 255, 255, 0);
+}
+
+md-content > div md-tabs{
+  background: rgb(255, 255, 255);
+}
+
+div.data.container.results  .first-column{
+  flex: 0.25;
+}
+
+
+div.container .tiles  md-grid-tile{
+  background-color: white;
+  transition: left 0.5s ease-in-out;
+}
+
+.ace-editor-label {
+    color: rgba(0,0,0,0.54);
+    top: -2px;
+    position: relative;
+    transform: scale(0.75);
+    transform-origin: left top;
+    padding-left: 2px;
+}
+
+.ace-editor-label>md-icon {
+    zoom:0.7;
+    margin-left:4px;
+}
+
+.bulk-import.warn {
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+md-toolbar .first-column, .column {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.ProseMirror {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  height: 100%;
+}
+
+.ProseMirror-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.prose-mirror-editor {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.prose-mirror-editor .editor {
+  height: 100%;
+}
+.prose-mirror-editor .editor .markdown {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0px;
+}
+
+md-icon {
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
+}
+
+.prose-mirror-editor .mode-selector {
+  display: flex;
+  flex-flow:column;
+  align-items: center;
+  align-self: center;
+}
+
+.prose-mirror-editor .mode-selector hr{
+  width: 50%;
+}
+
+md-fab-speed-dial:hover md-fab-trigger md-icon {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.publishFailure {
+  padding: 0px 10px 0px 10px;
+}
+
+.code.container md-grid-list md-grid-tile-header figcaption {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+}
+.application-grid-title {
+  margin: 14px 0px 4px 14px;
+}
+
+md-content.md-code-theme.traceViewer {
+    min-height: 0;
+    color: green;
+    background-color: rgba(0,0,0,0.9);
+    font-family: monospace;
+    padding: 8px;
+}

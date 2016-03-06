@@ -1,0 +1,116 @@
+<md-card class="md-cyan-theme" flex>
+  <md-toolbar class="md-cyan-theme">
+            <div class="md-toolbar-tools">
+              <h2>Action Editor</h2>
+            </div>
+  </md-toolbar>
+  <md-card-content style="background-color: rgb(255,255,255)">
+    <form>
+
+      <md-input-container class="md-block">
+        <label>Name</label>
+        <input type="text" ng-model="site.selected.name" >
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Page</label>
+        <input type="text" ng-model="site.selected.page" >
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <label>Response Type</label>
+        <md-select ng-model="site.selected.responsetype" placeholder="Select a response type">
+          <md-option ng-value="responseType.value" ng-repeat="responseType in vm.responseTypes">{{ responseType.display }}</md-option>
+        </md-select>
+      </md-input-container>
+
+
+      <md-radio-group ng-model="site.selected.responsedatafrom">
+        <label>Response Data From</label>
+        <md-radio-button ng-repeat="d in vm.responseDataLocation" ng-value="d.value" aria-label="{{ d.display }}">
+               {{ d.display }}
+        </md-radio-button>
+      </md-radio-group>
+
+<md-divider></md-divider>
+
+      <div layout="row" ng-show="site.selected.responsedatafrom == 'uri'">
+        <md-input-container flex>
+          <label>Location</label>
+          <textarea  type="text" ng-model="site.selected.responsedatalocation" ></textarea>
+        </md-input-container>
+      </div>
+
+      <label ng-show="site.selected.responsedatafrom == 'code'">Code</label>
+      <div layout="row"  flex style="position: relative;height: 200px;" ng-show="site.selected.responsedatafrom == 'code'">
+          <div
+              flex
+              class="ace-editor"
+              style="margin: 0;
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  left: 0;
+                  right: 0"
+              ace="aceInitCallback" ng-model="site.selected.responsedata">
+          </div>
+      </div>
+
+      <div layout="column" ng-show="site.selected.responsedatafrom == 'predefined'">
+        <h3>Configure Your Template</h3>
+
+        <md-radio-group ng-model="site.selected.responsePredefinedTemplate">
+          <label>Slide In side</label>
+          <md-radio-button ng-repeat="d in vm.responsePredefinedTemplate" ng-value="d.value" aria-label="{{ d.display }}">
+                 {{ d.display }}
+          </md-radio-button>
+        </md-radio-group>
+
+        <md-input-container class="md-block">
+          <label>Colour</label>
+          <input type="text" ng-model="site.selected.templateAttributes.tabTitle" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Tab Title</label>
+          <input type="text" ng-model="site.selected.templateAttributes.tabTitle" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Window Text</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowText" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Window Title</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Button Text</label>
+          <input type="text" ng-model="site.selected.templateAttributes.buttonText" >
+        </md-input-container>
+      </div>
+
+      <!--md-list>
+        <label>Action Events</label>
+          <md-list-item ng-repeat="segment in site.selected.events">
+            {{vm.getSegmentName(segment)}}
+            <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeSegment(segment)"></md-icon>
+
+          </md-list-item>
+          <md-button aria-label="Add" class="md-fab" ng-click="vm.addSegment()">
+              <md-icon md-svg-icon="plus"></md-icon>
+          </md-button>
+      </md-list-->
+
+       <div layout="row" flex layout-align="end center">
+          <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">
+            <i class="material-icons" style="margin-left: -5px;">Update</i>
+          </md-button>
+        </div>
+
+    </form>
+
+</md-card-content>
+</md-card>

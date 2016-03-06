@@ -24,7 +24,7 @@
                     {{event._id}}
                   </md-tooltip>
               </md-button>
-              <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(event, 'events')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+              <md-icon ng-show="!event.system" style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(event, 'events')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
           </md-list-item>
           <md-list-item>
               &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'event')" class="md-accent">Add new event</span>

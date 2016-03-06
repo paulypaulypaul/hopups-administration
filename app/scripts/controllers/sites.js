@@ -8,7 +8,7 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('SitesCtrl', ['$scope', '$rootScope', 'hopups', function ($scope, $rootScope, hopups) {
+  .controller('SitesCtrl', ['$scope', '$rootScope', 'hopups', '$mdDialog', function ($scope, $rootScope, hopups, $mdDialog) {
     var vm = this;
     vm.sites = [];
 
@@ -26,6 +26,34 @@ angular.module('adminApp')
 
     $scope.dashboard =  function (siteId) {
       $location.path("/hopups-dashboard/" + siteId);
+    };
+
+
+    $scope.createNewSite = function() {
+      var dlg = $mdDialog.alert({
+        templateUrl: 'views/dialogs/newsite.html',
+        controller: ['$scope', 'hopups',
+        function DialogController($scope,  hopups) {
+          $scope.showHints = false;
+          $scope.newType= {
+            template: "blank"
+          };
+          $scope.closeDialog= function(create) {
+            if(create) {
+              if( $scope.newSiteForm.$valid) {
+                hopups.updateSite({name: $scope.newSite.name})
+                .then(function(typeName) {
+                  $mdDialog.hide();
+                  refresh();
+                });
+              }
+            } else {
+              $mdDialog.hide();
+            }
+          };
+        }]
+      });
+      $mdDialog.show( dlg );
     };
 
   }]);

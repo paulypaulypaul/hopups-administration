@@ -1,0 +1,23 @@
+<md-dialog aria-label="Create new Site" layout-padding flex layout="column" layout-nearly-fill >
+  <md-toolbar><h1>Create a new Site</h1></md-toolbar>
+  <md-dialog-content layout-padding flex  flex layout="column" style="position: relative" ng-form name="newSiteForm">
+    <div layout="row">
+      <md-input-container flex>
+          <label>Name</label>
+          <input type="text" ng-model="newSite.name" name="name" required ng-pattern="/^[a-z]+$/"/>
+          <div ng-messages="newAppForm.name.$error" ng-if="!showHints" role="alert">
+            <div ng-message="required">Name is required.</div>
+            <div ng-message="pattern">Name must consist only of lower case alphabet characters.</div>
+          </div>
+      </md-input-container>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="closeDialog(false)" >
+      Close
+    </md-button>
+    <md-button ng-click="closeDialog(true)" class="md-primary">
+      Create
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

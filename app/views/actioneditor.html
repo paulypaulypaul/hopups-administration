@@ -43,7 +43,7 @@
 
       <label ng-show="site.selected.responsedatafrom == 'code'">Code</label>
       <div layout="row"  flex style="position: relative;height: 200px;" ng-show="site.selected.responsedatafrom == 'code'">
-          <div
+        <div ui-ace
               flex
               class="ace-editor"
               style="margin: 0;
@@ -54,7 +54,6 @@
                   right: 0"
               ace="aceInitCallback" ng-model="site.selected.responsedata">
           </div>
-      </div>
 
       <div layout="column" ng-show="site.selected.responsedatafrom == 'predefined'">
         <h3>Configure Your Template</h3>

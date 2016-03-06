@@ -17,7 +17,8 @@ angular
 	  'ui.router',
     'ngSanitize',
     'afOAuth2',
-    'adminAppConfig'
+    'adminAppConfig',
+    'ui.ace'
   ])
   .run(function($rootScope){
     $rootScope.theme = 'default';

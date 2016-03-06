@@ -1,0 +1,16 @@
+<md-card class="md-cyan-theme" flex>
+  <md-toolbar class="md-cyan-theme">
+            <div class="md-toolbar-tools">
+              <h2>Select Action</h2>
+            </div>
+  </md-toolbar>
+  <md-card-content>
+    <md-list>
+        <md-list-item ng-repeat="event in site.events">
+            <md-button ng-click="vm.closeDialog(event)">
+                {{event.name}} ({{event._id}})
+            </md-button>
+        </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

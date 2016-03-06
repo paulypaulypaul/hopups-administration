@@ -97,7 +97,7 @@ angular.module('adminApp')
 
       this.addSegment = function() {
         var dlg = $mdDialog.alert({
-          templateUrl: '/views/dialogs/selectsegment.html',
+          templateUrl: 'views/dialogs/selectsegment.html',
           controller: ['$scope', '$window', function DialogController($scope, $window) {
             $scope.site = site;
             console.log($scope.site);
@@ -117,7 +117,7 @@ angular.module('adminApp')
 
       this.addAction = function() {
         var dlg = $mdDialog.alert({
-          templateUrl: './src/views/hopups/dialogs/selectaction.html',
+          templateUrl: 'views/dialogs/selectaction.html',
           controller: ['$scope', '$window', function DialogController($scope, $window) {
             $scope.site = site;
             console.log($scope.site);
@@ -138,7 +138,7 @@ angular.module('adminApp')
 
       this.addEvent = function() {
         var dlg = $mdDialog.alert({
-          templateUrl: './src/views/hopups/dialogs/selectevent.html',
+          templateUrl: 'views/dialogs/selectevent.html',
           controller: ['$scope', '$window', function DialogController($scope, $window) {
             $scope.site = site;
 

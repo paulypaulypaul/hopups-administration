@@ -411,7 +411,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://hopups-server.datpoint.com',
+            apiEndpoint: 'http://hopups-server.datpoint.com/api/admin/',
             facebookAppId: '1681828878722456'
           }
         }

@@ -273,7 +273,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/imagesd',
+          cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
@@ -284,9 +284,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= yeoman.app %>/svg',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/svg'
         }]
       }
     },
@@ -370,7 +370,7 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-    //    'imagemin',
+        'imagemin',
         'svgmin'
       ]
     },

@@ -46,27 +46,53 @@ angular
     });
 
   })
-  .run(['$rootScope', '$injector', '$state', function($rootScope,$injector, $state) {
-        $injector.get('$http').defaults.transformRequest = function(data, headersGetter) {
-          if (sessionStorage.token) {
-            var token = JSON.parse(sessionStorage.token);
-            if (token && token.access_token){
-              headersGetter().Authorization = 'Bearer ' + token.access_token;
-            }
+  .run(['$rootScope', '$injector', '$state', function($rootScope, $injector, $state) {
+      $injector.get('$http').defaults.transformRequest = function(data, headersGetter) {
+        if (sessionStorage.token) {
+          var token = JSON.parse(sessionStorage.token);
+          if (token && token.access_token){
+            headersGetter().Authorization = 'Bearer ' + token.access_token;
           }
-          if (data) {
-            return angular.toJson(data);
-          }
-        };
+        }
+        if (data) {
+          return angular.toJson(data);
+        }
+      };
 
-        $rootScope.$on('$stateChangeStart', function(event, toState){
-          if (!sessionStorage.token && toState.name !== 'login' || sessionStorage.token === 'null' && toState.name !== 'login') {
-            event.preventDefault();
-            $state.go('login');
-          } else if (sessionStorage.token && sessionStorage.token !== 'null' && toState.name === 'login') {
-            event.preventDefault();
-            $state.go('sites');
-          }
-        });
+      $rootScope.$on('$stateChangeStart', function(event, toState){
+        if (!sessionStorage.token && toState.name !== 'login' || sessionStorage.token === 'null' && toState.name !== 'login') {
+          event.preventDefault();
+          $state.go('login');
+        } else if (sessionStorage.token && sessionStorage.token !== 'null' && toState.name === 'login') {
+          event.preventDefault();
+          $state.go('sites');
+        }
+      });
 
-      }]);
+    }])
+    .config(function($mdThemingProvider, $mdIconProvider){
+
+  $mdIconProvider
+      .defaultIconSet(      "svg/avatars.svg"      , 128)
+      .icon("plus"        , "svg/plus.svg"         , 24)
+      .icon("menu"        , "svg/menu.svg"         , 24)
+      .icon("facebook-box", "svg/facebook-box.svg" , 24)
+      .icon("home"        , "svg/home.svg"         , 24)
+      .icon("chart"       , "svg/chart.svg"        , 24)
+      .icon("login"       , "svg/login.svg"        , 24)
+      .icon("logout"      , "svg/logout.svg"       , 24)
+      .icon("transfer"    , "svg/transfer.svg"     , 24)
+      .icon("delete"      , "svg/delete.svg"       , 24)
+      .icon("build"       , "svg/build.svg"        , 24)
+      ;
+
+  $mdThemingProvider.theme('hopups')
+    .accentPalette('pink')
+    .primaryPalette('blue');
+
+    $mdThemingProvider.theme('hopups-dashboard')
+    .accentPalette('blue')
+    .primaryPalette('pink');
+
+    $mdThemingProvider.alwaysWatchTheme(true);
+  });

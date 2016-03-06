@@ -1,0 +1,66 @@
+<md-card class="md-cyan-theme" flex>
+  <md-toolbar class="md-cyan-theme">
+            <div class="md-toolbar-tools">
+              <h2>HopUp Editor</h2>
+            </div>
+  </md-toolbar>
+  <md-card-content style="background-color: rgb(255,255,255)">
+  <form>
+
+
+  <md-input-container class="md-block">
+    <label>Name</label>
+    <input type="text" ng-model="site.selected.name" >
+  </md-input-container>
+
+
+  <md-list class="md-block">
+    <label>Segments</label>
+      <md-list-item ng-repeat="segment in site.selected.segments">
+        {{vm.getSegmentName(segment)}}
+        <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeSegment(segment)"></md-icon>
+
+      </md-list-item>
+      <md-button aria-label="Add" class="md-fab" ng-click="vm.addSegment()">
+          <md-icon md-svg-icon="plus" style="padding-left: 10px;" ></md-icon>
+      </md-button>
+  </md-list>
+
+<md-divider></md-divider>
+
+  <md-list>
+    <label>Actions</label>
+      <md-list-item ng-repeat="action in site.selected.actions">
+        {{vm.getActionName(action)}}
+        <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeAction(action)"></md-icon>
+      </md-list-item>
+      <md-button aria-label="Add" class="md-fab" ng-click="vm.addAction()">
+          <md-icon md-svg-icon="plus" style="padding-left: 10px;"></md-icon>
+      </md-button>
+  </md-list>
+
+<md-divider></md-divider>
+
+  <md-list>
+    <label>Action Events</label>
+      <md-list-item ng-repeat="event in site.selected.events">
+        {{vm.getEventName(event)}}
+        <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeEvent(event)"></md-icon>
+
+      </md-list-item>
+      <md-button aria-label="Add" class="md-fab" ng-click="vm.addEvent()">
+          <md-icon md-svg-icon="plus" style="padding-left: 10px;"></md-icon>
+      </md-button>
+  </md-list>
+
+<md-divider></md-divider>
+
+  <div layout="row" flex layout-align="end center">
+    <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">
+      <i class="material-icons" style="margin-left: -5px;">Update</i>
+    </md-button>
+  </div>
+
+</form>
+</md-card-content>
+</md-card>

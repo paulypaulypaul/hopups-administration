@@ -1,0 +1,18 @@
+<md-card class="md-cyan-theme" flex>
+  <md-toolbar class="md-cyan-theme">
+            <div class="md-toolbar-tools">
+              <h2>Select Segment</h2>
+            </div>
+  </md-toolbar>
+  <md-card-content>
+
+    <md-list>
+        <md-list-item ng-repeat="segment in site.segments">
+            <md-button ng-click="vm.closeDialog(segment)">
+                {{segment.name}} : {{segment.listen}} : {{segment.tag}} : {{segment.theshold}}
+            </md-button>
+        </md-list-item>
+    </md-list>
+
+  </md-card-content>
+</md-card>

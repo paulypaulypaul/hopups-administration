@@ -8,8 +8,10 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('ActionEditorCtrl', ['$scope', 'hopups', function ($scope, hopups) {
+  .controller('ActionEditorCtrl', ['$scope', 'hopups', '$q', '$sce', '$templateRequest', '$interpolate',
+    function ($scope, hopups, $q, $sce, $templateRequest, $interpolate) {
 
+    var site = $scope.site;
 
     this.getSegmentName = function(segmentId){
           var segments = $scope.site.segments;
@@ -63,27 +65,34 @@ angular.module('adminApp')
         this.getTemplateIfRequired = function(selected){
           var deferred = $q.defer();
 
-          if (site.selected.responsePredefinedTemplate){
-            if (site.selected.responsePredefinedTemplate == 'left'){
+          if (site.selected.responsedatafrom === 'predefined'){
+              var templateUrl
+              if (site.selected.templateAttributes.side == 'left'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left.html');
+              } else if (site.selected.templateAttributes.side == 'right'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-right.html');
+              }
 
-                var templateUrl = $sce.getTrustedResourceUrl('/src/views/hopups/actiontemplates/slidein.html');
+              $templateRequest(templateUrl).then(function(template) {
 
-                $templateRequest(templateUrl).then(function(template) {
-                // template is the HTML template as a string
+              // template is the HTML template as a string
 
-                // Let's put it into an HTML element and parse any directives and expressions
-                // in the code. (Note: This is just an example, modifying the DOM from within
-                // a controller is considered bad style.)
-                var compiledHTMLString = $interpolate(template)(selected);
+              if (!selected.templateAttributes.color){
+                selected.templateAttributes.color = '#ff8080';
+              }
 
-                selected.responsedata = compiledHTMLString
+              // Let's put it into an HTML element and parse any directives and expressions
+              // in the code. (Note: This is just an example, modifying the DOM from within
+              // a controller is considered bad style.)
+              var compiledHTMLString = $interpolate(template)(selected);
 
+              selected.responsedata = compiledHTMLString
+
+              deferred.resolve(selected);
+
+              }, function() {
                 deferred.resolve(selected);
-
-                }, function() {
-                  deferred.resolve(selected);
-                });
-            }
+              });
           } else {
             deferred.resolve(selected);
           }

@@ -480,3 +480,7 @@ md-content.md-code-theme.traceViewer {
     font-family: monospace;
     padding: 8px;
 }
+
+md-list-item.system {
+  background: #F9DADA;
+}

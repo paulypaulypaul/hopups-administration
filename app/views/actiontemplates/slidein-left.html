@@ -1,0 +1,72 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
+<script>
+$( document ).ready(function() {
+	 $('#opener').on('click', function () {
+		 var panel = $('#slide-panel');
+		 if (panel.hasClass("visible")) {
+			 panel.removeClass('visible').animate({
+				 'left': '-300px'
+			 });
+		 } else {
+			 panel.addClass('visible').animate({
+				 'left': '0'
+			 });
+		 }
+		 return false;
+	 });
+ });
+</script>
+<style>
+
+body {
+    overflow-x: hidden;
+}
+
+#slide-panel {
+    width:300px;
+    height:300px;
+    padding:10px;
+    background: #ff8080;
+    position: absolute;
+    top: 50%;
+    left: -300px;
+}
+
+#opener {
+    background: #ff8080;
+    border-radius: 0;
+    color: white;
+    float: right;
+    font-weight: bold;
+    height: 150px;
+    line-height: 20px;
+    margin: -10px -50px 0 -60px;
+    width: 50px;
+    writing-mode: vertical-rl;
+	font-size: 20px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+a#signup {
+    background-color: #78CF7C;
+    border: none;
+    color: white;
+    padding: 11px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	float: right;
+}
+
+</style>
+
+<div class="btn" id="slide-panel" >
+	<a href="#" id="opener">{{templateAttributes.tabTitle}}</a>
+	<h3>{{templateAttributes.windowTitle}}</h3>
+	<p>{{templateAttributes.windowText}}</p>
+	<a href="http://numero-cnj.thisisnumero.internal/adk/lbs/" id="signup" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>
+</div>

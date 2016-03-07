@@ -58,7 +58,7 @@
       <div layout="column" ng-show="site.selected.responsedatafrom == 'predefined'">
         <h3>Configure Your Template</h3>
 
-        <md-radio-group ng-model="site.selected.responsePredefinedTemplate">
+        <md-radio-group ng-model="site.selected.templateAttributes.side">
           <label>Slide In side</label>
           <md-radio-button ng-repeat="d in vm.responsePredefinedTemplate" ng-value="d.value" aria-label="{{ d.display }}">
                  {{ d.display }}
@@ -67,7 +67,7 @@
 
         <md-input-container class="md-block">
           <label>Colour</label>
-          <input type="text" ng-model="site.selected.templateAttributes.tabTitle" >
+          <input type="text" ng-model="site.selected.templateAttributes.color" >
         </md-input-container>
 
         <md-input-container class="md-block">
@@ -76,13 +76,13 @@
         </md-input-container>
 
         <md-input-container class="md-block">
-          <label>Window Text</label>
-          <input type="text" ng-model="site.selected.templateAttributes.windowText" >
+          <label>Window Title</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
         </md-input-container>
 
         <md-input-container class="md-block">
-          <label>Window Title</label>
-          <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
+          <label>Window Text</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowText" >
         </md-input-container>
 
         <md-input-container class="md-block">

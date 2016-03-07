@@ -399,7 +399,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://numero-ph:3000/api/admin/',
+            apiEndpoint: 'http://numero-ph:3000/api/admin',
+            widgetEndpoint: 'http://numero-ph:3000/api/widget',
             facebookAppId: '1682324782006199'
           }
         }
@@ -411,7 +412,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://hopups-server.datpoint.com/api/admin/',
+            apiEndpoint: 'http://hopups-server.datpoint.com/api/admin',
+            widgetEndpoint: 'http://hopups-server.datpoint.com/api/widget',
             facebookAppId: '1681828878722456'
           }
         }

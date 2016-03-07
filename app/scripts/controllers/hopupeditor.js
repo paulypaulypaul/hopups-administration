@@ -8,7 +8,7 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('HopupEditorCtrl', ['$scope', 'hopups', '$mdDialog', function ($scope, hopups, $mdDialog) {
+  .controller('HopupEditorCtrl', ['$scope', 'hopups', '$mdDialog', '$q', function ($scope, hopups, $mdDialog, $q) {
     var site = $scope.site;
 
       this.getSegmentName = function(segmentId){
@@ -86,8 +86,8 @@ angular.module('adminApp')
           //if its new we have to set this
           site.selected.siteId = site.siteId
 
-          hopupsService.update(site.selected, 'hopups').then(function(){
-            hopupsService.fetch($scope.site.siteId, 'hopups').then( function(hopups) {
+          hopups.update(site.selected, 'hopups').then(function(){
+            hopups.fetch($scope.site.siteId, 'hopups').then( function(hopups) {
               $scope.site.hopups.length =0; // Cheeky way to empty the array.
               Array.prototype.push.apply($scope.site.hopups, hopups);
             });

@@ -16,7 +16,7 @@
       </md-button>
 
       <md-list>
-          <md-list-item ng-repeat="event in site.events">
+          <md-list-item ng-repeat="event in site.events" ng-class="event.system ? 'system' : ''">
               <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(event, 'events')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
               <md-button ng-click="vm.selectOne(event, 'event')">
                   {{event.name}}
@@ -25,6 +25,7 @@
                   </md-tooltip>
               </md-button>
               <md-icon ng-show="!event.system" style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(event, 'events')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+              <md-icon ng-show="event.system" style="margin-right:0px" md-svg-icon="lock" ><md-tooltip md-direction="right">Locked</md-tooltip></md-icon>
           </md-list-item>
           <md-list-item>
               &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'event')" class="md-accent">Add new event</span>

@@ -8,19 +8,18 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('SegmentEditorCtrl', [ '$scope', 'hopups', function ($scope, hopups) {
+  .controller('SegmentEditorCtrl', [ '$scope', 'hopups', '$q', function ($scope, hopups, $q) {
 
-    this.listenTypes = [
+      this.listenTypes = [
         {display: 'inactive', value: 'inactive', code: 'inactive'},
-        {display: 'interest', value: 'interest', code: 'interest'}
+        {display: 'interest', value: 'interest', code: 'interest'},
+        {display: 'visits', value: 'visits', code: 'visits'}
       ];
 
       this.querySearch = function(query) {
         var results = query ? this.listenTypes.filter( this.createFilterFor(query) ) : [];
         var deferred = $q.defer();
-        $timeout(function () {
-          deferred.resolve( results );
-        }, Math.random() * 1000, false);
+        deferred.resolve( results );
         return deferred.promise;
       }
 

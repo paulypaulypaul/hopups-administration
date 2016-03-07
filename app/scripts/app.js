@@ -73,27 +73,28 @@ angular
     }])
     .config(function($mdThemingProvider, $mdIconProvider){
 
-  $mdIconProvider
-      .defaultIconSet(      "svg/avatars.svg"      , 128)
-      .icon("plus"        , "svg/plus.svg"         , 24)
-      .icon("menu"        , "svg/menu.svg"         , 24)
-      .icon("facebook-box", "svg/facebook-box.svg" , 24)
-      .icon("home"        , "svg/home.svg"         , 24)
-      .icon("chart"       , "svg/chart.svg"        , 24)
-      .icon("login"       , "svg/login.svg"        , 24)
-      .icon("logout"      , "svg/logout.svg"       , 24)
-      .icon("transfer"    , "svg/transfer.svg"     , 24)
-      .icon("delete"      , "svg/delete.svg"       , 24)
-      .icon("build"       , "svg/build.svg"        , 24)
-      ;
+      $mdIconProvider
+          .defaultIconSet(      "svg/avatars.svg"      , 128)
+          .icon("plus"        , "svg/plus.svg"         , 24)
+          .icon("menu"        , "svg/menu.svg"         , 24)
+          .icon("facebook-box", "svg/facebook-box.svg" , 24)
+          .icon("home"        , "svg/home.svg"         , 24)
+          .icon("chart"       , "svg/chart.svg"        , 24)
+          .icon("login"       , "svg/login.svg"        , 24)
+          .icon("logout"      , "svg/logout.svg"       , 24)
+          .icon("transfer"    , "svg/transfer.svg"     , 24)
+          .icon("delete"      , "svg/delete.svg"       , 24)
+          .icon("build"       , "svg/build.svg"        , 24)
+          .icon("lock"        , "svg/lock.svg"         , 24)
+          ;
 
-  $mdThemingProvider.theme('hopups')
-    .accentPalette('pink')
-    .primaryPalette('blue');
+      $mdThemingProvider.theme('hopups')
+        .accentPalette('pink')
+        .primaryPalette('blue');
 
-    $mdThemingProvider.theme('hopups-dashboard')
-    .accentPalette('blue')
-    .primaryPalette('pink');
+      $mdThemingProvider.theme('hopups-dashboard')
+      .accentPalette('blue')
+      .primaryPalette('pink');
 
-    $mdThemingProvider.alwaysWatchTheme(true);
+      $mdThemingProvider.alwaysWatchTheme(true);
   });

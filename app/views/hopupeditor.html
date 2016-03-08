@@ -2,6 +2,8 @@
   <md-toolbar class="md-cyan-theme">
             <div class="md-toolbar-tools">
               <h2>HopUp Editor</h2>
+              <span flex></span>
+              <md-switch ng-model="site.selected.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
             </div>
   </md-toolbar>
   <md-card-content style="background-color: rgb(255,255,255)">
@@ -55,7 +57,7 @@
 
 <md-divider></md-divider>
 
-  <div layout="row" flex layout-align="end center">
+  <div ng-show="!site.selected.system" layout="row" flex layout-align="end center">
     <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">
       <i class="material-icons" style="margin-left: -5px;">Update</i>
     </md-button>

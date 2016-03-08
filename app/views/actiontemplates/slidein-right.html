@@ -38,7 +38,7 @@ body {
     color: white;
     float: left;
     font-weight: bold;
-    height: 150px;
+    height: {{templateAttributes.tabTitle.length * 10}}px;
     line-height: 20px;
     margin: -10px -50px 0 -60px;
     width: 50px;
@@ -65,8 +65,8 @@ a#signup {
 
 
 </style>
-<div class="btn" id="slide-panel">
-	<a href="#" class="btn" id="opener">{{templateAttributes.tabTitle}}</a>
+<div  id="slide-panel">
+	<a class="btn" href="#" class="btn" id="opener">{{templateAttributes.tabTitle}}</a>
 	<h3>{{templateAttributes.windowTitle}}</h3>
 	<p>{{templateAttributes.windowText}}</p>
 	<a href="http://numero-cnj.thisisnumero.internal/adk/lbs/" id="signup" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>

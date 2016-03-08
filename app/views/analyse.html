@@ -1,0 +1,59 @@
+<div md-theme="{{$root.theme='default'}}" md="{{$root.title=title}}"></div>
+
+<md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-click="ul.toggleList()" class="md-whiteframe-4dp" >
+
+    <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }" ng-click="vm.showSiteDetails(site)">
+        <span>Active Hopups</span>
+    </md-button>
+
+      <md-list>
+          <md-list-item ng-repeat="hopup in site.hopups">
+              <md-button ng-click="vm.selectHopup(hopup)">
+                  {{hopup.name}}
+                  <md-tooltip md-direction="right">
+                    {{hopup._id}}
+                  </md-tooltip>
+              </md-button>
+          </md-list-item>
+      </md-list>
+
+  </md-sidenav>
+
+  <md-content  ng-show="vm.displayHopups()" flex layout-padding layout="column" md-scroll-y class="seethru">
+
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectDay" ></div>
+    </div>
+
+    <md-divider></md-divider>
+
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectHour" ></div>
+    </div>
+
+    <md-divider></md-divider>
+
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectMin" ></div>
+    </div>
+            <div flex>
+              <h3>{{site.selectedHopup.name}} ({{site.selectedHopup._id}})</h3>
+              <h4>Triggered {{vm.getActionSessionData(site.selectedHopup).length}} times</h4>
+            </div>
+            <div flex>
+
+              <h3>Actions delivered</h3>
+              <div ng-repeat="actionSessionData in vm.getActionSessionData(site.selectedHopup)">
+                  <div ng-repeat="action in vm.getAction(actionSessionData)">
+                    <h4>{{action.name}} ({{action._id}})</h4>
+                  </div>
+                  responce - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
+              </div>
+
+            </div>
+              </div>
+
+
+
+
+  </md-content>

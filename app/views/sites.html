@@ -27,7 +27,7 @@
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
       <md-button class="md-primary" ui-sref="site({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="build"></md-icon> Configure</md-button>
-      <md-button class="md-primary" ng-click="dashboard(site._id)"><md-icon md-menu-origin md-svg-icon="chart"></md-icon> Analyse</md-button>
+      <md-button class="md-primary" ui-sref="site-analysis({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="chart"></md-icon> Analyse</md-button>
       <md-switch ng-model="site.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
     </md-card-actions>
   </div>

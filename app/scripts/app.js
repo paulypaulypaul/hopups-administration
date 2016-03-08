@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'afOAuth2',
     'adminAppConfig',
-    'ui.ace'
+    'ui.ace',
+    'googlechart'
   ])
   .run(function($rootScope){
     $rootScope.theme = 'default';
@@ -44,6 +45,12 @@ angular
       controller: 'SiteCtrl',
       controllerAs: 'vm',
       url: '/site/:siteId'
+    })
+    .state('site-analysis', {
+      templateUrl: 'views/analyse.html',
+      controller: 'AnalyseCtrl',
+      controllerAs: 'vm',
+      url: '/site-analysis/:siteId'
     });
 
   })

@@ -20,15 +20,6 @@ angular.module('adminApp')
     }
     refresh();
 
-    $scope.startEditing =  function (siteId) {
-      $location.path("/site/" + siteId);
-    };
-
-    $scope.dashboard =  function (siteId) {
-      $location.path("/hopups-dashboard/" + siteId);
-    };
-
-
     $scope.createNewSite = function() {
       var dlg = $mdDialog.alert({
         templateUrl: 'views/dialogs/newsite.html',

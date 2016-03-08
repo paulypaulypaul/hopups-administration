@@ -37,7 +37,7 @@
       </md-button>
 
       <md-list>
-          <md-list-item ng-repeat="segment in site.segments">
+          <md-list-item ng-repeat="segment in site.segments" ng-class="segment.system ? 'system' : ''">
               <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(segment, 'segments')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
               <md-button ng-click="vm.selectOne(segment, 'segment')">
                   {{segment.name}}
@@ -45,7 +45,8 @@
                     {{segment._id}}
                   </md-tooltip>
               </md-button>
-              <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(segment, 'segments')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+              <md-icon ng-show="!segment.system" style="margin-right:0px" md-svg-icon="delete" ng-click="vm.remove(segment, 'segments')"><md-tooltip md-direction="right">Delete</md-tooltip></md-icon>
+              <md-icon ng-show="segment.system" style="margin-right:0px" md-svg-icon="lock" ><md-tooltip md-direction="right">Locked</md-tooltip></md-icon>
           </md-list-item>
           <md-list-item>
               &nbsp;&nbsp;&nbsp;<span ng-click="vm.selectOne({}, 'segment')" class="md-accent">Add new segment</span>

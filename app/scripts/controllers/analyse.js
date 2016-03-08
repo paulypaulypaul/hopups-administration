@@ -52,7 +52,7 @@ angular.module('adminApp')
 
     refresh();
 
-    this.getActionSessionData = function(hopup){
+    this.getActionSessionDataForHopup = function(hopup){
       if (hopup){
         var actionsessiondatas = [];
         for (var i = 0; i < $scope.site.actionsessiondata.length; i++){
@@ -65,6 +65,22 @@ angular.module('adminApp')
       }
     };
 
+    this.getActionSessionDataForAction = function(actionId){
+      if (actionId){
+        var actionsessiondatas = [];
+        for (var i = 0; i < $scope.site.actionsessiondata.length; i++){
+          var actionsessiondata = $scope.site.actionsessiondata[i];
+          console.log(actionsessiondata.action, actionId);
+          if (actionsessiondata.action === actionId){
+            actionsessiondatas.push(actionsessiondata);
+          }
+        }
+        return actionsessiondatas;
+      }
+    };
+
+
+
     this.getAction = function(actionsessiondata){
       var actions = [];
       for (var i = 0; i < $scope.site.actions.length; i++){
@@ -74,6 +90,16 @@ angular.module('adminApp')
         }
       }
       return actions;
+    };
+
+    this.getActionById = function(actionId){
+      for (var i = 0; i < $scope.site.actions.length; i++){
+        var action = $scope.site.actions[i];
+        if (action._id === actionId){
+          return action;
+        }
+      }
+      return {name: 'not found'};
     };
 
     this.getSessionDataFromActionInstance = function(actionSessionData){
@@ -148,7 +174,7 @@ angular.module('adminApp')
 
       chartobject.data.rows.length = 0;
 
-      var actionSessionData = this.getActionSessionData(hopup);
+      var actionSessionData = this.getActionSessionDataForHopup(hopup);
       var start   = moment().subtract(range, timeSlicePl);
       var end = moment();
 

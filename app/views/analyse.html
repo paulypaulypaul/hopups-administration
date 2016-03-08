@@ -7,7 +7,7 @@
     </md-button>
 
       <md-list>
-          <md-list-item ng-repeat="hopup in site.hopups">
+          <md-list-item ng-repeat="hopup in site.hopups" ng-class="{'selected' : site.selectedHopup._id === hopup._id }">
               <md-button ng-click="vm.selectHopup(hopup)">
                   {{hopup.name}}
                   <md-tooltip md-direction="right">
@@ -21,33 +21,58 @@
 
   <md-content  ng-show="vm.displayHopups()" flex layout-padding layout="column" md-scroll-y class="seethru">
 
-    <div class="md-whiteframe-z3 leak">
-      <div google-chart chart="chartObjectDay" ></div>
+
+    <md-tabs md-selected="selectedIndex" >
+        <md-tab label="Weelky"></md-tab>
+        <md-tab label="2 Days"></md-tab>
+        <md-tab label="2 Hours"></md-tab>
+        <md-tab label="."></md-tab> <!-- This tab needs removing when https://github.com/angular/material/issues/5439 is fixed -->
+    </md-tabs>
+    <div ng-if="selectedIndex==0" flex layout="column" layout-padding>
+      <div class="md-whiteframe-z3 leak">
+        <div google-chart chart="chartObjectDay" ></div>
+      </div>
+    </div>
+    <div ng-if="selectedIndex==1" flex layout="column" layout-padding>
+      <div class="md-whiteframe-z3 leak">
+        <div google-chart chart="chartObjectHour" ></div>
+      </div>
+    </div>
+    <div ng-if="selectedIndex==2" flex layout="column" layout-padding>
+      <div class="md-whiteframe-z3 leak">
+        <div google-chart chart="chartObjectMin" ></div>
+      </div>
     </div>
 
     <md-divider></md-divider>
 
-    <div class="md-whiteframe-z3 leak">
-      <div google-chart chart="chartObjectHour" ></div>
-    </div>
 
-    <md-divider></md-divider>
 
-    <div class="md-whiteframe-z3 leak">
-      <div google-chart chart="chartObjectMin" ></div>
-    </div>
             <div flex>
-              <h3>{{site.selectedHopup.name}} ({{site.selectedHopup._id}})</h3>
-              <h4>Triggered {{vm.getActionSessionData(site.selectedHopup).length}} times</h4>
+              <h3>{{site.selectedHopup.name}}
+                <md-tooltip md-direction="right">
+                  {{site.selectedHopup._id}}
+                </md-tooltip>
+              </h3>
+              <h4>Triggered {{vm.getActionSessionDataForHopup(site.selectedHopup).length}} times</h4>
+            </div>
+            <div flex>
+
+            <div flex>
+              <h3>Attached Actions</h3>
+              <div ng-repeat="action in site.selectedHopup.actions">
+                <h4>{{vm.getActionById(action).name}}</h4>
+                <p> Delivered {{vm.getActionSessionDataForAction(action).length}} times.</p>
+              </div>
             </div>
             <div flex>
 
               <h3>Actions delivered</h3>
-              <div ng-repeat="actionSessionData in vm.getActionSessionData(site.selectedHopup)">
+              <div ng-repeat="actionSessionData in vm.getActionSessionDataForHopup(site.selectedHopup)">
                   <div ng-repeat="action in vm.getAction(actionSessionData)">
                     <h4>{{action.name}} ({{action._id}})</h4>
                   </div>
-                  responce - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
+                  Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
               </div>
 
             </div>

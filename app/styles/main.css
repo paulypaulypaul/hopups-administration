@@ -484,3 +484,7 @@ md-content.md-code-theme.traceViewer {
 md-list-item.system {
   background: #F9DADA;
 }
+
+md-list-item.selected {
+  background: #F9DADA;
+}

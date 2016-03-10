@@ -51,7 +51,13 @@ angular
       controller: 'AnalyseCtrl',
       controllerAs: 'vm',
       url: '/site-analysis/:siteId'
-    });
+    })
+    .state('user-analysis', {
+      templateUrl: 'views/user.html',
+      controller: 'UserCtrl',
+      controllerAs: 'vm',
+      url: '/user-analysis/:siteId'
+    });;
 
   })
   .run(['$rootScope', '$injector', '$state', function($rootScope, $injector, $state) {
@@ -93,6 +99,7 @@ angular
           .icon("delete"      , "svg/delete.svg"       , 24)
           .icon("build"       , "svg/build.svg"        , 24)
           .icon("lock"        , "svg/lock.svg"         , 24)
+          .icon("face"        , "svg/face.svg"         , 24)
           ;
 
       $mdThemingProvider.theme('hopups')

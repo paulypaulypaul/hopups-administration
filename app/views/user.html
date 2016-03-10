@@ -1,0 +1,44 @@
+<div md-theme="{{$root.theme='default'}}" md="{{$root.title=title}}"></div>
+
+<md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-click="ul.toggleList()" class="md-whiteframe-4dp" >
+
+    <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }" ng-click="vm.showSiteDetails(site)">
+        <span>Users</span>
+    </md-button>
+
+      <md-list>
+          <md-list-item ng-class="{'selected' : blah === '1' }">
+              <md-button ng-click="vm.activeUsers()">
+                  Active Users
+                  <md-tooltip md-direction="right">
+                    Who doing things on your site now!
+                  </md-tooltip>
+              </md-button>
+          </md-list-item>
+      </md-list>
+
+  </md-sidenav>
+
+  <md-content flex layout-padding layout="column" md-scroll-y class="seethru">
+
+
+      <h3>Active Users</h3>
+      <div ng-repeat="user in site.siteUsers">
+        <h4>{{user._id}} - last Active {{user.lastActive | date : 'M/d/yy h:mm a'}}</h4>
+        <h5>Sessions</h5>
+        <div ng-repeat="usersessions in user.usersessions">
+          <h6>{{usersessions._id}} - {{usersessions.date | date : 'M/d/yy h:mm a'}}</h6>
+        </div>
+        <h5>Session Data</h5>
+        <div ng-repeat="sessiondata in user.sessiondata">
+          <h6>{{sessiondata._id}} - {{sessiondata.date | date : 'M/d/yy h:mm a'}}</h6>
+          <p>{{vm.getEventString(sessiondata.event)}}</p>
+        </div>
+
+      </div>
+
+
+
+
+
+  </md-content>

@@ -23,20 +23,26 @@
 
 
       <h3>Active Users</h3>
-      <div ng-repeat="user in site.siteUsers">
+      <div layout="row" layout-sm="column">
+      <md-card  class="md-cyan-theme" ng-repeat="user in site.siteUsers" flex>
+
         <h4>{{user._id}} - last Active {{user.lastActive | date : 'M/d/yy h:mm a'}}</h4>
+        <p>Phone number {{user.currentPhoneNumberAllocation[0].phoneNumber}}</p>
         <h5>Sessions</h5>
-        <div ng-repeat="usersessions in user.usersessions">
-          <h6>{{usersessions._id}} - {{usersessions.date | date : 'M/d/yy h:mm a'}}</h6>
+        <div style="background: #ddd;height:100px;overflow-y:auto">
+          <div ng-repeat="usersessions in user.usersessions">
+            <h6>{{usersessions._id}} - {{usersessions.date | date : 'M/d/yy h:mm a'}}</h6>
+          </div>
         </div>
         <h5>Session Data</h5>
-        <div ng-repeat="sessiondata in user.sessiondata">
-          <h6>{{sessiondata._id}} - {{sessiondata.date | date : 'M/d/yy h:mm a'}}</h6>
-          <p>{{vm.getEventString(sessiondata.event)}}</p>
+        <div style="background: #ddd;height:100px;overflow-y:auto">
+          <div ng-repeat="sessiondata in user.sessiondata">
+            <h6>{{vm.getEventString(sessiondata.event)}}</h6>
+            <h6>{{sessiondata._id}} - {{sessiondata.date | date : 'M/d/yy h:mm a'}}</h6>
+          </div>
         </div>
-
+      </md-card>
       </div>
-
 
 
 

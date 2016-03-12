@@ -18,42 +18,55 @@
 
   <md-list class="md-block">
     <label>Segments</label>
+      <md-list-item ng-if="site.selected.segments.length < 1">
+        -- No '<i>Segments</i>' added --
+      </md-list-item>
       <md-list-item ng-repeat="segment in site.selected.segments">
         {{vm.getSegmentName(segment)}}
         <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeSegment(segment)"></md-icon>
-
       </md-list-item>
-      <md-button aria-label="Add" class="md-fab" ng-click="vm.addSegment()">
-          <md-icon md-svg-icon="plus" style="padding-left: 10px;" ></md-icon>
+    </md-list>
+    <div layout="row" flex layout-align="end center">
+      <md-button class="md-raised md-primary" aria-label="Add Segment" ng-click="vm.addSegment()" layout-align="end center">
+          <md-icon md-svg-icon="plus"></md-icon>
       </md-button>
-  </md-list>
+    </div>
 
 <md-divider></md-divider>
 
   <md-list>
     <label>Actions</label>
+    <md-list-item ng-if="site.selected.actions.length < 1">
+      -- No '<i>Actions</i>' added --
+    </md-list-item>
       <md-list-item ng-repeat="action in site.selected.actions">
         {{vm.getActionName(action)}}
         <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeAction(action)"></md-icon>
       </md-list-item>
-      <md-button aria-label="Add" class="md-fab" ng-click="vm.addAction()">
-          <md-icon md-svg-icon="plus" style="padding-left: 10px;"></md-icon>
-      </md-button>
   </md-list>
+  <div layout="row" flex layout-align="end center">
+    <md-button class="md-raised md-primary" aria-label="Add Action" ng-click="vm.addAction()" layout-align="end center">
+        <md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
+ </div>
 
 <md-divider></md-divider>
 
   <md-list>
     <label>Action Events</label>
+      <md-list-item ng-if="site.selected.events.length < 1">
+        -- No '<i>Action Events</i>' added --
+      </md-list-item>
       <md-list-item ng-repeat="event in site.selected.events">
         {{vm.getEventName(event)}}
         <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeEvent(event)"></md-icon>
-
       </md-list-item>
-      <md-button aria-label="Add" class="md-fab" ng-click="vm.addEvent()">
-          <md-icon md-svg-icon="plus" style="padding-left: 10px;"></md-icon>
-      </md-button>
   </md-list>
+  <div layout="row" flex layout-align="end center">
+    <md-button class="md-raised md-primary" aria-label="Add Event" ng-click="vm.addEvent()" >
+        <md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
+  </div>
 
 <md-divider></md-divider>
 

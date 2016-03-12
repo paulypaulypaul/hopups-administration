@@ -405,6 +405,19 @@ module.exports = function (grunt) {
           }
         }
       },
+      home: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://localhost:3000/api/admin',
+            widgetEndpoint: 'http://localhost:3000/api/widget',
+            facebookAppId: '1682324782006199'
+          }
+        }
+      },
       production: {
         options: {
           dest: '<%= yeoman.dist %>/scripts/config.js'
@@ -427,6 +440,18 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
+    }
+
+    if (target === 'home') {
+      return grunt.task.run([
+        'clean:server',
+        'wiredep',
+        'ngconstant:home',
+        'concurrent:server',
+        'autoprefixer:server',
+        'connect:livereload',
+        'watch'
+      ]);
     }
 
     grunt.task.run([

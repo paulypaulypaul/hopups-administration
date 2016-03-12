@@ -26,7 +26,7 @@
       <md-card  class="md-cyan-theme" ng-repeat="user in site.siteUsers" flex>
 
         <h4>{{user._id}} - last Active {{user.lastActive | date : 'M/d/yy h:mm a'}}</h4>
-        <p>Phone number {{user.currentPhoneNumberAllocation[0].phoneNumber}}</p>
+        <p ng-if="!user.currentPhoneNumberAllocation[0].archive" >Phone number {{user.currentPhoneNumberAllocation[0].phoneNumber}}</p>
         <h5>Sessions</h5>
         <div style="background: #ddd;height:100px;overflow-y:auto">
           <div ng-repeat="usersessions in user.usersessions">

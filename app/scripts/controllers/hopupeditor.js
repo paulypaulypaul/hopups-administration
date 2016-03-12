@@ -38,20 +38,27 @@ angular.module('adminApp')
             return events[event].name;
           }
         }
-        return 'not found';
+        return 'not found'; 
       }
 
-      this.removeSegment = function(segmentId){
-        var index = $scope.site.selected.segments.indexOf(segmentId);
+      this.removeSegment = function(id){
+        var index = $scope.site.selected.segments.indexOf(id);
         if (index > -1){
           $scope.site.selected.segments.splice(index, 1);
         }
       }
 
-      this.removeAction = function(actionId){
-        var index = $scope.site.selected.actions.indexOf(actionId);
+      this.removeAction = function(id){
+        var index = $scope.site.selected.actions.indexOf(id);
         if (index > -1){
           $scope.site.selected.actions.splice(index, 1);
+        }
+      }
+
+      this.removeEvent = function(id){
+        var index = $scope.site.selected.events.indexOf(id);
+        if (index > -1){
+          $scope.site.selected.events.splice(index, 1);
         }
       }
 

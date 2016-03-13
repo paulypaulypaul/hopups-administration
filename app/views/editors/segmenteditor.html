@@ -19,23 +19,35 @@
         <input type="text" ng-model="site.selected.page" >
       </md-input-container>
 
-      <md-autocomplete placeholder="Listen Type"
-                           md-selected-item="site.selected.listen"
-                           md-search-text="vm.searchText"
-                           md-no-cache="vm.disableCaching"
-                           md-items="item in vm.querySearch(vm.searchText, 'listen')"
-                           md-item-text="item.display">
-        <span md-highlight-text="vm.searchText">{{item.display}}</span>
-      </md-autocomplete>
-
-      <md-input-container>
-        <label>Tag</label>
-        <input type="text" ng-model="site.selected.tag" >
+      <md-input-container class="md-block">
+        <label>Parameter Type</label>
+        <md-select ng-model="site.selected.listen" placeholder="Select a parameter type">
+          <md-option ng-value="listenType.value" ng-repeat="listenType in vm.listenTypes">{{ listenType.display }}</md-option>
+        </md-select>
       </md-input-container>
 
-      <md-input-container>
-        <label>Threshold</label>
-        <input type="text" ng-model="site.selected.threshold" >
+      <div ng-if="site.selected.listen != vm.listenTypes[3].value" >
+        <md-input-container>
+          <label>Threshold</label>
+          <input type="text" ng-model="site.selected.threshold" >
+        </md-input-container>
+      </div>
+
+      <div ng-if="site.selected.listen == vm.listenTypes[3].value" >
+        <md-input-container>
+          <label>Key</label>
+          <input type="text" ng-model="site.selected.key" >
+        </md-input-container>
+
+        <md-input-container>
+          <label>Value</label>
+          <input type="text" ng-model="site.selected.value" >
+        </md-input-container>
+      </div>
+
+      <md-input-container class="md-block">
+        <label>Tag</label>
+        <input type="text" ng-model="site.selected.tag" >
       </md-input-container>
 
       <div ng-show="!site.selected.system" layout="row" flex layout-align="end center">

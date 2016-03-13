@@ -22,7 +22,9 @@
         -- No '<i>Segments</i>' added --
       </md-list-item>
       <md-list-item ng-repeat="segment in site.selected.segments">
-        {{vm.getSegmentName(segment)}}
+
+        <segment-viewer site="site" segment="segment" flex layout></segment-viewer>
+
         <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeSegment(segment)"></md-icon>
       </md-list-item>
     </md-list>

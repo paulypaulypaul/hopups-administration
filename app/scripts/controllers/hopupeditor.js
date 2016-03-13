@@ -11,16 +11,6 @@ angular.module('adminApp')
   .controller('HopupEditorCtrl', ['$scope', 'hopups', '$mdDialog', '$q', function ($scope, hopups, $mdDialog, $q) {
     var site = $scope.site;
 
-      this.getSegmentName = function(segmentId){
-        var segments = $scope.site.segments;
-        for (var segment in segments){
-          if (segments[segment]._id == segmentId){
-            return segments[segment].name + ' : ' + segments[segment].listen + ' : ' + segments[segment].tag + ' : ' + segments[segment].threshold;
-          }
-        }
-        return 'not found';
-      }
-
       this.getActionName = function(actionId){
         var actions = $scope.site.actions;
         for (var action in actions){
@@ -38,7 +28,7 @@ angular.module('adminApp')
             return events[event].name;
           }
         }
-        return 'not found'; 
+        return 'not found';
       }
 
       this.removeSegment = function(id){

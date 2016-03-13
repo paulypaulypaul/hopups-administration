@@ -1,0 +1,54 @@
+<md-card class="md-cyan-theme" flex>
+  <md-toolbar class="md-cyan-theme">
+    <div class="md-toolbar-tools">
+      <h2>Site Details for {{site.siteDetails.name}} ({{site.siteDetails._id}})</h2>
+      <span flex></span>
+      <md-switch ng-model="site.siteDetails.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+
+  <h3>Inclusion URL</h3>
+  <p>Include the following javascript in your webpage</p>
+  <p>
+    &lt;script async src="{{vm.widgetEndpoint}}/{{site.siteDetails._id}}" &gt;&lt;/script&gt;
+  </p>
+
+  <md-divider></md-divider>
+
+  <h3>Site Configuration</h3>
+
+  <form>
+    <md-input-container class="md-block">
+      <label>Name</label>
+      <input type="text" ng-model="site.siteDetails.name" >
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Description</label>
+      <textarea type="textarea" ng-model="site.siteDetails.description" ></textarea>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Javascript Namespace (Default: hopups)</label>
+      <input type="text" ng-model="site.siteDetails.javascriptNamespace" >
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Phone Numbers (comma seperated)</label>
+      <input type="text" ng-model="site.siteDetails.phoneNumbers" >
+    </md-input-container>
+
+    <md-switch ng-model="site.siteDetails.annoyProtection" aria-label="Active?" class="md-cyan-theme flex" >
+      Annoy Protection
+    </md-switch>
+
+    <div layout="row" flex layout-align="end center">
+      <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">
+        <i class="material-icons" style="margin-left: -5px;">Update</i>
+      </md-button>
+    </div>
+
+</form>
+  </md-card-content>
+</md-card>

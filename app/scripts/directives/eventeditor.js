@@ -15,6 +15,6 @@ angular.module('adminApp')
       },
       controller: 'EventEditorCtrl',
       controllerAs: 'vm',
-      templateUrl: 'views/eventeditor.html'
+      templateUrl: 'views/editors/eventeditor.html'
     };
   });

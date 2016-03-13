@@ -15,6 +15,6 @@ angular.module('adminApp')
       },
       controller: 'ActionEditorCtrl',
       controllerAs: 'vm',
-      templateUrl: '/views/actioneditor.html'
+      templateUrl: '/views/editors/actioneditor.html'
     };
   });

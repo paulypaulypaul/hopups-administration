@@ -15,6 +15,6 @@ angular.module('adminApp')
       },
       controller: 'SegmentEditorCtrl',
       controllerAs: 'vm',
-      templateUrl: 'views/segmenteditor.html'
+      templateUrl: 'views/editors/segmenteditor.html'
     };
   });

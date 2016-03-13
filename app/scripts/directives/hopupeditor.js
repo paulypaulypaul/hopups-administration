@@ -15,6 +15,6 @@ angular.module('adminApp')
       },
       controller: 'HopupEditorCtrl',
       controllerAs: 'vm',
-      templateUrl: 'views/hopupeditor.html'
+      templateUrl: 'views/editors/hopupeditor.html'
     };
   });

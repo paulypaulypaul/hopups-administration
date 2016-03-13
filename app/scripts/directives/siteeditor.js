@@ -15,6 +15,6 @@ angular.module('adminApp')
       },
       controller: 'SiteEditorCtrl',
       controllerAs: 'vm',
-      templateUrl: 'views/siteeditor.html'
+      templateUrl: 'views/editors/siteeditor.html'
     };
   });

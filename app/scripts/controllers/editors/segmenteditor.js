@@ -15,6 +15,7 @@ angular.module('adminApp')
         {display: 'Interest', value: 'interest', code: 'interest'},
         {display: 'Visits', value: 'visits', code: 'visits'},
         {display: 'Query String Param', value: 'querystring', code: 'querystring'},
+        {display: 'Client Variable', value: 'clientvariable', code: 'clientvariable'},
       ];
 
       this.querySearch = function(query) {

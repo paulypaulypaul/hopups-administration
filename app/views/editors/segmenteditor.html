@@ -33,7 +33,7 @@
         </md-input-container>
       </div>
 
-      <div ng-if="site.selected.listen == vm.listenTypes[3].value" >
+      <div ng-if="site.selected.listen == vm.listenTypes[3].value || site.selected.listen == vm.listenTypes[4].value" >
         <md-input-container>
           <label>Key</label>
           <input type="text" ng-model="site.selected.key" >

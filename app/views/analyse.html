@@ -21,7 +21,7 @@
 
   <md-content  ng-show="vm.displayHopups()" flex layout-padding layout="column" md-scroll-y class="seethru">
 
-
+<div flex>
     <md-tabs md-selected="selectedIndex" >
         <md-tab label="Weelky"></md-tab>
         <md-tab label="2 Days"></md-tab>
@@ -43,42 +43,38 @@
         <div google-chart chart="chartObjectMin" ></div>
       </div>
     </div>
-
+  </div>
     <md-divider></md-divider>
 
+      <div flex>
+        <h3>{{site.selectedHopup.name}}
+          <md-tooltip md-direction="right">
+            {{site.selectedHopup._id}}
+          </md-tooltip>
+        </h3>
+        <h4>Triggered {{vm.getActionSessionDataForHopup(site.selectedHopup).length}} times</h4>
+      </div>
 
+      <div flex>
 
-            <div flex>
-              <h3>{{site.selectedHopup.name}}
-                <md-tooltip md-direction="right">
-                  {{site.selectedHopup._id}}
-                </md-tooltip>
-              </h3>
-              <h4>Triggered {{vm.getActionSessionDataForHopup(site.selectedHopup).length}} times</h4>
-            </div>
-            <div flex>
+        <div flex>
+          <h3>Attached Actions</h3>
+          <div ng-repeat="action in site.selectedHopup.actions">
+            <h4>{{vm.getActionById(action).name}}</h4>
+            <p> Delivered {{vm.getActionSessionDataForAction(action).length}} times.</p>
+          </div>
+        </div>
 
-            <div flex>
-              <h3>Attached Actions</h3>
-              <div ng-repeat="action in site.selectedHopup.actions">
-                <h4>{{vm.getActionById(action).name}}</h4>
-                <p> Delivered {{vm.getActionSessionDataForAction(action).length}} times.</p>
+        <div flex>
+          <h3>Actions delivered</h3>
+          <div ng-repeat="actionSessionData in vm.getActionSessionDataForHopup(site.selectedHopup)">
+              <div ng-repeat="action in vm.getAction(actionSessionData)">
+                <h4>{{action.name}} ({{action._id}})</h4>
               </div>
-            </div>
-            <div flex>
+              Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
+          </div>
+        </div>
 
-              <h3>Actions delivered</h3>
-              <div ng-repeat="actionSessionData in vm.getActionSessionDataForHopup(site.selectedHopup)">
-                  <div ng-repeat="action in vm.getAction(actionSessionData)">
-                    <h4>{{action.name}} ({{action._id}})</h4>
-                  </div>
-                  Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
-              </div>
-
-            </div>
-              </div>
-
-
-
+      </div>
 
   </md-content>

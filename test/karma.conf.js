@@ -36,7 +36,7 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-scroll-glue/src/scrollglue.js',
-      'bower_components/angular-tour/dist/angular-tour-tpls.min.js',
+      'bower_components/angular-tour/dist/angular-tour-tpls.js',
       'bower_components/angular-ui-ace/ui-ace.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/highlightjs/highlight.pack.js',

@@ -1,16 +1,31 @@
 <md-dialog aria-label="Create new Site" layout-padding flex layout="column" layout-nearly-fill >
   <md-toolbar><h1>Create a new Site</h1></md-toolbar>
   <md-dialog-content layout-padding flex  flex layout="column" style="position: relative" ng-form name="newSiteForm">
-    <div layout="row">
-      <md-input-container flex>
+
+      <form>
+        <md-input-container class="md-block">
           <label>Name</label>
-          <input type="text" ng-model="newSite.name" name="name" required ng-pattern="/^[a-z]+$/"/>
-          <div ng-messages="newAppForm.name.$error" ng-if="!showHints" role="alert">
-            <div ng-message="required">Name is required.</div>
-            <div ng-message="pattern">Name must consist only of lower case alphabet characters.</div>
-          </div>
-      </md-input-container>
-    </div>
+          <input type="text" ng-model="newSite.name" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Description</label>
+          <textarea type="textarea" ng-model="newSite.description" ></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Javascript Namespace (Default: hopups)</label>
+          <input type="text" ng-model="newSite.javascriptNamespace" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Phone Numbers (comma seperated)</label>
+          <input type="text" ng-model="newSite.phoneNumbers" >
+        </md-input-container>
+      </form>
+
+
+
   </md-dialog-content>
   <md-dialog-actions>
     <md-button ng-click="closeDialog(false)" >

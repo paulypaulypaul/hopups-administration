@@ -14,14 +14,15 @@ angular.module('adminApp')
     $scope.my_address = window.location.protocol + "//" +window.location.host + "/";
     $scope.facebookAppId = ENV.facebookAppId;
 
-    vm.tour1 = 'Welcome to HopUps. yo';
-
+    vm.tour1 = 'If you havn\'t already. Click here to create a new site';
+    
     var curStep = $cookies.get('myTour');
     if(typeof curStep === 'string'){
       curStep = parseInt(curStep);
     }
 
      $scope.currentStep = curStep || 0;
+     ENV.currentStep = $scope.currentStep;
 
      $scope.postTourCallback = function() {
        console.log('tour closes');

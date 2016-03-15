@@ -38,7 +38,7 @@
   "overrides": {
     "angular-tour": {
       "main": [
-        "./dist/angular-tour-tpls.min.js",
+        "./dist/angular-tour-tpls.js",
         "./dist/angular-tour.css"
       ]
     }

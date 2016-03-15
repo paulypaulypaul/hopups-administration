@@ -488,3 +488,7 @@ md-list-item.system {
 md-list-item.selected {
   background: #F9DADA;
 }
+
+.tour-tip {
+  margin-top: -50px;
+}

@@ -104,12 +104,7 @@
     </div>
 
     <tour step="currentStep" post-tour="postTourCallback()" post-step="postStepCallback()" tour-complete="tourCompleteCallback()" class="ng-scope">
-        <virtual-step tourtip="{{vm.tour1}}" tourtip-next-label="Learn more" tourtip-placement="center" tourtip-step="0" tourtip-element="#ui-view" class="ng-scope"></virtual-step>
-        <virtual-step tourtip="{{vm.tour2}}" tourtip-next-label="Learn more" tourtip-placement="right" tourtip-step="1" tourtip-element="#e0" class="ng-scope"></virtual-step>
-        <virtual-step tourtip="Angular tour has some cool features." tourtip-placement="right" tourtip-step="2" tourtip-element="#e1" class="ng-scope"></virtual-step>
-        <virtual-step tourtip="And is tested in all major browsers." tourtip-next-label="Continue" tourtip-placement="bottom" tourtip-step="3" tourtip-element="#e2" class="ng-scope"></virtual-step>
-        <virtual-step tourtip="Configuration is easy, for more info check the github page." tourtip-next-label="Continue" tourtip-placement="bottom" tourtip-step="4" tourtip-element="#e5" class="ng-scope"></virtual-step>
-        <virtual-step tourtip="You can also go backwards through the DOM, like we just did." tourtip-next-label="Cool. How do I use it?" tourtip-placement="bottom" tourtip-step="5" tourtip-element="#e6" class="ng-scope"></virtual-step>
+        <virtual-step tourtip="{{vm.tour1}}" tourtip-placement="left" tourtip-step="0" tourtip-element="#createnewsite" class="ng-scope"></virtual-step>
     </tour>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -141,7 +136,7 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
-    <script src="bower_components/angular-tour/dist/angular-tour-tpls.min.js"></script>
+    <script src="bower_components/angular-tour/dist/angular-tour-tpls.js"></script>
     <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/highlightjs/highlight.pack.js"></script>

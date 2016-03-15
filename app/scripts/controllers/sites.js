@@ -8,15 +8,22 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('SitesCtrl', ['$scope', '$rootScope', 'hopups', '$mdDialog', function ($scope, $rootScope, hopups, $mdDialog) {
+  .controller('SitesCtrl', ['$scope', '$rootScope', 'hopups', '$mdDialog', '$cookies', function ($scope, $rootScope, hopups, $mdDialog, $cookies) {
     var vm = this;
     vm.sites = [];
+
+    vm.tour2 = 'Now click the spanner to configure your site';
+    $scope.currentStep = 1;
 
     function refresh() {
       hopups.fetchSites().then( function(sites) {
         vm.sites.length =0; // Cheeky way to empty the array.
         Array.prototype.push.apply(vm.sites, sites);
+        if (sites.length > 0){
+          $cookies.put('myTour', 1);
+        }
       });
+
     }
     refresh();
 
@@ -32,7 +39,11 @@ angular.module('adminApp')
           $scope.closeDialog= function(create) {
             if(create) {
               if( $scope.newSiteForm.$valid) {
-                hopups.updateSite({name: $scope.newSite.name})
+                hopups.updateSite({
+                  name: $scope.newSite.name,
+                  description: $scope.newSite.description,
+                  phoneNumbers: $scope.newSite.phoneNumbers,
+                })
                 .then(function(typeName) {
                   $mdDialog.hide();
                   refresh();

@@ -18,14 +18,20 @@
 
 <md-content flex="" layout-padding="" layout="column" md-scroll-y="" class="seethru layout-padding ng-scope layout-column flex md-default-theme">
 
+<div ng-if="vm.sites.length" >
+  <tour step="currentStep" post-tour="postTourCallback()" post-step="postStepCallback()" tour-complete="tourCompleteCallback()" class="ng-scope">
+    <virtual-step tourtip="{{vm.tour2}}" tourtip-next-label="Close" tourtip-placement="left" tourtip-step="1" tourtip-element="#configure0" class="ng-scope"></virtual-step>
+  </tour>
+</div>
+
 <md-card  class="md-cyan-theme" ng-repeat="site in vm.sites track by site._id" flex>
   <div layout="" layout-xs="column" flex="" class="layout-xs-column layout-row flex" >
     <md-card-content flex style="max-height: 210px;overflow-y:auto;">
-      <h3 flex id='e0' >{{site.name}}</h3>
+      <h3 flex id='site{{$index}}' >{{site.name}}</h3>
       <p>{{site.description}}</p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-primary" ui-sref="site({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="build"></md-icon> Configure</md-button>
+      <md-button class="md-primary" ui-sref="site({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="build" id="configure{{$index}}"></md-icon> Configure</md-button>
       <md-button class="md-primary" ui-sref="site-analysis({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="chart"></md-icon> Analyse</md-button>
       <md-button class="md-primary" ui-sref="user-analysis({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="face"></md-icon> Users</md-button>
       <md-switch ng-model="site.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
@@ -35,7 +41,7 @@
 
 </md-content>
 
-  <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" md-open="apps.fabIsOpen" ng-mouseenter="apps.fabIsOpen=true" ng-mouseleave="apps.fabIsOpen=false">
+  <md-fab-speed-dial id="createnewsite" md-direction="up" class="md-scale md-fab-bottom-right" md-open="apps.fabIsOpen" ng-mouseenter="apps.fabIsOpen=true" ng-mouseleave="apps.fabIsOpen=false">
     <md-fab-trigger>
         <md-button aria-label="Add" class="md-fab" ng-click="createNewSite()">
             <md-icon md-svg-icon="plus"></md-icon>

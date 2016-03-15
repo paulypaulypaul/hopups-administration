@@ -41,6 +41,12 @@
         "./dist/angular-tour-tpls.js",
         "./dist/angular-tour.css"
       ]
+    },
+    "angular-ui-ace" : {
+      "main": [
+        "./ui-ace.js",
+        "../ace-builds/src/ace.js"
+      ]
     }
   }
 }

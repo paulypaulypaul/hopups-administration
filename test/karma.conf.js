@@ -38,6 +38,7 @@ module.exports = function(config) {
       'bower_components/angular-scroll-glue/src/scrollglue.js',
       'bower_components/angular-tour/dist/angular-tour-tpls.js',
       'bower_components/angular-ui-ace/ui-ace.js',
+      'bower_components/ace-builds/src/ace.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/highlightjs/highlight.pack.js',
       'bower_components/moment-range/dist/moment-range.js',

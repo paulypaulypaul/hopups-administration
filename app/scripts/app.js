@@ -19,7 +19,8 @@ angular
     'afOAuth2',
     'adminAppConfig',
     'ui.ace',
-    'googlechart'
+    'googlechart',
+    'angular-tour'
   ])
   .run(function($rootScope){
     $rootScope.theme = 'default';

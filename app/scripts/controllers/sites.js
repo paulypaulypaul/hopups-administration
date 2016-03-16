@@ -21,6 +21,8 @@ angular.module('adminApp')
         Array.prototype.push.apply(vm.sites, sites);
         if (sites.length > 0){
           $cookies.put('myTour', 1);
+        } else {
+          $cookies.put('myTour', 0);
         }
       });
 

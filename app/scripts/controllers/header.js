@@ -15,7 +15,7 @@ angular.module('adminApp')
     $scope.facebookAppId = ENV.facebookAppId;
 
     vm.tour1 = 'If you havn\'t already. Click here to create a new site';
-    
+
     var curStep = $cookies.get('myTour');
     if(typeof curStep === 'string'){
       curStep = parseInt(curStep);
@@ -34,7 +34,7 @@ angular.module('adminApp')
 
      $scope.postStepCallback = function() {
        console.log('Tour - Update Step', $scope.currentStep);
-       $cookies.put('myTour', $scope.currentStep);
+       //$cookies.put('myTour', $scope.currentStep);
      };
 
     this.toggleList = function() {

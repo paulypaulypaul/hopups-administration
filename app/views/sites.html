@@ -24,7 +24,7 @@
   </tour>
 </div>
 
-<md-card  class="md-cyan-theme" ng-repeat="site in vm.sites track by site._id" flex>
+<md-card  class="md-cyan-theme" ng-repeat="site in vm.sites track by site._id"  style="max-height: 210px;" flex>
   <div layout="" layout-xs="column" flex="" class="layout-xs-column layout-row flex" >
     <md-card-content flex style="max-height: 210px;overflow-y:auto;">
       <h3 flex id='site{{$index}}' >{{site.name}}</h3>

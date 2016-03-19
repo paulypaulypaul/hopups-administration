@@ -45,6 +45,7 @@ angular.module('adminApp')
           {display: 'Left Slide', value: 'left', code: 'left'},
           {display: 'Right Slide', value: 'right', code: 'right'},
           {display: 'Target Element', value: 'target', code: 'target'},
+          {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty'},
         ];
 
         this.querySearch = function(query) {
@@ -74,6 +75,8 @@ angular.module('adminApp')
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-right.html');
               } else if (site.selected.templateAttributes.side == 'target'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/target.html');
+              } else if (site.selected.templateAttributes.side == 'left-empty'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty.html');
               }
 
               $templateRequest(templateUrl).then(function(template) {

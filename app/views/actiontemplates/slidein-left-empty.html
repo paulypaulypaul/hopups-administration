@@ -51,6 +51,10 @@ body {
 	border-bottom-left-radius: 0px;
 }
 
+a {
+	text-decoration: none;
+}
+
 a#signup {
     background-color: #78CF7C;
     border: none;
@@ -84,11 +88,14 @@ a#signup {
     border: 1px solid transparent;
     border-radius: 4px
 }
+
+h3 {
+	color: white;
+	text-decoration: none;
+}
+
 </style>
 
 <div id="slide-panel" >
 	<a class="btn" id="opener">{{templateAttributes.tabTitle}}</a>
-	<h3>{{templateAttributes.windowTitle}}</h3>
-	<p>{{templateAttributes.windowText}}</p>
-	<a href="http://numero-cnj.thisisnumero.internal/adk/lbs/" id="signup" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>
-</div>
+	<div>{{templateAttributes.html}}</div>

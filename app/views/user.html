@@ -22,8 +22,8 @@
   <md-content flex layout-padding layout="column" md-scroll-y class="seethru">
 
       <h3>Active Users</h3>
-      <div layout="row" layout-sm="column">
-      <md-card  class="md-cyan-theme" ng-repeat="user in site.siteUsers" flex>
+      <div layout="row" layout-sm="column" style="overflow-y: auto;">
+      <md-card  class="md-cyan-theme" ng-repeat="user in site.siteUsers | orderBy:'-lastActive'" flex>
 
         <h4>{{user._id}} - last Active {{user.lastActive | date : 'M/d/yy h:mm a'}}</h4>
         <p ng-if="!user.currentPhoneNumberAllocation[0].archive" >Phone number {{user.currentPhoneNumberAllocation[0].phoneNumber}}</p>
@@ -38,6 +38,7 @@
           <div ng-repeat="sessiondata in user.sessiondata">
             <h6>{{vm.getEventString(sessiondata.event)}}</h6>
             <h6>{{sessiondata._id}} - {{sessiondata.date | date : 'M/d/yy h:mm a'}}</h6>
+            {{sessiondata.context.location | json}}
           </div>
         </div>
       </md-card>

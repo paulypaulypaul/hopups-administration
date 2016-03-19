@@ -127,60 +127,65 @@ angular.module('adminApp')
 
     $scope.chartObjectDay = {};
     $scope.chartObjectDay.type = "ColumnChart";
-
     $scope.chartObjectDay.data = {
       "cols": [
         {id: "t", label: "Day", type: "string"},
-        {id: "d", label: "Delivered", type: "number"},
-  //      {id: "r", label: "Responded", type: "number"}
+        {id: "d", label: "Delivered", type: "number"}
       ],
       "rows": []};
-
     $scope.chartObjectDay.options = {
         'title': 'Hopups Week'
     };
 
     $scope.chartObjectHour = {};
     $scope.chartObjectHour.type = "ColumnChart";
-
     $scope.chartObjectHour.data = {
       "cols": [
         {id: "t", label: "Day", type: "string"},
-        {id: "d", label: "Delivered", type: "number"},
-//        {id: "r", label: "Responded", type: "number"}
+        {id: "d", label: "Delivered", type: "number"}
       ],
       "rows": []};
-
     $scope.chartObjectHour.options = {
         'title': 'Hopups Past 2 Days'
     };
 
     $scope.chartObjectMin = {};
-        $scope.chartObjectMin.type = "ColumnChart";
+    $scope.chartObjectMin.type = "ColumnChart";
+    $scope.chartObjectMin.data = {
+      "cols": [
+        {id: "t", label: "Min", type: "string"},
+        {id: "d", label: "Delivered", type: "number"}
+      ],
+      "rows": []};
+    $scope.chartObjectMin.options = {
+        'title': 'Hopups Past 2 Hours'
+    };
 
-        $scope.chartObjectMin.data = {
-          "cols": [
-            {id: "t", label: "Min", type: "string"},
-            {id: "d", label: "Delivered", type: "number"},
-  //          {id: "r", label: "Responded", type: "number"}
-          ],
-          "rows": []};
+    this.buildColumnsFromHopup = function(hopup){
+      var cols = []
+      for (var i = 0; i < hopup.events.length; i++){
 
-        $scope.chartObjectMin.options = {
-            'title': 'Hopups Past 2 Hours'
-        };
+          var event = this.getEventById(hopup.events[i]);
+
+          cols.push({id: "r", label: "Responded " + event.name  + ' ' + hopup.events[i], type: "number"});
+      }
+      return cols;
+    };
 
     this.selectHopup = function(hopup) {
       $scope.site.selectedHopup = hopup;
 
-  //    this.createChart(hopup, $scope.chartObjectDay, 'days', 'day', 7, 'dddd');
-      this.createChart(hopup, $scope.chartObjectHour, 'hours', 'hour', 48, 'HH');
-  //    this.createChart(hopup, $scope.chartObjectMin, 'minute', 'minute', 120, 'mm');
+      var extraColumns = this.buildColumnsFromHopup(hopup);
+
+      this.createChart(hopup, $scope.chartObjectDay, extraColumns, 'days', 'day', 7, 'dddd');
+      this.createChart(hopup, $scope.chartObjectHour, extraColumns, 'hours', 'hour', 48, 'HH');
+      this.createChart(hopup, $scope.chartObjectMin, extraColumns, 'minute', 'minute', 120, 'mm');
     };
 
-    this.createChart = function(hopup, chartobject, timeSlicePl, timeSlice, range, format){
+    this.createChart = function(hopup, chartobject, extraColumns, timeSlicePl, timeSlice, range, format){
       var self = this;
 
+      chartobject.data.cols = chartobject.data.cols.concat(extraColumns);
       chartobject.data.rows.length = 0;
 
       var actionSessionDataForHopup = this.getActionSessionDataForHopup(hopup);
@@ -199,49 +204,33 @@ angular.module('adminApp')
           //get action sessions that are the same as the start of the time slice
           if (slice.startOf(timeSlice).isSame(moment(actionSessionDataForHopup[i].date).startOf(timeSlice))){
 
-              var actionSesionDataForHopupInstance = self.getSessionDataFromActionInstance(actionSessionDataForHopup[i]);
-              matched.push(actionSessionDataForHopup[i]);
+            var actionSesionDataForHopupInstance = self.getSessionDataFromActionInstance(actionSessionDataForHopup[i]);
+            matched.push(actionSessionDataForHopup[i]);
 
+            for (var j = 0; j < actionSesionDataForHopupInstance.length; j++){
+              //lets segemnts the actionsessiondata by the event id that caused them
+              if (!actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event]){
+                actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event] = [];
 
-              for (var j = 0; j < actionSesionDataForHopupInstance.length; j++){
-                //lets segemnts the actionsessiondata by the event id that caused them
-                if (!actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event]){
-                  actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event] = [];
-
-                  chartobject.data.cols.push({id: "r", label: "Responded " + actionSesionDataForHopupInstance[j].event, type: "number"});
-                }
-
-                actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event].push(actionSesionData[j]);
-
-                //replace the eventid with the event
-                //actionSesionData[j].event = self.getEventById(actionSesionData[j].event);
-                actionSesionData.concat(actionSesionDataForHopupInstance)
               }
-
-
-
-
-
-
-
+              actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event].push(actionSesionData[j]);
+              actionSesionData.concat(actionSesionDataForHopupInstance)
+            }
           }
-          //if (moment.diff(actionSessionData[i].date, 'days') === 0){
-          //  matched.push(actionSessionData[i])
-          //}
-
         }
 
         var row = [
             {v: slice.format(format)},
             {v: matched.length}
-        ]
+        ];
 
+        //here we apply the number of sesion data to the row for the chartObject
+        //but atm we are just  replying on the ids somehow syncing - needs to better.
         for (var key in actionSesionDataIndexed){
           row.push({v: actionSesionDataIndexed[key].length})
         }
 
         var chartObject = {c: row}
-
         chartobject.data.rows.push(chartObject);
 
       });
@@ -251,8 +240,5 @@ angular.module('adminApp')
     this.displayHopups = function(){
       return !!$scope.site.selectedHopup;
     }
-
-
-
 
   }]);

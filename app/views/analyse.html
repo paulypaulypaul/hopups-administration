@@ -72,6 +72,10 @@
                 <h4>{{action.name}} ({{action._id}})</h4>
               </div>
               Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
+              <div ng-repeat="response in vm.getSessionDataFromActionInstance(actionSessionData)">
+                {{response | json}}
+                {{vm.getEventById(response.event) | json}}
+              </div>
           </div>
         </div>
 

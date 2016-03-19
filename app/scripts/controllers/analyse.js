@@ -10,7 +10,6 @@
 angular.module('adminApp')
   .controller('AnalyseCtrl', [ '$scope', 'hopups', '$stateParams', function ($scope, hopups, $stateParams) {
 
-
     $scope.site = {
       siteId: $stateParams.siteId,
       events: [],
@@ -102,6 +101,16 @@ angular.module('adminApp')
       return {name: 'not found'};
     };
 
+    this.getEventById = function(id){
+      for (var i = 0; i < $scope.site.events.length; i++){
+        var event = $scope.site.events[i];
+        if (event._id === id){
+          return event;
+        }
+      }
+      return {name: 'not found'};
+    };
+
     this.getSessionDataFromActionInstance = function(actionSessionData){
       var id = actionSessionData._id;
       var sessionDataItems = []
@@ -123,7 +132,7 @@ angular.module('adminApp')
       "cols": [
         {id: "t", label: "Day", type: "string"},
         {id: "d", label: "Delivered", type: "number"},
-        {id: "r", label: "Responded", type: "number"}
+  //      {id: "r", label: "Responded", type: "number"}
       ],
       "rows": []};
 
@@ -138,7 +147,7 @@ angular.module('adminApp')
       "cols": [
         {id: "t", label: "Day", type: "string"},
         {id: "d", label: "Delivered", type: "number"},
-        {id: "r", label: "Responded", type: "number"}
+//        {id: "r", label: "Responded", type: "number"}
       ],
       "rows": []};
 
@@ -153,7 +162,7 @@ angular.module('adminApp')
           "cols": [
             {id: "t", label: "Min", type: "string"},
             {id: "d", label: "Delivered", type: "number"},
-            {id: "r", label: "Responded", type: "number"}
+  //          {id: "r", label: "Responded", type: "number"}
           ],
           "rows": []};
 
@@ -164,9 +173,9 @@ angular.module('adminApp')
     this.selectHopup = function(hopup) {
       $scope.site.selectedHopup = hopup;
 
-      this.createChart(hopup, $scope.chartObjectDay, 'days', 'day', 7, 'dddd');
+  //    this.createChart(hopup, $scope.chartObjectDay, 'days', 'day', 7, 'dddd');
       this.createChart(hopup, $scope.chartObjectHour, 'hours', 'hour', 48, 'HH');
-      this.createChart(hopup, $scope.chartObjectMin, 'minute', 'minute', 120, 'mm');
+  //    this.createChart(hopup, $scope.chartObjectMin, 'minute', 'minute', 120, 'mm');
     };
 
     this.createChart = function(hopup, chartobject, timeSlicePl, timeSlice, range, format){
@@ -174,7 +183,7 @@ angular.module('adminApp')
 
       chartobject.data.rows.length = 0;
 
-      var actionSessionData = this.getActionSessionDataForHopup(hopup);
+      var actionSessionDataForHopup = this.getActionSessionDataForHopup(hopup);
       var start   = moment().subtract(range, timeSlicePl);
       var end = moment();
 
@@ -183,22 +192,57 @@ angular.module('adminApp')
       range.by(timeSlicePl, function(slice) {
         var matched = [];
         var actionSesionData = [];
+        var actionSesionDataIndexed = {};
 
-        for(var i =0; i < actionSessionData.length; i++){
-          if (slice.startOf(timeSlice).isSame(moment(actionSessionData[i].date).startOf(timeSlice))){
-              actionSesionData = actionSesionData.concat(self.getSessionDataFromActionInstance(actionSessionData[i]));
-              matched.push(actionSessionData[i]);
+        for(var i =0; i < actionSessionDataForHopup.length; i++){
+
+          //get action sessions that are the same as the start of the time slice
+          if (slice.startOf(timeSlice).isSame(moment(actionSessionDataForHopup[i].date).startOf(timeSlice))){
+
+              var actionSesionDataForHopupInstance = self.getSessionDataFromActionInstance(actionSessionDataForHopup[i]);
+              matched.push(actionSessionDataForHopup[i]);
+
+
+              for (var j = 0; j < actionSesionDataForHopupInstance.length; j++){
+                //lets segemnts the actionsessiondata by the event id that caused them
+                if (!actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event]){
+                  actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event] = [];
+
+                  chartobject.data.cols.push({id: "r", label: "Responded " + actionSesionDataForHopupInstance[j].event, type: "number"});
+                }
+
+                actionSesionDataIndexed[actionSesionDataForHopupInstance[j].event].push(actionSesionData[j]);
+
+                //replace the eventid with the event
+                //actionSesionData[j].event = self.getEventById(actionSesionData[j].event);
+                actionSesionData.concat(actionSesionDataForHopupInstance)
+              }
+
+
+
+
+
+
+
           }
           //if (moment.diff(actionSessionData[i].date, 'days') === 0){
           //  matched.push(actionSessionData[i])
           //}
+
         }
 
-        chartobject.data.rows.push({c: [
+        var row = [
             {v: slice.format(format)},
-            {v: matched.length},
-            {v: actionSesionData.length},
-        ]});
+            {v: matched.length}
+        ]
+
+        for (var key in actionSesionDataIndexed){
+          row.push({v: actionSesionDataIndexed[key].length})
+        }
+
+        var chartObject = {c: row}
+
+        chartobject.data.rows.push(chartObject);
 
       });
 

@@ -69,7 +69,7 @@ angular.module('adminApp')
         var actionsessiondatas = [];
         for (var i = 0; i < $scope.site.actionsessiondata.length; i++){
           var actionsessiondata = $scope.site.actionsessiondata[i];
-          console.log(actionsessiondata.action, actionId);
+
           if (actionsessiondata.action === actionId){
             actionsessiondatas.push(actionsessiondata);
           }
@@ -128,38 +128,41 @@ angular.module('adminApp')
     $scope.chartObjectDay = {};
     $scope.chartObjectDay.type = "ColumnChart";
     $scope.chartObjectDay.data = {
-      "cols": [
-        {id: "t", label: "Day", type: "string"},
-        {id: "d", label: "Delivered", type: "number"}
-      ],
+      "cols": [],
       "rows": []};
     $scope.chartObjectDay.options = {
         'title': 'Hopups Week'
     };
+    var chartObjectDayColumns = [
+      {id: "t", label: "Day", type: "string"},
+      {id: "d", label: "Delivered", type: "number"}
+    ];
 
     $scope.chartObjectHour = {};
     $scope.chartObjectHour.type = "ColumnChart";
     $scope.chartObjectHour.data = {
-      "cols": [
-        {id: "t", label: "Day", type: "string"},
-        {id: "d", label: "Delivered", type: "number"}
-      ],
+      "cols": [],
       "rows": []};
     $scope.chartObjectHour.options = {
         'title': 'Hopups Past 2 Days'
     };
+    var chartObjectHourColumns = [
+      {id: "t", label: "Day", type: "string"},
+      {id: "d", label: "Delivered", type: "number"}
+    ];
 
     $scope.chartObjectMin = {};
     $scope.chartObjectMin.type = "ColumnChart";
     $scope.chartObjectMin.data = {
-      "cols": [
-        {id: "t", label: "Min", type: "string"},
-        {id: "d", label: "Delivered", type: "number"}
-      ],
+      "cols": [],
       "rows": []};
     $scope.chartObjectMin.options = {
         'title': 'Hopups Past 2 Hours'
     };
+    var chartObjectMinColumns = [
+      {id: "t", label: "Min", type: "string"},
+      {id: "d", label: "Delivered", type: "number"}
+    ];
 
     this.buildColumnsFromHopup = function(hopup){
       var cols = []
@@ -177,8 +180,13 @@ angular.module('adminApp')
 
       var extraColumns = this.buildColumnsFromHopup(hopup);
 
+      $scope.chartObjectDay.data.cols = chartObjectDayColumns;
       this.createChart(hopup, $scope.chartObjectDay, extraColumns, 'days', 'day', 7, 'dddd');
+
+      $scope.chartObjectHour.data.cols = chartObjectHourColumns;
       this.createChart(hopup, $scope.chartObjectHour, extraColumns, 'hours', 'hour', 48, 'HH');
+
+      $scope.chartObjectMin.data.cols = chartObjectMinColumns;
       this.createChart(hopup, $scope.chartObjectMin, extraColumns, 'minute', 'minute', 120, 'mm');
     };
 
@@ -195,6 +203,7 @@ angular.module('adminApp')
       var range = moment.range(start, end);
 
       range.by(timeSlicePl, function(slice) {
+        console.log('range', slice);
         var matched = [];
         var actionSesionData = [];
         var actionSesionDataIndexed = {};

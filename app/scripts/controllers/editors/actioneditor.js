@@ -48,6 +48,15 @@ angular.module('adminApp')
           {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty'},
         ];
 
+        this.responsePredefinedTemplateColor = [
+          {display: '#E37568', value: '#E37568', code: '#E37568'},
+          {display: '#e84c6f', value: '#e84c6f', code: '#e84c6f'},
+          {display: '#ff8080', value: '#ff8080', code: '#ff8080'},
+          {display: '#DE935F', value: '#DE935F', code: '#DE935F'},
+          {display: '#2F5551', value: '#2F5551', code: '#2F5551'},
+          {display: '#20D3EF', value: '#20D3EF', code: '#20D3EF'},
+        ];
+
         this.querySearch = function(query) {
           var results = query ? this.responseTypes.filter( this.createFilterFor(query) ) : [];
           var deferred = $q.defer();

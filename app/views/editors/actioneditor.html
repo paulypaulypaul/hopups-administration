@@ -98,6 +98,13 @@
               <input type="text" ng-model="site.selected.templateAttributes.color" >
             </md-input-container>
 
+            <md-radio-group ng-model="site.selected.templateAttributes.color">
+              <label>Colour</label>
+              <md-radio-button ng-repeat="d in vm.responsePredefinedTemplateColor" ng-value="d.value" aria-label="{{ d.display }}">
+                     <div style="background-color:{{ d.display }};width:50px;height:20px;" flex></div>
+              </md-radio-button>
+            </md-radio-group>
+
             <md-input-container class="md-block">
               <label>Tab Title</label>
               <input type="text" ng-model="site.selected.templateAttributes.tabTitle" >

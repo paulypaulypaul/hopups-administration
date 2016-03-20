@@ -412,8 +412,19 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-//            apiEndpoint: 'http://localhost:3000/api/admin',
-//            widgetEndpoint: 'http://localhost:3000/api/widget',
+            apiEndpoint: 'http://localhost:3000/api/admin',
+            widgetEndpoint: 'http://localhost:3000/api/widget',
+            facebookAppId: '1682324782006199'
+          }
+        }
+      },
+      homeremote: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
             apiEndpoint: 'http://hopups-server.datpoint.com/api/admin',
             widgetEndpoint: 'http://hopups-server.datpoint.com/api/widget',
             facebookAppId: '1682324782006199'
@@ -449,6 +460,18 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep',
         'ngconstant:home',
+        'concurrent:server',
+        'autoprefixer:server',
+        'connect:livereload',
+        'watch'
+      ]);
+    }
+
+    if (target === 'homeremote') {
+      return grunt.task.run([
+        'clean:server',
+        'wiredep',
+        'ngconstant:homeremote',
         'concurrent:server',
         'autoprefixer:server',
         'connect:livereload',

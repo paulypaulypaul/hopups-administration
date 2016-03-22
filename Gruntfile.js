@@ -405,6 +405,19 @@ module.exports = function (grunt) {
           }
         }
       },
+      workremote: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://hopups-server.datpoint.com/api/admin',
+            widgetEndpoint: 'http://hopups-server.datpoint.com/api/widget',
+            facebookAppId: '1682324782006199'
+          }
+        }
+      },
       home: {
         options: {
           dest: '<%= yeoman.app %>/scripts/config.js'
@@ -472,6 +485,18 @@ module.exports = function (grunt) {
         'clean:server',
         'wiredep',
         'ngconstant:homeremote',
+        'concurrent:server',
+        'autoprefixer:server',
+        'connect:livereload',
+        'watch'
+      ]);
+    }
+
+    if (target === 'workremote') {
+      return grunt.task.run([
+        'clean:server',
+        'wiredep',
+        'ngconstant:workremote',
         'concurrent:server',
         'autoprefixer:server',
         'connect:livereload',

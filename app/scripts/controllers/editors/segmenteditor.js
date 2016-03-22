@@ -18,6 +18,13 @@ angular.module('adminApp')
         {display: 'Client Variable', value: 'clientvariable', code: 'clientvariable'},
       ];
 
+      this.operators = [
+        {display: 'equal', value: 'eq', code: 'eq'},
+        {display: 'not equal', value: 'neq', code: 'neq'},
+        {display: 'greater than', value: 'gt', code: 'gt'},
+        {display: 'less than', value: 'lt', code: 'lt'}
+      ];
+
       this.querySearch = function(query) {
         var results = query ? this.listenTypes.filter( this.createFilterFor(query) ) : [];
         var deferred = $q.defer();

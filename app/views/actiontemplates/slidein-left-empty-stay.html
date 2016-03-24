@@ -2,6 +2,7 @@
 <script>
 $( document ).ready(function() {
 	 $('#opener').on('click', function () {
+		 debugger;
 		 var panel = $('#slide-panel');
 		 if (panel.hasClass("visible")) {
 			 panel.removeClass('visible').animate({
@@ -13,6 +14,30 @@ $( document ).ready(function() {
 			 });
 		 }
 		 return false;
+	 });
+	 $(window).scroll(function() {
+
+		 var panel = $('#slide-panel');
+
+		 console.log(jQuery(this).scrollTop());
+
+
+		 if (jQuery(this).scrollTop() > 100) {
+
+			 if (!panel.hasClass("visible")) {
+				 panel.animate({
+					 'left': '-260px'
+				 });
+		 	}
+	 	}
+		else {
+			debugger;
+			 if (!panel.hasClass("visible")) {
+				 panel.animate({
+					'left': '-300px'
+				});
+			 }
+		 }
 	 });
  });
 </script>

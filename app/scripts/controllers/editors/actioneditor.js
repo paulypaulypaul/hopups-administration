@@ -46,6 +46,7 @@ angular.module('adminApp')
           {display: 'Right Slide', value: 'right', code: 'right'},
           {display: 'Target Element', value: 'target', code: 'target'},
           {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty'},
+          {display: 'Left Slide Empty Stay', value: 'left-empty-stay', code: 'left-empty-stay'},
         ];
 
         this.responsePredefinedTemplateColor = [
@@ -86,7 +87,10 @@ angular.module('adminApp')
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/target.html');
               } else if (site.selected.templateAttributes.side == 'left-empty'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty.html');
+              } else if (site.selected.templateAttributes.side == 'left-empty-stay'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty-stay.html');
               }
+
 
               $templateRequest(templateUrl).then(function(template) {
 

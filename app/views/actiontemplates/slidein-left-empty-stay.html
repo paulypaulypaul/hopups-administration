@@ -1,43 +1,44 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" ></script>
 <script>
 $( document ).ready(function() {
-	 $('#opener').on('click', function () {
-		 debugger;
-		 var panel = $('#slide-panel');
-		 if (panel.hasClass("visible")) {
-			 panel.removeClass('visible').animate({
-				 'left': '-300px'
-			 });
-		 } else {
-			 panel.addClass('visible').animate({
-				 'left': '0'
-			 });
-		 }
-		 return false;
+	var panel = $('#slide-panel');
+	var scrollpx = '-300';
+
+	$('#opener').on('click', function () {
+		if (panel.hasClass("visible")) {
+			panel.removeClass('visible').animate({
+				'left': '-300px'
+			});
+		} else {
+			panel.addClass('visible').animate({
+				'left': '0'
+			});
+		}
+		return false;
 	 });
+
+	 var scrollTo = function(panel, value){
+		if (scrollpx != value){
+			scrollpx = value;
+			panel.animate({
+				 'left': scrollpx + 'px'
+			}, 500);
+		}
+	 }
+
 	 $(window).scroll(function() {
-
-		 var panel = $('#slide-panel');
-
-		 console.log(jQuery(this).scrollTop());
-
-
-		 if (jQuery(this).scrollTop() > 100) {
-
-			 if (!panel.hasClass("visible")) {
-				 panel.animate({
-					 'left': '-260px'
-				 });
-		 	}
-	 	}
-		else {
-			debugger;
-			 if (!panel.hasClass("visible")) {
-				 panel.animate({
-					'left': '-300px'
-				});
-			 }
-		 }
+		var panel = $('#slide-panel');
+		if (jQuery(this).scrollTop() > 100) {
+			if (!panel.hasClass("visible")) {
+				 console.log('trigger 260')
+				 scrollTo(panel, '-260');
+			}
+		} else {
+			if (!panel.hasClass("visible")) {
+				console.log('trigger 300')
+				scrollTo(panel, '-300');
+			}
+		}
 	 });
  });
 </script>
@@ -119,9 +120,16 @@ h3 {
 	text-decoration: none;
 }
 
+div.teaser2 {
+	padding-right: 10px;
+}
+
 </style>
 
 <div id="slide-panel" >
-	<a class="btn" id="opener">{{templateAttributes.tabTitle}}</a>
+	<a class="btn" id="opener">
+		<div class="teaser">{{templateAttributes.tabTitle}}</div>
+		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>
+	</a>
 	<div>{{templateAttributes.html}}</div>
 </div>

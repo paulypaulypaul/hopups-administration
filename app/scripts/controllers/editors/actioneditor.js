@@ -8,25 +8,25 @@
  * Controller of the adminApp
  */
 angular.module('adminApp')
-  .controller('ActionEditorCtrl', ['$scope', 'hopups', '$q', '$sce', '$templateRequest', '$interpolate',
-    function ($scope, hopups, $q, $sce, $templateRequest, $interpolate) {
+  .controller('ActionEditorCtrl', ['$scope', 'hopups', '$q', '$sce', '$templateRequest', '$interpolate', '$mdDialog',
+    function ($scope, hopups, $q, $sce, $templateRequest, $interpolate, $mdDialog) {
 
     var site = $scope.site;
 
-    this.getSegmentName = function(segmentId){
-          var segments = $scope.site.segments;
-          for (var segment in segments){
-            if (segments[segment]._id == segmentId){
-              return segments[segment].listen + ' : ' + segments[segment].tag + ' : ' + segments[segment].threshold;
-            }
-          }
-          return 'not found';
+    this.getEventName = function(eventId){
+      var events = $scope.site.events;
+      for (var event in events){
+        if (events[event]._id == eventId){
+          return events[event].name;
         }
+      }
+      return 'not found';
+    }
 
-        this.removeSegment = function(segmentId){
-          var index = $scope.site.selected.segments.indexOf(segmentId);
+        this.removeEvent = function(Id){
+          var index = $scope.site.selected.events.indexOf(Id);
           if (index > -1){
-            $scope.site.selected.segments.splice(index, 1);
+            $scope.site.selected.events.splice(index, 1);
           }
         }
 
@@ -134,15 +134,17 @@ angular.module('adminApp')
             })
         }
 
-        this.addSegment = function() {
+        this.addEvent = function() {
           var dlg = $mdDialog.alert({
-            templateUrl: './src/views/hopups/dialogs/selectsegment.html',
+            templateUrl: 'views/dialogs/selectevent.html',
             controller: ['$scope', '$window', function DialogController($scope, $window) {
               $scope.site = site;
-              console.log($scope.site);
 
-              this.closeDialog= function(segment) {
-                  site.selected.segments.push(segment._id);
+              this.closeDialog= function(event) {
+                if (!site.selected.events){
+                  site.selected.events = [];
+                }
+                  site.selected.events.push(event._id);
                   $mdDialog.hide();
               };
             }],

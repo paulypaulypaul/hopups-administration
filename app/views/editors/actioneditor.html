@@ -70,7 +70,7 @@
               </md-radio-button>
             </md-radio-group>
 
-            <div ng-if="site.selected.templateAttributes.side === vm.responsePredefinedTemplate[3].value" >
+            <div ng-if="site.selected.templateAttributes.side === vm.responsePredefinedTemplate[3].value || site.selected.templateAttributes.side === vm.responsePredefinedTemplate[4].value" >
               <div layout="row"  flex style="position: relative;height: 200px;" >
                 <div ui-ace
                     flex
@@ -111,6 +111,11 @@
             </md-input-container>
 
             <md-input-container class="md-block">
+              <label>Tab Scroll Teaser</label>
+              <input type="text" ng-model="site.selected.templateAttributes.tabTeaser" >
+            </md-input-container>
+
+            <md-input-container class="md-block">
               <label>Window Title</label>
               <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
             </md-input-container>
@@ -140,17 +145,17 @@
         </div>
 
     </div>
-      <!--md-list>
+      <md-list>
         <label>Action Events</label>
-          <md-list-item ng-repeat="segment in site.selected.events">
-            {{vm.getSegmentName(segment)}}
-            <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeSegment(segment)"></md-icon>
+          <md-list-item ng-repeat="event in site.selected.events">
+            {{vm.getEventName(event)}}
+            <md-icon style="margin-right:0px" md-svg-icon="delete" ng-click="vm.removeEvent(event)"></md-icon>
 
           </md-list-item>
-          <md-button aria-label="Add" class="md-fab" ng-click="vm.addSegment()">
+          <md-button aria-label="Add" class="md-fab" ng-click="vm.addEvent()">
               <md-icon md-svg-icon="plus"></md-icon>
           </md-button>
-      </md-list-->
+      </md-list>
 
        <div ng-show="!site.selected.system" layout="row" flex layout-align="end center">
           <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">

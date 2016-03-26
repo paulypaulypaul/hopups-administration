@@ -23,9 +23,9 @@
 
 <div flex>
     <md-tabs md-selected="selectedIndex" >
-        <md-tab label="Weelky"></md-tab>
-        <md-tab label="2 Days"></md-tab>
-        <md-tab label="2 Hours"></md-tab>
+        <md-tab label="Last Week"></md-tab>
+        <md-tab label="Last Day"></md-tab>
+        <md-tab label="Last Hour"></md-tab>
         <md-tab label="."></md-tab> <!-- This tab needs removing when https://github.com/angular/material/issues/5439 is fixed -->
     </md-tabs>
     <div ng-if="selectedIndex==0" flex layout="column" layout-padding>
@@ -45,6 +45,10 @@
     </div>
   </div>
     <md-divider></md-divider>
+
+<div class="md-whiteframe-z3 leak">
+    <div id="chartdiv" flex ></div>
+</div>
 
       <div flex>
         <h3>{{site.selectedHopup.name}}
@@ -69,7 +73,7 @@
           <h3>Actions delivered</h3>
           <div ng-repeat="actionSessionData in vm.getActionSessionDataForHopup(site.selectedHopup)">
               <div ng-repeat="action in vm.getAction(actionSessionData)">
-                <h4>{{action.name}} ({{action._id}})</h4>
+                <h4>{{action.name}} ({{action._id}}) - {{actionSessionData.date}}</h4>
               </div>
               Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
               <div ng-repeat="response in vm.getSessionDataFromActionInstance(actionSessionData)">
@@ -80,5 +84,10 @@
         </div>
 
       </div>
+
+
+        <div ng-repeat="sd in site.sessiondata" >
+            {{sd | json}}
+        </div>
 
   </md-content>

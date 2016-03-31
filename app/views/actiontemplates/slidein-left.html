@@ -14,6 +14,9 @@ $( document ).ready(function() {
 		 }
 		 return false;
 	 });
+	 $('#closer').on('click', function () {
+	 	$("#slide-panel").css({display:'none'});
+ 	 });
  });
 </script>
 <style>
@@ -26,33 +29,36 @@ body {
     width:300px;
     height:300px;
     padding:10px;
-    background: {{templateAttributes.color}};
     position: absolute;
     top: 50%;
     left: -300px;
 		z-index: 999;
+		box-shadow: 4px 4px 4px #C3C3C3;
+		background: {{templateAttributes.color}};
 }
 
 #opener {
-    background: {{templateAttributes.color}};
+		box-shadow: 4px 4px 4px #B99191;
     border-radius: 0;
     color: white;
     float: right;
     font-weight: bold;
-    height: {{templateAttributes.tabTitle.length * 15}}px;
-    line-height: 20px;
+    line-height: 15px;
     margin: -10px -50px 0 -60px;
-    width: 50px;
+    width: 44px;
     writing-mode: vertical-rl;
-	font-size: 20px;
-	border-top-right-radius: 15px;
-	border-bottom-right-radius: 15px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
+		font-size: 20px;
+		border-top-right-radius: 15px;
+		border-bottom-right-radius: 15px;
+		border-top-left-radius: 0px;
+		border-bottom-left-radius: 0px;
+		background: {{templateAttributes.color}};
+		height: {{templateAttributes.tabTitle.length * 15}}px;
 }
 
 a#signup {
     background-color: #78CF7C;
+		box-shadow: 2px 2px 2px #888888;
     border: none;
     color: white;
     padding: 11px 30px;
@@ -60,7 +66,7 @@ a#signup {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	float: right;
+		float: right;
 }
 
 .btn {
@@ -84,10 +90,27 @@ a#signup {
     border: 1px solid transparent;
     border-radius: 4px
 }
+
+.btn2 {
+		float: right;
+    width: 25px;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 30px;
+    background: #605F61;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 0px;
+    padding: 10px 6px;
+    margin: -20px -60px 0 0px;
+}
 </style>
 
 <div id="slide-panel" >
 	<a class="btn" id="opener">{{templateAttributes.tabTitle}}</a>
+	<a class="btn2" id="closer">x</a>
+
 	<h3>{{templateAttributes.windowTitle}}</h3>
 	<p>{{templateAttributes.windowText}}</p>
 	<a href="http://numero-cnj.thisisnumero.internal/adk/lbs/" id="signup" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>

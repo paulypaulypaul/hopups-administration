@@ -97,7 +97,6 @@ angular.module('adminApp')
           templateUrl: 'views/dialogs/selectsegment.html',
           controller: ['$scope', '$window', function DialogController($scope, $window) {
             $scope.site = site;
-            console.log($scope.site);
 
             this.closeDialog= function(segment) {
               if (!site.selected.segments){
@@ -117,7 +116,6 @@ angular.module('adminApp')
           templateUrl: 'views/dialogs/selectaction.html',
           controller: ['$scope', '$window', function DialogController($scope, $window) {
             $scope.site = site;
-            console.log($scope.site);
 
             this.closeDialog= function(action) {
               if (!site.selected.actions){

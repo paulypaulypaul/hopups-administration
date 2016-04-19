@@ -1,7 +1,7 @@
 <script>
 $( document ).ready(function() {
 	 $('#opener-{{_id}}').on('click', function () {
-		 var panel = $('#slide-panel');
+		 var panel = $('#slide-panel-{{_id}}');
 		 if (panel.hasClass("visible")) {
 			 panel.removeClass('visible').animate({
 				 'left': '-300px'

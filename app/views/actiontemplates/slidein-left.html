@@ -50,7 +50,7 @@ a#signup-{{_id}} {
 		box-shadow: 2px 2px 2px #888888;
 }
 
-.hopopener-{{_id}} {
+#opener-{{_id}} {
 	 	cursor: pointer;
 		white-space: nowrap;
 
@@ -83,7 +83,7 @@ a#signup-{{_id}} {
 		height: {{templateAttributes.tabTitle.length * 15}}px;
 }
 
-.hopcloser-{{_id}} {
+#closer-{{_id}} {
 		float: right;
     cursor: pointer;
     color: #fff;
@@ -97,15 +97,15 @@ a#signup-{{_id}} {
     margin: -20px -60px 0 0px;
 }
 
-.hopopener-{{_id}}:hover, .hopcloser-{{_id}}:hover {
+#opener-{{_id}}:hover, #closer-{{_id}}:hover {
 	text-decoration: none;
 	color: #fff;
 }
 
 </style>
 <div id="slide-panel-{{_id}}" >
-	<a class="hopopener" id="opener-{{_id}}">{{templateAttributes.tabTitle}}</a>
-	<a class="hopcloser" id="closer-{{_id}}">x</a>
+	<a id="opener-{{_id}}">{{templateAttributes.tabTitle}}</a>
+	<a id="closer-{{_id}}">x</a>
 
 	<h3>{{templateAttributes.windowTitle}}</h3>
 	<p>{{templateAttributes.windowText}}</p>

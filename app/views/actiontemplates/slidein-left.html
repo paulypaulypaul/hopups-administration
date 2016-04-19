@@ -1,6 +1,6 @@
 <script>
 $( document ).ready(function() {
-	 $('#opener').on('click', function () {
+	 $('#opener-{{_id}}').on('click', function () {
 		 var panel = $('#slide-panel');
 		 if (panel.hasClass("visible")) {
 			 panel.removeClass('visible').animate({
@@ -13,8 +13,8 @@ $( document ).ready(function() {
 		 }
 		 return false;
 	 });
-	 $('#closer').on('click', function () {
-	 	$("#slide-panel").css({display:'none'});
+	 $('#closer-{{_id}}').on('click', function () {
+	 	$("#slide-panel-{{_id}}").css({display:'none'});
  	 });
  });
 </script>
@@ -24,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-#slide-panel {
+#slide-panel-{{_id}} {
 		font-family: Helvetica,Arial,'Helvetica Neue',sans-serif;
     width:300px;
     height:300px;
@@ -37,7 +37,7 @@ body {
 		background: {{templateAttributes.color}};
 }
 
-a#signup {
+a#signup-{{_id}} {
     background-color: #78CF7C;
 		border: none;
     color: white;
@@ -50,7 +50,7 @@ a#signup {
 		box-shadow: 2px 2px 2px #888888;
 }
 
-.hopopener {
+.hopopener-{{_id}} {
 	 	cursor: pointer;
 		white-space: nowrap;
 
@@ -83,7 +83,7 @@ a#signup {
 		height: {{templateAttributes.tabTitle.length * 15}}px;
 }
 
-.hopcloser {
+.hopcloser-{{_id}} {
 		float: right;
     cursor: pointer;
     color: #fff;
@@ -97,17 +97,17 @@ a#signup {
     margin: -20px -60px 0 0px;
 }
 
-.hopopener:hover, .hopcloser:hover {
+.hopopener-{{_id}}:hover, .hopcloser-{{_id}}:hover {
 	text-decoration: none;
 	color: #fff;
 }
 
 </style>
-<div id="slide-panel" >
-	<a class="hopopener" id="opener">{{templateAttributes.tabTitle}}</a>
-	<a class="hopcloser" id="closer">x</a>
+<div id="slide-panel-{{_id}}" >
+	<a class="hopopener" id="opener-{{_id}}">{{templateAttributes.tabTitle}}</a>
+	<a class="hopcloser" id="closer-{{_id}}">x</a>
 
 	<h3>{{templateAttributes.windowTitle}}</h3>
 	<p>{{templateAttributes.windowText}}</p>
-	<a href="{{templateAttributes.linkLocation}}" id="signup" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>
+	<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" >{{templateAttributes.buttonText}}</a>
 </div>

@@ -1,9 +1,9 @@
 <script>
 $( document ).ready(function() {
-	var panel = $('#slide-panel');
+	var panel = $('#slide-panel-{{_id}}');
 	var scrollpx = '-300';
 
-	$('#opener').on('click', function () {
+	$('#opener-{{_id}}').on('click', function () {
 		if (panel.hasClass("visible")) {
 			panel.removeClass('visible').animate({
 				'left': '-300px'
@@ -26,7 +26,6 @@ $( document ).ready(function() {
 	 }
 
 	 $(window).scroll(function() {
-		var panel = $('#slide-panel');
 		if (jQuery(this).scrollTop() > 100) {
 			if (!panel.hasClass("visible")) {
 				 console.log('trigger 260')
@@ -47,7 +46,7 @@ body {
     overflow-x: hidden;
 }
 
-#slide-panel {
+#slide-panel-{{_id}} {
     width:300px;
     padding:10px;
     background: {{templateAttributes.color}};
@@ -58,7 +57,7 @@ body {
 		z-index: 999;
 }
 
-#opener {
+#opener-{{_id}} {
     background: {{templateAttributes.color}};
     border-radius: 0;
     color: white;
@@ -78,18 +77,6 @@ body {
 
 a {
 	text-decoration: none;
-}
-
-a#signup {
-    background-color: #78CF7C;
-    border: none;
-    color: white;
-    padding: 11px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-	float: right;
 }
 
 .btn {
@@ -125,8 +112,8 @@ div.teaser2 {
 
 </style>
 
-<div id="slide-panel" >
-	<a class="btn" id="opener">
+<div id="slide-panel-{{_id}}" >
+	<a class="btn" id="opener-{{_id}}">
 		<div class="teaser">{{templateAttributes.tabTitle}}</div>
 		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>
 	</a>

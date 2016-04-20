@@ -48,6 +48,7 @@ angular.module('adminApp')
           {display: 'Target Element', value: 'target', code: 'target'},
           {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty'},
           {display: 'Left Slide Empty Stay', value: 'left-empty-stay', code: 'left-empty-stay'},
+          {display: 'Center Panel', value: 'center-panel', code: 'center-panel'},
           {display: 'Two Column', value: 'two-column', code: 'two-column'},
         ];
 
@@ -93,6 +94,8 @@ angular.module('adminApp')
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty-stay.html');
               } else if (site.selected.templateAttributes.side == 'two-column'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/two-column.html');
+              } else if (site.selected.templateAttributes.side == 'center-panel'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/center-panel.html');
               }
 
 

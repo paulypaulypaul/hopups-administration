@@ -1,0 +1,146 @@
+<div id="center-panel-{{_id}}" class="overlay" style="">
+
+	<script>
+		$( document ).ready(function() {
+			 $('#closer-{{_id}}').on('click', function () {
+				$("#center-panel-{{_id}}").css({display:'none'});
+			 });
+		 });
+	</script>
+
+	<style>
+
+		.overlay {
+			position: fixed;
+			width: 3333px;
+			top: 0;
+			left: -1111px;
+			z-index: 999;
+			background: rgba(52, 52, 52, 0.65);
+			height: 4444px;
+		}
+
+		.overlay__inner {
+			position: fixed;
+			top: 80px;
+			left: 0;
+			right: 0;
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 0;
+			background-color: #fff;
+		}
+
+		h2.popup {
+			line-height:100%;
+			text-align:center;
+			font-family: 'emiliaboldregular',serif;
+			font-size: 36px;
+			padding: 15px 4% 0;
+			color:#652750;
+			letter-spacing:-1px;
+			margin-bottom: 0;
+		}
+
+		p.popup {
+			text-align:center;
+			padding: 0 4%;
+			font-size:15px;
+		}
+
+		.overlay__inner a#closer-{{_id}} {
+			float: right;
+			cursor: pointer;
+			color: #fff;
+			border: 1px solid #AEAEAE;
+			border-radius: 30px;
+			background: #605F61;
+			font-size: 20px;
+			display: inline-block;
+			line-height: 0px;
+			padding: 10px 6px;
+			margin: -10px -15px 0 0px;
+		}
+
+		.overlay__inner a#closer-{{_id}}:hover {
+			background-color:#694161;
+		}
+
+		.overlay__inner a.pop-up-never-again {
+			font-family: Helvetica, Arial, sans-serif;
+			font-weight:bold;
+			font-size: 13px;
+			color: #652750;
+			padding-bottom: 20px;
+			display:block;
+			text-align:center;
+		}
+
+		.overlay__inner a.pop-up-never-again:hover {
+			text-decoration:underline;
+		}
+
+		input#id123-control3704282[type="text"],
+		input#id123-control3704283[type="email"],
+		input#offername[type="text"],
+		input#offeremail[type="email"] {
+			width: 86%;
+			margin: 0 5% 10px;
+			padding: 2%;
+			border:none;
+			background-color:#ddd;
+			color:#652750;
+			font-size:20px;
+			text-align:center;
+			box-sizing:content-box;
+		}
+		input#id123-control3704282[type="text"]:focus,
+		input#id123-control3704283[type="email"]:focus,
+		input#offername[type="text"]:focus,
+		input#offeremail[type="email"]:focus {
+			border:none;
+			color:#652750;
+			-moz-box-shadow:none;
+			-webkit-box-shadow:none;
+			box-shadow:none;
+
+		}
+
+		:focus::-webkit-input-placeholder {color:#652750;}
+		:-moz-placeholder:focus {color:#652750;}
+		:-ms-input-placeholder:focus {color:#652750;}
+		form {margin-bottom: 0;}
+
+		input[type="submit"]{
+			-webkit-border-radius:0;
+			border-radius:0;
+			background:#652750;
+			color:#fff;
+			border:none;
+			font-family: 'emiliaboldregular',serif;
+			font-size:22px;
+			font-weight: normal;
+			display: block;
+			width: 20%;
+			min-width: 160px;
+			margin: 0 auto 10px;
+			padding: 10px 40px;
+			-webkit-appearance: none;
+		}
+		input[type="submit"]:hover{background-color:#694161;}
+		input[type="submit"]:focus{border:none;}
+
+		@media (max-width:480px) {
+			h2.popup {font-size: 32px;}
+			p.popup {font-size:14px;}
+		}
+	</style>
+
+  <div class="overlay__inner">
+    <div><a id="closer-{{_id}}">x</a></div>
+	<div>
+	  <h2 class="popup">{{templateAttributes.windowTitle}}</h2>
+   	  <p class="popup">{{templateAttributes.windowText}}</p>
+	</div>
+  </div>
+</div>

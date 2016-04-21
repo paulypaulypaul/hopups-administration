@@ -22,14 +22,14 @@
       <label>Element Selector</label>
       <input type="text" ng-model="site.selected.selector" >
     </md-input-container>
-    <md-autocomplete placeholder="Event Type"
-                     md-selected-item="site.selected.event"
-                     md-search-text="vm.searchText"
-                     md-no-cache="vm.disableCaching"
-                     md-items="item in vm.querySearch(vm.searchText)"
-                     md-item-text="item.display">
-      <span md-highlight-text="vm.searchText">{{item.display}}</span>
-    </md-autocomplete>
+
+    <md-input-container class="md-block">
+      <label>Event Type</label>
+      <md-select ng-model="site.selected.event" placeholder="Select a event type">
+        <md-option ng-value="eventType.value" ng-repeat="eventType in vm.eventTypes">{{ eventType.display }}</md-option>
+      </md-select>
+    </md-input-container>
+
     <md-input-container>
       <label>Fired Message</label>
       <input type="text" ng-model="site.selected.message" >

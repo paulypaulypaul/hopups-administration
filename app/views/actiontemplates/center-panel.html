@@ -28,16 +28,15 @@
 			max-width: 600px;
 			margin: 0 auto;
 			padding: 0;
-			background-color: #fff;
+			background: {{templateAttributes.color}};
 		}
 
 		h2.popup {
 			line-height:100%;
 			text-align:center;
-			font-family: 'emiliaboldregular',serif;
 			font-size: 36px;
 			padding: 15px 4% 0;
-			color:#652750;
+			color: white;
 			letter-spacing:-1px;
 			margin-bottom: 0;
 		}
@@ -51,7 +50,7 @@
 		.overlay__inner a#closer-{{_id}} {
 			float: right;
 			cursor: pointer;
-			color: #fff;
+			color: white;
 			border: 1px solid #AEAEAE;
 			border-radius: 30px;
 			background: #605F61;
@@ -67,7 +66,6 @@
 		}
 
 		.overlay__inner a.pop-up-never-again {
-			font-family: Helvetica, Arial, sans-serif;
 			font-weight:bold;
 			font-size: 13px;
 			color: #652750;
@@ -80,67 +78,28 @@
 			text-decoration:underline;
 		}
 
-		input#id123-control3704282[type="text"],
-		input#id123-control3704283[type="email"],
-		input#offername[type="text"],
-		input#offeremail[type="email"] {
-			width: 86%;
-			margin: 0 5% 10px;
-			padding: 2%;
-			border:none;
-			background-color:#ddd;
-			color:#652750;
-			font-size:20px;
-			text-align:center;
-			box-sizing:content-box;
-		}
-		input#id123-control3704282[type="text"]:focus,
-		input#id123-control3704283[type="email"]:focus,
-		input#offername[type="text"]:focus,
-		input#offeremail[type="email"]:focus {
-			border:none;
-			color:#652750;
-			-moz-box-shadow:none;
-			-webkit-box-shadow:none;
-			box-shadow:none;
-
+		a#signup-{{_id}} {
+		    background-color: #78CF7C;
+				border: none;
+		    color: white;
+		    padding: 11px 30px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+				float: right;
+				box-shadow: 2px 2px 2px #888888;
 		}
 
-		:focus::-webkit-input-placeholder {color:#652750;}
-		:-moz-placeholder:focus {color:#652750;}
-		:-ms-input-placeholder:focus {color:#652750;}
-		form {margin-bottom: 0;}
 
-		input[type="submit"]{
-			-webkit-border-radius:0;
-			border-radius:0;
-			background:#652750;
-			color:#fff;
-			border:none;
-			font-family: 'emiliaboldregular',serif;
-			font-size:22px;
-			font-weight: normal;
-			display: block;
-			width: 20%;
-			min-width: 160px;
-			margin: 0 auto 10px;
-			padding: 10px 40px;
-			-webkit-appearance: none;
-		}
-		input[type="submit"]:hover{background-color:#694161;}
-		input[type="submit"]:focus{border:none;}
-
-		@media (max-width:480px) {
-			h2.popup {font-size: 32px;}
-			p.popup {font-size:14px;}
-		}
 	</style>
 
   <div class="overlay__inner">
     <div><a id="closer-{{_id}}">x</a></div>
 	<div>
 	  <h2 class="popup">{{templateAttributes.windowTitle}}</h2>
-   	  <p class="popup">{{templateAttributes.windowText}}</p>
+   	<p class="popup">{{templateAttributes.windowText}}</p>
+		<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" target="_blank" >{{templateAttributes.buttonText}}</a>
 	</div>
   </div>
 </div>

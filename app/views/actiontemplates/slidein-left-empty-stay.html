@@ -16,6 +16,10 @@ $( document ).ready(function() {
 		return false;
 	 });
 
+	 $('#closer-{{_id}}').on('click', function () {
+		$("#slide-panel-{{_id}}").css({display:'none'});
+		 });
+
 	 var scrollTo = function(panel, value){
 		if (scrollpx != value){
 			scrollpx = value;
@@ -58,47 +62,59 @@ body {
 }
 
 #opener-{{_id}} {
-    background: {{templateAttributes.color}};
-    border-radius: 0;
-    color: white;
-    float: right;
-    font-weight: bold;
-    height: {{templateAttributes.tabTitle.length * 15}}px;
-    line-height: 20px;
-    margin: -10px -50px 0 -60px;
-    width: 50px;
-    writing-mode: vertical-rl;
+	 	cursor: pointer;
+		white-space: nowrap;
+
+    padding: 6px 12px;
+		color: white;
+		width: 44px;
+
+		font-weight: bold;
 		font-size: 20px;
+
+		line-height: 15px;
+    text-align: center;
+		writing-mode: vertical-rl;
+
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+
+		box-shadow: 4px 4px 4px #B99191;
+
+		-webkit-border-top-right-radius: 15px;
+		-webkit-border-bottom-right-radius: 15px;
+		-moz-border-radius-topright: 15px;
+		-moz-border-radius-bottomright: 15px;
 		border-top-right-radius: 15px;
 		border-bottom-right-radius: 15px;
-		border-top-left-radius: 0px;
-		border-bottom-left-radius: 0px;
+
+		float: right;
+		margin: -10px -50px 0px -60px;
+		background: {{templateAttributes.color}};
+		height: {{templateAttributes.tabTitle.length * 15}}px;
+}
+
+#closer-{{_id}} {
+		float: right;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 30px;
+    background: #605F61;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 0px;
+    padding: 10px 6px;
+    margin: -20px -60px 0 0px;
+}
+
+#opener-{{_id}}:hover, #closer-{{_id}}:hover {
+	text-decoration: none;
+	color: #fff;
 }
 
 a {
 	text-decoration: none;
-}
-
-.btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px
 }
 
 h3 {
@@ -117,5 +133,6 @@ div.teaser2 {
 		<div class="teaser">{{templateAttributes.tabTitle}}</div>
 		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>
 	</a>
+	<a id="closer-{{_id}}">x</a>
 	<div>{{templateAttributes.html}}</div>
 </div>

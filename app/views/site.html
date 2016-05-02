@@ -16,7 +16,7 @@
       </md-button>
 
       <md-list>
-          <md-list-item ng-repeat="event in site.events" ng-class="event.system ? 'system' : ''">
+          <md-list-item ng-repeat="event in site.events" ng-class="{system:event.system,selected:site.selected._id == event._id }">
               <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(event, 'events')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
               <md-button ng-click="vm.selectOne(event, 'event')">
                   {{event.name}}
@@ -37,7 +37,7 @@
       </md-button>
 
       <md-list>
-          <md-list-item ng-repeat="segment in site.segments" ng-class="segment.system ? 'system' : ''">
+          <md-list-item ng-repeat="segment in site.segments" ng-class="{system:segment.system,selected:site.selected._id == segment._id }">
               <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(segment, 'segments')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
               <md-button ng-click="vm.selectOne(segment, 'segment')">
                   {{segment.name}}
@@ -61,7 +61,7 @@
 
 
       <md-list>
-          <md-list-item ng-repeat="action in site.actions">
+          <md-list-item ng-repeat="action in site.actions" ng-class="{system:action.system,selected:site.selected._id == action._id }">
               <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(action, 'actions')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
               <md-button ng-click="vm.selectOne(action, 'action')">
                   {{action.name}}
@@ -83,7 +83,7 @@
   </md-button>
 
   <md-list>
-      <md-list-item ng-repeat="hopup in site.hopups">
+      <md-list-item ng-repeat="hopup in site.hopups" ng-repeat="action in site.actions" ng-class="{system:hopup.system,selected:site.selected._id == hopup._id }">
           <md-icon style="margin-right:0px" md-svg-icon="transfer" ng-click="vm.duplicate(hopup, 'hopups')"><md-tooltip md-direction="right">Duplicate</md-tooltip></md-icon>
           <md-button ng-click="vm.selectOne(hopup, 'hopup')">
               {{hopup.name}}

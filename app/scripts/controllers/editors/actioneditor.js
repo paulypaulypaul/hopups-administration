@@ -31,9 +31,9 @@ angular.module('adminApp')
         }
 
         this.responseTypes = [
-          {display: 'Iframe in dialog', value: 'template', code: 'template'},
-          {display: 'Code Append', value: 'html', code: 'html'},
-          {display: 'Element Replace', value: 'html-replace', code: 'html-replace'}
+        //  {display: 'Iframe in dialog', value: 'template', code: 'template'},
+          {display: 'Add to Page', value: 'html', code: 'html'},
+          {display: 'Augment Page', value: 'html-replace', code: 'html-replace'}
         ];
 
         this.responseDataLocation = [
@@ -127,7 +127,8 @@ angular.module('adminApp')
           return deferred.promise;
         }
 
-        this.add = function(site) {
+        this.submit = function(site) {
+          if (!$scope.actionform.$invalid){
             //if its new we have to set this
             site.selected.siteId = site.siteId
 
@@ -138,8 +139,10 @@ angular.module('adminApp')
                   Array.prototype.push.apply($scope.site.actions, actions);
                 });
               });
-            })
+            });
+          }
         }
+
 
         this.addEvent = function() {
           var dlg = $mdDialog.alert({
@@ -158,6 +161,10 @@ angular.module('adminApp')
             controllerAs: 'vm'
           });
           $mdDialog.show( dlg );
+        };
+
+        this.shouldDisplay = function(type) {
+          return true;
         };
 
   }]);

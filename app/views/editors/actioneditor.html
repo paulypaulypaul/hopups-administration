@@ -7,16 +7,16 @@
             </div>
   </md-toolbar>
   <md-card-content style="background-color: rgb(255,255,255)">
-    <form>
+    <form name="actionform" ng-submit="vm.submit(site)">
 
       <md-input-container class="md-block">
         <label>Name</label>
-        <input type="text" ng-model="site.selected.name" >
-      </md-input-container>
-
-      <md-input-container class="md-block">
-        <label>Page</label>
-        <input type="text" ng-model="site.selected.page" >
+        <input type="text" name="name" ng-model="site.selected.name"  required md-maxlength="30" minlength="2">
+        <div ng-messages="actionform.name.$error" ng-show="actionform.name.$invalid">
+          <div ng-message="required">This is required!</div>
+          <div ng-message="md-maxlength">That's too long!</div>
+          <div ng-message="minlength">That's too short!</div>
+        </div>
       </md-input-container>
 
       <md-input-container class="md-block">
@@ -25,6 +25,13 @@
           <md-option ng-value="responseType.value" ng-repeat="responseType in vm.responseTypes">{{ responseType.display }}</md-option>
         </md-select>
       </md-input-container>
+
+
+      <div ng-show="vm.shouldDisplay('html')" layout-padding flex layout>
+        <action-html site="site" flex layout>
+        </action-html>
+      </div>
+
 
       <md-input-container class="md-block">
         <label>Element</label>
@@ -167,9 +174,10 @@
       </md-list>
 
        <div ng-show="!site.selected.system" layout="row" flex layout-align="end center">
-          <md-button class="md-fab"  ng-click="vm.add(site)" aria-label="Eat cake">
+          <md-button type="submit" aria-label="Eat cake">
             <i class="material-icons" style="margin-left: -5px;">Update</i>
           </md-button>
+
         </div>
 
     </form>

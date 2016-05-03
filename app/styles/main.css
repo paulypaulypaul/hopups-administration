@@ -111,6 +111,7 @@ button,select,html,textarea,input {
     border: none;
     color: #fff;
 }
+
 .loading {
   flex:1;
   display:flex;
@@ -201,21 +202,21 @@ md-list .md-button {
   text-align: left;
   width: 100%;
 }
-  md-list .md-button.selected {
-    color: #03a9f4;
-  }
+md-list .md-button.selected {
+  color: #03a9f4;
+}
 
-  md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
-  }
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
 
-  md-sidenav md-list-item {
-    padding-left: 5px;
-  }
+md-sidenav md-list-item {
+  padding-left: 5px;
+}
 
-  md-sidenav md-list-item .md-button {
-    text-transform: inherit;
-  }
+md-sidenav md-list-item .md-button {
+  text-transform: inherit;
+}
 
 .test-expander .md-button {
   text-align: center;
@@ -491,4 +492,30 @@ md-list-item.selected {
 
 .tour-tip {
   margin-top: -50px;
+}
+
+md-list-item {
+  min-height: 25px;
+}
+
+md-list-item > div.md-primary > md-icon:not(.md-avatar-icon),
+md-list-item > div.md-secondary > md-icon:not(.md-avatar-icon),
+md-list-item > md-icon:first-child:not(.md-avatar-icon),
+md-list-item > md-icon.md-secondary:not(.md-avatar-icon), md-list-item .md-list-item-inner > div.md-primary > md-icon:not(.md-avatar-icon),
+md-list-item .md-list-item-inner > div.md-secondary > md-icon:not(.md-avatar-icon),
+md-list-item .md-list-item-inner > md-icon:first-child:not(.md-avatar-icon),
+md-list-item .md-list-item-inner > md-icon.md-secondary:not(.md-avatar-icon) {
+  width: 24px;
+  margin-top: 9px;
+  margin-bottom: 6px;
+}
+
+.md-button {
+  line-height: 32px;
+  min-height: 32px;
+}
+
+md-icon {
+  height: 17px;
+  width: 20px;
 }

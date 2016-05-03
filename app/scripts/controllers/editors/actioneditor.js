@@ -42,13 +42,16 @@ angular.module('adminApp')
           {display: 'Pre Defined Template', value: 'predefined', code: 'predefined'},
         ];
 
-        this.responsePredefinedTemplate = [
+        this.responsePredefinedTemplateAppend = [
           {display: 'Left Slide', value: 'left', code: 'left'},
           {display: 'Right Slide', value: 'right', code: 'right'},
           {display: 'Target Element', value: 'target', code: 'target'},
-          {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty'},
-          {display: 'Left Slide Empty Stay', value: 'left-empty-stay', code: 'left-empty-stay'},
+          {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty', type: 'code'},
+          {display: 'Left Slide Empty Stay', value: 'left-empty-stay', code: 'left-empty-stay', type: 'code'},
           {display: 'Center Panel', value: 'center-panel', code: 'center-panel'},
+        ];
+
+        this.responsePredefinedTemplateReplace = [
           {display: 'Two Column', value: 'two-column', code: 'two-column'},
         ];
 
@@ -164,7 +167,9 @@ angular.module('adminApp')
         };
 
         this.shouldDisplay = function(type) {
-          return true;
+          if (!site.selected) return false;
+
+          return site.selected.responsetype == type;
         };
 
   }]);

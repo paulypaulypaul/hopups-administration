@@ -81,4 +81,11 @@ angular.module('adminApp')
       return deferred.promise;
     };
 
+
+    this.responseTypes = [
+    //  {display: 'Iframe in dialog', value: 'template', code: 'template'},
+      {display: 'Add to Page', value: 'html', code: 'html'},
+      {display: 'Augment Page', value: 'html-replace', code: 'html-replace'}
+    ];
+
   }]);

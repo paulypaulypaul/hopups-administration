@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name adminApp.directive:actionHtml
+ * @name adminApp.directive:actionHtmlReplace
  * @description
  * # actionHtml
  */
   angular.module('adminApp')
-    .directive('actionHtml', function () {
+    .directive('actionHtmlReplace', function () {
 
-      var controller = ['$scope', function ($scope) {
+      var controller = ['$scope', 'hopups', function ($scope, hopups) {
         $scope.awesomeThings = [
           'HTML5 Boilerplate',
           'AngularJS',
@@ -22,11 +22,11 @@
         scope: {
           site: '=site',
           responsedatalocation: '=responsedatalocation',
-          responsepredefinedtemplateappend: '=responsepredefinedtemplateappend',
+          responsepredefinedtemplatereplace: '=responsepredefinedtemplatereplace',
           responsepredefinedtemplatecolor: '=responsepredefinedtemplatecolor'
         },
         controller: controller,
         controllerAs: 'vm',
-        templateUrl: '/views/editors/actionhtml.html'
+        templateUrl: '/views/editors/actionhtmlreplace.html'
       };
     });

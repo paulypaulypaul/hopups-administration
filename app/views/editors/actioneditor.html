@@ -1,12 +1,14 @@
 <md-card class="md-cyan-theme" flex>
   <md-toolbar class="md-cyan-theme">
-            <div class="md-toolbar-tools">
-              <h2>Action Editor</h2>
-              <span flex></span>
-              <md-switch ng-model="site.selected.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
-            </div>
+      <div class="md-toolbar-tools">
+        <h2>Action Editor</h2>
+        <span flex></span>
+        <md-switch ng-model="site.selected.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
+      </div>
   </md-toolbar>
+
   <md-card-content style="background-color: rgb(255,255,255)">
+
     <form name="actionform" ng-submit="vm.submit(site)">
 
       <md-input-container class="md-block">
@@ -26,141 +28,20 @@
         </md-select>
       </md-input-container>
 
+      <action-html-replace ng-show="vm.shouldDisplay('html-replace')"
+        site="site"
+        responsedatalocation="vm.responseDataLocation"
+        responsepredefinedtemplatereplace="vm.responsePredefinedTemplateReplace"
+        responsepredefinedtemplatecolor="vm.responsePredefinedTemplateColor">
+      </action-html-replace>
 
-      <div ng-show="vm.shouldDisplay('html')" layout-padding flex layout>
-        <action-html site="site" flex layout>
-        </action-html>
-      </div>
+      <action-html ng-show="vm.shouldDisplay('html')"
+        site="site"
+        responsedatalocation="vm.responseDataLocation"
+        responsepredefinedtemplateappend="vm.responsePredefinedTemplateAppend"
+        responsepredefinedtemplatecolor="vm.responsePredefinedTemplateColor">
+      </action-html>
 
-
-      <md-input-container class="md-block">
-        <label>Element</label>
-        <input type="text" ng-model="site.selected.elementtoreplace" >
-      </md-input-container>
-
-      <md-radio-group ng-model="site.selected.responsedatafrom">
-        <label>Response Data From</label>
-        <md-radio-button ng-repeat="d in vm.responseDataLocation" ng-value="d.value" aria-label="{{ d.display }}">
-               {{ d.display }}
-        </md-radio-button>
-      </md-radio-group>
-
-      <md-divider></md-divider>
-
-      <div layout="row" ng-show="site.selected.responsedatafrom == 'uri'">
-        <md-input-container flex>
-          <label>Location</label>
-          <textarea  type="text" ng-model="site.selected.responsedatalocation" ></textarea>
-        </md-input-container>
-      </div>
-
-      <label ng-show="site.selected.responsedatafrom == 'code'">Code</label>
-      <div layout="row"  flex style="position: relative;height: 200px;" ng-show="site.selected.responsedatafrom == 'code'">
-        <div ui-ace
-              flex
-              class="ace-editor"
-              style="margin: 0;
-                  position: absolute;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  right: 0"
-              ace="aceInitCallback" ng-model="site.selected.responsedata">
-          </div>
-      </div>
-      <div layout="column" ng-show="site.selected.responsedatafrom == 'predefined'">
-        <h3>Configure Your Template</h3>
-
-        <div layout="row">
-          <div flex>
-
-            <md-radio-group ng-model="site.selected.templateAttributes.side">
-              <label>Template Type</label>
-              <md-radio-button ng-repeat="d in vm.responsePredefinedTemplate" ng-value="d.value" aria-label="{{ d.display }}">
-                     {{ d.display }}
-              </md-radio-button>
-            </md-radio-group>
-
-            <div ng-if="site.selected.templateAttributes.side === vm.responsePredefinedTemplate[3].value || site.selected.templateAttributes.side === vm.responsePredefinedTemplate[4].value" >
-              <div layout="row"  flex style="position: relative;height: 200px;" >
-                <div ui-ace
-                    flex
-                    class="ace-editor"
-                    style="margin: 0;
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0"
-                    ace="aceInitCallback" ng-model="site.selected.templateAttributes.html">
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="site.selected.templateAttributes.side === vm.responsePredefinedTemplate[2].value" >
-              <md-input-container class="md-block">
-                <label>Target Element</label>
-                <input type="text" ng-model="site.selected.templateAttributes.targetElement" default="h1:first">
-              </md-input-container>
-            </div>
-
-            <md-input-container class="md-block">
-              <label>Colour</label>
-              <input type="text" ng-model="site.selected.templateAttributes.color" >
-            </md-input-container>
-
-            <md-radio-group ng-model="site.selected.templateAttributes.color">
-              <label>Colour</label>
-              <md-radio-button ng-repeat="d in vm.responsePredefinedTemplateColor" ng-value="d.value" aria-label="{{ d.display }}">
-                     <div style="background-color:{{ d.display }};width:50px;height:20px;" flex></div>
-              </md-radio-button>
-            </md-radio-group>
-
-            <md-input-container class="md-block">
-              <label>Tab Title</label>
-              <input type="text" ng-model="site.selected.templateAttributes.tabTitle" >
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>Tab Scroll Teaser</label>
-              <input type="text" ng-model="site.selected.templateAttributes.tabTeaser" >
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>Window Title</label>
-              <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>Window Text</label>
-              <input type="text" ng-model="site.selected.templateAttributes.windowText" >
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>Link location</label>
-              <input type="text" ng-model="site.selected.templateAttributes.linkLocation" >
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>Button Text</label>
-              <input type="text" ng-model="site.selected.templateAttributes.buttonText" >
-            </md-input-container>
-
-          </div>
-
-          <div flex>
-          Preview
-
-          <template-preview site="site" flex layout>
-          </template-preview>
-
-          <iframe template-preview-frame="" site="site"  width="100%" height="500px"></iframe>
-
-          </div>
-
-        </div>
-
-    </div>
       <md-list>
         <label>Action Events</label>
           <md-list-item ng-repeat="event in site.selected.events">

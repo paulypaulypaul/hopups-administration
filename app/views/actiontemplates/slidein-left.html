@@ -1,7 +1,10 @@
 <script>
 $( document ).ready(function() {
+	 var panel = $('#slide-panel-{{_id}}');
+	 var scrollpx = '-300';
+
 	 $('#opener-{{_id}}').on('click', function () {
-		 var panel = $('#slide-panel-{{_id}}');
+
 		 if (panel.hasClass("visible")) {
 			 panel.removeClass('visible').animate({
 				 'left': '-300px'
@@ -16,6 +19,36 @@ $( document ).ready(function() {
 	 $('#closer-{{_id}}').on('click', function () {
 	 	$("#slide-panel-{{_id}}").css({display:'none'});
  	 });
+
+	 //if template value equals
+	 if ('{{templateAttributes.tabTeaser}}' != ''){
+
+		 $("#slide-panel-content-{{_id}}").css({'padding-right':'0px'});
+
+		 var scrollTo = function(panel, value){
+			if (scrollpx != value){
+				scrollpx = value;
+				panel.animate({
+					 'left': scrollpx + 'px'
+				}, 500);
+			}
+		 }
+
+		 $(window).scroll(function() {
+			if (jQuery(this).scrollTop() > 100) {
+				if (!panel.hasClass("visible")) {
+					 console.log('trigger 260')
+					 scrollTo(panel, '-260');
+				}
+			} else {
+				if (!panel.hasClass("visible")) {
+					console.log('trigger 300')
+					scrollTo(panel, '-300');
+				}
+			}
+		 });
+	 }
+
  });
 </script>
 <style>
@@ -25,6 +58,8 @@ body {
 }
 
 #slide-panel-{{_id}} {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 		font-family: Helvetica,Arial,'Helvetica Neue',sans-serif;
     width:300px;
     height:300px;
@@ -33,11 +68,17 @@ body {
     top: 50%;
     left: -300px;
 		z-index: 999;
-		box-shadow: 4px 4px 4px #C3C3C3;
+
+		-webkit-box-shadow: 8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+		-moz-box-shadow:    8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+		box-shadow:         8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+
 		background: {{templateAttributes.color}};
 }
 
 a#signup-{{_id}} {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
     background-color: #78CF7C;
 		border: none;
     color: white;
@@ -47,10 +88,16 @@ a#signup-{{_id}} {
     display: inline-block;
     font-size: 16px;
 		float: right;
-		box-shadow: 2px 2px 2px #888888;
+
+		-webkit-box-shadow: 8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+		-moz-box-shadow:    8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+		box-shadow:         8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+
 }
 
 #opener-{{_id}} {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 	 	cursor: pointer;
 		white-space: nowrap;
 
@@ -68,7 +115,9 @@ a#signup-{{_id}} {
     -ms-touch-action: manipulation;
     touch-action: manipulation;
 
-		box-shadow: 4px 4px 4px #B99191;
+		-webkit-box-shadow: 10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+		-moz-box-shadow:    10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+		box-shadow:         10px 7px 0px -2px rgba(50, 50, 50, 0.31);
 
 		-webkit-border-top-right-radius: 15px;
 		-webkit-border-bottom-right-radius: 15px;
@@ -80,10 +129,13 @@ a#signup-{{_id}} {
 		float: right;
 		margin: -10px -50px 0px -60px;
 		background: {{templateAttributes.color}};
+		min-height: 50px;
 		height: {{templateAttributes.tabTitle.length * 15}}px;
 }
 
 #closer-{{_id}} {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 		float: right;
     cursor: pointer;
     color: #fff;
@@ -102,12 +154,34 @@ a#signup-{{_id}} {
 	color: #fff;
 }
 
+div.teaser2 {
+	padding-right: 15px;
+}
+
+h3 {
+	color: white;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+#slide-panel-content-{{_id}}{
+	padding-right: 30px;
+}
+
 </style>
 <div id="slide-panel-{{_id}}" >
-	<a id="opener-{{_id}}">{{templateAttributes.tabTitle}}</a>
-	<a id="closer-{{_id}}">x</a>
 
+	<a id="opener-{{_id}}">
+		<div class="teaser">{{templateAttributes.tabTitle}}</div>
+		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>
+	</a>
+	<a id="closer-{{_id}}">x</a>
+	<div id="slide-panel-content-{{_id}}">
 	<h3>{{templateAttributes.windowTitle}}</h3>
 	<p>{{templateAttributes.windowText}}</p>
 	<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" target="_blank" >{{templateAttributes.buttonText}}</a>
+	</div>
 </div>

@@ -36,48 +36,34 @@
   <div layout="row">
     <div flex>
 
-      <md-radio-group ng-model="site.selected.templateAttributes.side">
-        <label>Template Type</label>
-        <md-radio-button ng-repeat="d in responsepredefinedtemplateappend" ng-value="d.value" aria-label="{{ d.display }}">
-               {{ d.display }}
-        </md-radio-button>
-      </md-radio-group>
+      <md-input-container class="md-block">
+        <md-radio-group ng-model="site.selected.templateAttributes.side">
+          <label>Template Type</label>
+          <md-radio-button ng-repeat="d in responsepredefinedtemplateappend" ng-value="d.value" aria-label="{{ d.display }}">
+                 {{ d.display }}
+          </md-radio-button>
+        </md-radio-group>
+      </md-input-container>
 
-      <div ng-if="
-        site.selected.templateAttributes.side === responsepredefinedtemplateappend[3].value ||
-        site.selected.templateAttributes.side === responsepredefinedtemplateappend[4].value" >
-        <div layout="row"  flex style="position: relative;height: 200px;" >
-          <div ui-ace
-              flex
-              class="ace-editor"
-              style="margin: 0;
-                  position: absolute;
-                  top: 0;
-                  bottom: 0;
-                  left: 0;
-                  right: 0"
-              ace="aceInitCallback" ng-model="site.selected.templateAttributes.html">
-          </div>
-        </div>
-      </div>
-
-      <div ng-if="site.selected.templateAttributes.side === vm.responsePredefinedTemplate[2].value" >
+      <div ng-if="site.selected.templateAttributes.side === responsepredefinedtemplateappend[4].value" >
         <md-input-container class="md-block">
           <label>Target Element</label>
-          <input type="text" ng-model="site.selected.templateAttributes.targetElement" default="h1:first">
+          <input type="text" ng-model="site.selected.templateAttributes.targetElement" >
         </md-input-container>
       </div>
 
-      <md-radio-group ng-model="site.selected.templateAttributes.heightType">
-        <label>Height Fixing</label>
-        <md-radio-button ng-value="'body'" aria-label="'body'">body</md-radio-button>
-        <md-radio-button ng-value="'screen'" aria-label="'screen'">screen</md-radio-button>
-      </md-radio-group>
+      <div ng-if="site.selected.templateAttributes.side !== responsepredefinedtemplateappend[4].value" >
+        <md-radio-group ng-model="site.selected.templateAttributes.heightType">
+          <label>Height Fixing</label>
+          <md-radio-button ng-value="'body'" aria-label="'body'">body</md-radio-button>
+          <md-radio-button ng-value="'screen'" aria-label="'screen'">screen</md-radio-button>
+        </md-radio-group>
+        <md-input-container class="md-block">
+          <label>Height Value</label>
+          <input type="text" ng-model="site.selected.templateAttributes.heightValue" >
+        </md-input-container>
+      </div>
 
-      <md-input-container class="md-block">
-        <label>Height Value</label>
-        <input type="text" ng-model="site.selected.templateAttributes.heightValue" >
-      </md-input-container>
 
       <h4>Colour</h4>
       <md-radio-group ng-model="site.selected.templateAttributes.color" layout="row">
@@ -99,25 +85,49 @@
         <input type="text" ng-model="site.selected.templateAttributes.tabTeaser" >
       </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Window Title</label>
-        <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
-      </md-input-container>
+      <div ng-if="
+        site.selected.templateAttributes.side === responsepredefinedtemplateappend[2].value ||
+        site.selected.templateAttributes.side === responsepredefinedtemplateappend[3].value" >
+        <div layout="row"  flex style="position: relative;height: 200px;" >
+          <div ui-ace
+              flex
+              class="ace-editor"
+              style="margin: 0;
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  left: 0;
+                  right: 0"
+              ace="aceInitCallback" ng-model="site.selected.templateAttributes.html">
+          </div>
+        </div>
+      </div>
 
-      <md-input-container class="md-block">
-        <label>Window Text</label>
-        <input type="text" ng-model="site.selected.templateAttributes.windowText" >
-      </md-input-container>
+      <div ng-if="
+        site.selected.templateAttributes.side !== responsepredefinedtemplateappend[2].value &&
+        site.selected.templateAttributes.side !== responsepredefinedtemplateappend[3].value" >
 
-      <md-input-container class="md-block">
-        <label>Link location</label>
-        <input type="text" ng-model="site.selected.templateAttributes.linkLocation" >
-      </md-input-container>
+        <md-input-container class="md-block">
+          <label>Window Title</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowTitle" >
+        </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Button Text</label>
-        <input type="text" ng-model="site.selected.templateAttributes.buttonText" >
-      </md-input-container>
+        <md-input-container class="md-block">
+          <label>Window Text</label>
+          <input type="text" ng-model="site.selected.templateAttributes.windowText" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Link location</label>
+          <input type="text" ng-model="site.selected.templateAttributes.linkLocation" >
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Button Text</label>
+          <input type="text" ng-model="site.selected.templateAttributes.buttonText" >
+        </md-input-container>
+
+      </div>
 
     </div>
 

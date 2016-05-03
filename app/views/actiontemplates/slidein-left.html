@@ -47,11 +47,6 @@ $( document ).ready(function() {
 		 });
 	 }
 
-	 //if template value equals
-	 if ('{{templateAttributes.heightType}}' !== 'body'){
-		 $("#slide-panel-{{_id}}").css({position:'fixed'});
-	 }
-
  });
 </script>
 <style>
@@ -183,8 +178,8 @@ a#signup-{{_id}} {
 	</a>
 	<a id="closer-{{_id}}">x</a>
 	<div id="slide-panel-content-{{_id}}">
-	<h3>{{templateAttributes.windowTitle}}</h3>
-	<p>{{templateAttributes.windowText}}</p>
-	<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" target="_blank" >{{templateAttributes.buttonText}}</a>
+		<h3>{{templateAttributes.windowTitle}}</h3>
+		<p>{{templateAttributes.windowText}}</p>
+		<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" target="_blank" >{{templateAttributes.buttonText}}</a>
 	</div>
 </div>

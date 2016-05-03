@@ -45,9 +45,9 @@ angular.module('adminApp')
         this.responsePredefinedTemplateAppend = [
           {display: 'Left Slide', value: 'left', code: 'left'},
           {display: 'Right Slide', value: 'right', code: 'right'},
-          {display: 'Target Element', value: 'target', code: 'target'},
           {display: 'Left Slide Empty', value: 'left-empty', code: 'left-empty', type: 'code'},
-          {display: 'Left Slide Empty Stay', value: 'left-empty-stay', code: 'left-empty-stay', type: 'code'},
+          {display: 'Right Slide Empty', value: 'right-empty', code: 'right-empty', type: 'code'},
+          {display: 'Target Element', value: 'target', code: 'target'},
           {display: 'Center Panel', value: 'center-panel', code: 'center-panel'},
         ];
 
@@ -89,16 +89,18 @@ angular.module('adminApp')
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left.html');
               } else if (site.selected.templateAttributes.side == 'right'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-right.html');
-              } else if (site.selected.templateAttributes.side == 'target'){
-                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/target.html');
               } else if (site.selected.templateAttributes.side == 'left-empty'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty.html');
-              } else if (site.selected.templateAttributes.side == 'left-empty-stay'){
-                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-left-empty-stay.html');
-              } else if (site.selected.templateAttributes.side == 'two-column'){
-                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/two-column.html');
+              } else if (site.selected.templateAttributes.side == 'right-empty'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/slidein-right-empty.html');
+
               } else if (site.selected.templateAttributes.side == 'center-panel'){
                 templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/center-panel.html');
+              } else if (site.selected.templateAttributes.side == 'target'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/target.html');
+
+              } else if (site.selected.templateAttributes.side == 'two-column'){
+                templateUrl = $sce.getTrustedResourceUrl('views/actiontemplates/two-column.html');
               }
 
 

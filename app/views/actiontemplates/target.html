@@ -1,9 +1,10 @@
-<div class="tour-tip" id="donk">
+<div class="tour-tip" id="target-{{_id}}">
   <style>
   .tour-tip {
+    font-family: Helvetica,Arial,'Helvetica Neue',sans-serif;
     display: none;
     position: absolute;
-    background: #1C252E;
+    background: {{templateAttributes.color}};
     color: #FFF;
     z-index: 101;
     top: 0;
@@ -68,27 +69,27 @@
   .tour-tip .tour-arrow.tt-top {
     border-style: solid;
     bottom: -27px;
-    border-color: #1C252E transparent transparent !important;
+    border-color: {{templateAttributes.color}} transparent transparent !important;
   }
 
   .tour-tip .tour-arrow.tt-bottom {
     border-style: solid;
     top: -28px;
-    border-color: transparent transparent #1C252E !important;
+    border-color: transparent transparent {{templateAttributes.color}} !important;
   }
 
   .tour-tip .tour-arrow.tt-right {
     border-style: solid;
     left: -27px;
     top: 28px;
-    border-color: transparent #1C252E transparent transparent !important;
+    border-color: transparent {{templateAttributes.color}} transparent transparent !important;
   }
 
   .tour-tip .tour-arrow.tt-left {
     border-style: solid;
     left: 100%;
     top: 28px;
-    border-color: transparent transparent transparent #1c252e !important;
+    border-color: transparent transparent transparent {{templateAttributes.color}} !important;
   }
 
   .tour-tip .tour-content-wrapper {
@@ -131,21 +132,41 @@
     position: relative;
     background: #fff;
   }
+
+  a#signup-{{_id}} {
+  		-webkit-box-sizing: border-box;
+  		-moz-box-sizing: border-box;
+      background-color: #78CF7C;
+  		border: none;
+      color: white;
+      padding: 11px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+  		float: right;
+
+  		-webkit-box-shadow: 8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+  		-moz-box-shadow:    8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+  		box-shadow:         8px 8px 0px 0px rgba(50, 50, 50, 0.31);
+  }
   </style>
   <script>
   var p = $( "{{templateAttributes.targetElement}}" );
   var position = p.offset();
+  var width = p.width();
 
-  $("#donk").css({top: position.top +  50, left: position.left - 50, display:'block'});
+  $("#target-{{_id}}").css({top: position.top + 10, left: position.left + width + 10, display:'block'});
 
   var close123 = function(){
-    $("#donk").css({display:'none'});
+    $("#target-{{_id}}").css({display:'none'});
   }
   </script>
-    <span class="tour-arrow tt-left" ng-hide="centered" aria-hidden="false"></span>
+    <span class="tour-arrow tt-right" ng-hide="centered" aria-hidden="false"></span>
     <div class="tour-content-wrapper">
-        <p>{{templateAttributes.windowTitle}}</p>
-        <p>{{templateAttributes.windowText}}</p>
+        <h3>{{templateAttributes.windowTitle}}</h3>
+    		<p>{{templateAttributes.windowText}}</p>
+    		<a href="{{templateAttributes.linkLocation}}" id="signup-{{_id}}" name="signup" value="signup" target="_blank" >{{templateAttributes.buttonText}}</a>
         <a onclick="close123()" class="tour-close-tip">×</a>
     </div>
 </div>

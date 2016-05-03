@@ -68,9 +68,19 @@
         </md-input-container>
       </div>
 
+      <md-radio-group ng-model="site.selected.templateAttributes.heightType">
+        <label>Height Fixing</label>
+        <md-radio-button ng-value="'body'" aria-label="'body'">body</md-radio-button>
+        <md-radio-button ng-value="'screen'" aria-label="'screen'">screen</md-radio-button>
+      </md-radio-group>
+
+      <md-input-container class="md-block">
+        <label>Height Value</label>
+        <input type="text" ng-model="site.selected.templateAttributes.heightValue" >
+      </md-input-container>
+
       <h4>Colour</h4>
       <md-radio-group ng-model="site.selected.templateAttributes.color" layout="row">
-
         <md-radio-button ng-repeat="d in responsepredefinedtemplatecolor" ng-value="d.value" aria-label="{{ d.display }}">
                <div style="background-color:{{ d.display }};width:50px;height:20px;" flex></div>
         </md-radio-button>

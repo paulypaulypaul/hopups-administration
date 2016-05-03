@@ -23,8 +23,6 @@ $( document ).ready(function() {
 	 //if template value equals
 	 if ('{{templateAttributes.tabTeaser}}' != ''){
 
-		 $("#slide-panel-content-{{_id}}").css({'padding-right':'0px'});
-
 		 var scrollTo = function(panel, value){
 			if (scrollpx != value){
 				scrollpx = value;
@@ -49,6 +47,11 @@ $( document ).ready(function() {
 		 });
 	 }
 
+	 //if template value equals
+	 if ('{{templateAttributes.heightType}}' !== 'body'){
+		 $("#slide-panel-{{_id}}").css({position:'fixed'});
+	 }
+
  });
 </script>
 <style>
@@ -64,8 +67,8 @@ body {
     width:300px;
     height:300px;
     padding:10px;
-    position: absolute;
-    top: 50%;
+    position: {{(templateAttributes.heightType == 'body') && 'absolute' || 'fixed'}};
+    top: {{templateAttributes.heightValue}};
     left: -300px;
 		z-index: 999;
 
@@ -154,16 +157,16 @@ a#signup-{{_id}} {
 	color: #fff;
 }
 
-div.teaser2 {
+#opener-{{_id}} .teaser2 {
 	padding-right: 15px;
 }
 
-h3 {
+#slide-panel-content-{{_id}} h3, #slide-panel-content-{{_id}} p {
 	color: white;
 	text-decoration: none;
 }
 
-a {
+#slide-panel-content-{{_id}} a {
 	text-decoration: none;
 }
 

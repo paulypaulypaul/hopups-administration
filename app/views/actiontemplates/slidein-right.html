@@ -60,9 +60,7 @@ body {
 		-moz-box-sizing: border-box;
 		font-family: Helvetica,Arial,'Helvetica Neue',sans-serif;
     width:300px;
-    height:300px;
     padding:10px;
-    position: absolute;
     top: 50%;
     right: -300px;
 		z-index: 999;
@@ -71,6 +69,10 @@ body {
 		-moz-box-shadow:    -9px 7px 0px 0px rgba(50, 50, 50, 0.31);
 		box-shadow:         -9px 7px 0px 0px rgba(50, 50, 50, 0.31);
 
+		position: {{(templateAttributes.heightType == 'body') && 'absolute' || 'fixed'}};
+		top: {{templateAttributes.heightValue}};
+		min-height: {{templateAttributes.tabTitle.length * 15}}px;
+		height: {{templateAttributes.tabTitle.length * 15}}px;
 		background: {{templateAttributes.color}};
 }
 

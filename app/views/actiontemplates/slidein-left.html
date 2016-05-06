@@ -1,6 +1,7 @@
 <script>
 $( document ).ready(function() {
 	 var panel = $('#slide-panel-{{_id}}');
+	 var image = $('#slide-panel-{{_id}} img');
 	 var scrollpx = '-300';
 
 	 $('#opener-{{_id}}').on('click', function () {
@@ -25,12 +26,15 @@ $( document ).ready(function() {
 
 		 var currentScroll = jQuery(this).scrollTop();
 
- 		 var scrollTo = function(panel, value){
+ 		 var scrollTo = function(panel, value, value2){
  			if (scrollpx != value){
  				scrollpx = value;
  				panel.animate({
  					 'left': scrollpx + 'px'
  				}, 500);
+				image.animate({
+					'margin-right': value2 + 'px'
+				}, 500);
  			}
  		 }
 
@@ -38,16 +42,16 @@ $( document ).ready(function() {
          if (jQuery(this).scrollTop() > currentScroll + 100 && currentScroll < jQuery(this).scrollTop()) {
            currentScroll = jQuery(this).scrollTop();
            if (!panel.hasClass("visible")) {
-              scrollTo(panel, '-260');
+              scrollTo(panel, '-260', '-150');
            }
          } else if (currentScroll > jQuery(this).scrollTop()) {
            currentScroll = jQuery(this).scrollTop();
            if (!panel.hasClass("visible")) {
-             scrollTo(panel, '-300');
+             scrollTo(panel, '-300', '-86');
            }
          }
  		 });
-		 
+
 	 }
 
  });
@@ -173,9 +177,18 @@ a#signup-{{_id}} {
 	padding-right: 30px;
 }
 
+#slide-panel-{{_id}} img {
+	-webkit-box-shadow: 10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+  -moz-box-shadow: 10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+  float: right;
+  margin: 133px -86px 0px -60px;
+  height: 65px;
+  overflow: hidden;
+}
+
 </style>
 <div id="slide-panel-{{_id}}" >
-
+	<img src="https://yt3.ggpht.com/-dN3JvlS6fkc/AAAAAAAAAAI/AAAAAAAAAAA/BR1FTnkXNVA/s88-c-k-no-rj-c0xffffff/photo.jpg" >
 	<a id="opener-{{_id}}">
 		<div class="teaser">{{templateAttributes.tabTitle}}</div>
 		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>

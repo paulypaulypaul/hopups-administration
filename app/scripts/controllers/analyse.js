@@ -249,8 +249,13 @@ angular.module('adminApp')
       {id: "t", label: "Min", type: "string"},
     ];
 
+    var totals = {};
+
+
+
     this.selectHopup = function(hopup) {
       $scope.site.selectedHopup = hopup;
+      totals = {};
 
       //have to do this for some reason to get thye hopup in the range by loop below
       this.selectedHopup = hopup;
@@ -261,6 +266,9 @@ angular.module('adminApp')
 
       $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
 
+
+
+      $scope.calcStatSigString = this.calcStatSig();
     };
 
     this.buildChartData = function(hopup, chartObjectColumns, chartObjectOptions, timeSlicePl, timeSlice, range, format){
@@ -323,6 +331,8 @@ angular.module('adminApp')
       return options;
     };
 
+
+
     this.createChartRows = function(hopup, timeSlicePl, timeSlice, range, format){
       var self = this;
       var rows = [];
@@ -379,13 +389,19 @@ angular.module('adminApp')
 
         for(var i=0; i < self.selectedHopup.actions.length; i++){
 
+          if (!totals[self.selectedHopup.actions[i]]){
+            totals[self.selectedHopup.actions[i]] = {};
+            totals[self.selectedHopup.actions[i]].events = {};
+            totals[self.selectedHopup.actions[i]].total = 0;
+          }
+
           if (actionMetrics[self.selectedHopup.actions[i]]){
             var actionMetric = actionMetrics[self.selectedHopup.actions[i]];
             row.push({
               v: actionMetric.count,
               f: "Action delivered " + actionMetric.count + "times"
             });
-
+            totals[self.selectedHopup.actions[i]].total += actionMetric.count;
          } else {
             row.push({v: 0});
          }
@@ -396,6 +412,13 @@ angular.module('adminApp')
            var event = action.events[j];
 
            if (actionMetrics[action._id] && actionMetrics[action._id].events[event]){
+
+              if (!totals[self.selectedHopup.actions[i]].events[event]){
+                totals[self.selectedHopup.actions[i]].events[event] = 0;
+              }
+
+             totals[self.selectedHopup.actions[i]].events[event] += actionMetrics[action._id].events[event];
+
               row.push({
                 v: actionMetrics[action._id].events[event],
                 f: "Event triggered" + actionMetrics[action._id].events[event] + "times"
@@ -437,6 +460,87 @@ angular.module('adminApp')
     this.displayHopups = function(){
       return !!$scope.site.selectedHopup;
     }
+
+    this.calcStatSig = function(){
+
+      var control_trials = null;
+      var variation_trials = null;
+      var control_conversions = null;
+      var variation_conversions = 0;
+      //assume only to actions perhopup
+      for (var key in totals){
+
+          if (!control_trials){
+            control_trials = totals[key].total;
+            for (var key2 in totals[key].events){
+              if (!control_conversions){
+                control_conversions = totals[key].events[key2] || 0;
+              }
+            }
+          }
+
+          else if (!variation_trials){
+            variation_trials = totals[key].total;
+            for (var key2 in totals[key].events){
+              if (!variation_conversions){
+                variation_conversions = totals[key].events[key2] || 0;
+              }
+            }
+          }
+      }
+
+      return calculate(control_trials, variation_trials, control_conversions, variation_conversions)
+    }
+
+    function NormalP(x) {
+        var d1 = 0.0498673470
+          , d2 = 0.0211410061
+          , d3 = 0.0032776263
+          , d4 = 0.0000380036
+          , d5 = 0.0000488906
+          , d6 = 0.0000053830;
+        var a = Math.abs(x);
+        var t = 1.0 + a * (d1 + a * (d2 + a * (d3 + a * (d4 + a * (d5 + a * d6)))));
+        t *= t;
+        t *= t;
+        t *= t;
+        t *= t;
+        t = 1.0 / (t + t);
+        if (x >= 0)
+            t = 1 - t;
+        return t;
+    }
+
+    function calculate(control_trials, variation_trials, control_conversions, variation_conversions) {
+        var c_t = control_trials;
+        var v_t = variation_trials;
+        var c_c = control_conversions;
+        var v_c = variation_conversions;
+
+        //if (c_t < 1) {
+        //    return ("There must be at least 15 control trials for this tool to produce any results.");
+        //}
+        //if (v_t < 1) {
+        //    return ("There must be at least 15 variation trials for this tool to produce any results.");
+        //}
+        var c_p = c_c / c_t;
+        var v_p = v_c / v_t;
+        var std_error = Math.sqrt((c_p * (1 - c_p) / c_t) + (v_p * (1 - v_p) / v_t));
+        var z_value = (v_p - c_p) / std_error;
+        var p_value = NormalP(z_value);
+        if (p_value > 0.5)
+            p_value = 1 - p_value;
+        p_value = Math.round(p_value * 1000) / 1000;
+        //$("#p_value").val(p_value);
+        if (p_value < 0.05) {
+            return 'yes' + p_value;
+        }
+        else {
+            return 'no' + p_value;
+        }
+    }
+
+
 
   }])
   .value('googleChartApiConfig', {

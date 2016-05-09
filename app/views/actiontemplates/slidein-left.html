@@ -3,40 +3,36 @@ $( document ).ready(function() {
 	 var panel = $('#slide-panel-{{_id}}');
 	 var image = $('#slide-panel-{{_id}} img');
 	 var scrollpx = '-300';
+	 var scrollTo = function(panel, value, value2){
+		if (scrollpx != value){
+			scrollpx = value;
+			panel.animate({
+				 'left': scrollpx + 'px'
+			}, 500);
+			image.animate({
+				'margin-right': value2 + 'px'
+			}, 500);
+		}
+	 }
 
 	 $('#opener-{{_id}}').on('click', function () {
-
 		 if (panel.hasClass("visible")) {
-			 panel.removeClass('visible').animate({
-				 'left': '-300px'
-			 });
-		 } else {
-			 panel.addClass('visible').animate({
-				 'left': '0'
-			 });
-		 }
-		 return false;
+ 			 panel.removeClass('visible')
+ 			 scrollTo(panel, '-300', '-86');
+ 		 } else {
+ 			 panel.addClass('visible')
+ 			 scrollTo(panel, '0', '-150');
+ 		 }
 	 });
+
 	 $('#closer-{{_id}}').on('click', function () {
-	 	$("#slide-panel-{{_id}}").css({display:'none'});
+		$("#slide-panel-{{_id}}").css({display:'none'});
  	 });
 
 	 //if template value equals
 	 if ('{{templateAttributes.tabTeaser}}' != ''){
 
 		 var currentScroll = jQuery(this).scrollTop();
-
- 		 var scrollTo = function(panel, value, value2){
- 			if (scrollpx != value){
- 				scrollpx = value;
- 				panel.animate({
- 					 'left': scrollpx + 'px'
- 				}, 500);
-				image.animate({
-					'margin-right': value2 + 'px'
-				}, 500);
- 			}
- 		 }
 
  		 $(window).scroll(function() {
          if (jQuery(this).scrollTop() > currentScroll + 100 && currentScroll < jQuery(this).scrollTop()) {
@@ -78,7 +74,7 @@ body {
 		position: {{(templateAttributes.heightType == 'body') && 'absolute' || 'fixed'}};
     top: {{templateAttributes.heightValue}};
 		min-height: 200px;
-		height: {{templateAttributes.tabTitle.length * 15}}px;
+		height: {{(templateAttributes.tabTitle.length * 15) + 20}}px;
 		background: {{templateAttributes.color}};
 }
 
@@ -179,16 +175,19 @@ a#signup-{{_id}} {
 
 #slide-panel-{{_id}} img {
 	-webkit-box-shadow: 10px 7px 0px -2px rgba(50, 50, 50, 0.31);
-  -moz-box-shadow: 10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+	-moz-box-shadow:    10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+	box-shadow:         10px 7px 0px -2px rgba(50, 50, 50, 0.31);
+
   float: right;
-  margin: 133px -86px 0px -60px;
+  margin: {{(templateAttributes.tabTitle.length * 15) - 75}}px -86px 0px -60px;
   height: 65px;
+	width: 65px;
   overflow: hidden;
 }
 
 </style>
 <div id="slide-panel-{{_id}}" >
-	<img src="https://yt3.ggpht.com/-dN3JvlS6fkc/AAAAAAAAAAI/AAAAAAAAAAA/BR1FTnkXNVA/s88-c-k-no-rj-c0xffffff/photo.jpg" >
+	<img src="{{templateAttributes.imageUri}}" >
 	<a id="opener-{{_id}}">
 		<div class="teaser">{{templateAttributes.tabTitle}}</div>
 		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>

@@ -1,21 +1,30 @@
 <script>
 $( document ).ready(function() {
 	var panel = $('#slide-panel-{{_id}}');
+  var image = $('#slide-panel-{{_id}} img');
 	var scrollpx = '-300';
+	var scrollTo = function(panel, value, value2){
+	 if (scrollpx != value){
+		 scrollpx = value;
+		 panel.animate({
+				'right': scrollpx + 'px'
+		 }, 500);
+		 image.animate({
+			 'margin-left': value2 + 'px'
+		 }, 500);
+	 }
+	}
 
 	$('#opener-{{_id}}').on('click', function () {
-		 var panel = $('#slide-panel-{{_id}}');
-		 if (panel.hasClass("visible")) {
-			 panel.removeClass('visible').animate({
-				 'right': '-300px'
-			 });
-		 } else {
-			 panel.addClass('visible').animate({
-				 'right': '0'
-			 });
-		 }
-		 return false;
+		if (panel.hasClass("visible")) {
+			panel.removeClass('visible')
+			scrollTo(panel, '-300', '-86');
+		} else {
+			panel.addClass('visible')
+			scrollTo(panel, '0', '-150');
+		}
 	 });
+
 	 $('#closer-{{_id}}').on('click', function () {
 	 	$("#slide-panel-{{_id}}").css({display:'none'});
 		 });
@@ -23,25 +32,14 @@ $( document ).ready(function() {
 		 //if template value equals
 		 if ('{{templateAttributes.tabTeaser}}' != ''){
 
-			 var scrollTo = function(panel, value){
-				if (scrollpx != value){
-					scrollpx = value;
-					panel.animate({
-						 'right': scrollpx + 'px'
-					}, 500);
-				}
-			 }
-
 			 $(window).scroll(function() {
 				if (jQuery(this).scrollTop() > 100) {
 					if (!panel.hasClass("visible")) {
-						 console.log('trigger 260')
-						 scrollTo(panel, '-260');
+						 scrollTo(panel, '-260', '-150');
 					}
 				} else {
 					if (!panel.hasClass("visible")) {
-						console.log('trigger 300')
-						scrollTo(panel, '-300');
+						scrollTo(panel, '-300','-86');
 					}
 				}
 			 });
@@ -71,8 +69,8 @@ body {
 
 		position: {{(templateAttributes.heightType == 'body') && 'absolute' || 'fixed'}};
 		top: {{templateAttributes.heightValue}};
-		min-height: {{templateAttributes.tabTitle.length * 15}}px;
-		height: {{templateAttributes.tabTitle.length * 15}}px;
+		min-height: 200px;
+		height: {{(templateAttributes.tabTitle.length * 15) + 20}}px;
 		background: {{templateAttributes.color}};
 }
 
@@ -172,8 +170,21 @@ a#signup {
 	padding-left: 30px;
 }
 
+#slide-panel-{{_id}} img {
+	-webkit-box-shadow: -9px 7px 0px -1px rgba(50, 50, 50, 0.31);
+	-moz-box-shadow:    -9px 7px 0px -1px rgba(50, 50, 50, 0.31);
+	box-shadow:         -9px 7px 0px -1px rgba(50, 50, 50, 0.31);
+
+  float: left;
+  margin: {{(templateAttributes.tabTitle.length * 15) - 75}}px 0px 0px -86px;
+  height: 65px;
+	width: 65px;
+  overflow: hidden;
+}
+
 </style>
 <div id="slide-panel-{{_id}}" >
+	<img src="{{templateAttributes.imageUri}}" >
 	<a id="opener-{{_id}}">
 		<div class="teaser2">{{templateAttributes.tabTeaser}}</div>
 		<div class="teaser">{{templateAttributes.tabTitle}}</div>

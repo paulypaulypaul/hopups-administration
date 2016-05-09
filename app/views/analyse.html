@@ -1,32 +1,29 @@
 <div md-theme="{{$root.theme='default'}}" md="{{$root.title=title}}"></div>
 
 <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-click="ul.toggleList()" class="md-whiteframe-4dp" >
-
-    <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }" ng-click="vm.showSiteDetails(site)">
-        <span>Active Hopups</span>
+    <md-button class="side-menu-link" ng-class="{ 'md-hue-2': type.displayList() }">
+      <span>Active Hopups</span>
     </md-button>
 
-      <md-list>
-          <md-list-item ng-repeat="hopup in site.hopups" ng-class="{'selected' : site.selectedHopup._id === hopup._id }">
-              <md-button ng-click="vm.selectHopup(hopup)">
-                  {{hopup.name}}
-                  <md-tooltip md-direction="right">
-                    {{hopup._id}}
-                  </md-tooltip>
-              </md-button>
-          </md-list-item>
-      </md-list>
+    <md-list>
+      <md-list-item ng-repeat="hopup in site.hopups" ng-class="{'selected' : site.selectedHopup._id === hopup._id }">
+        <md-button ng-click="vm.selectHopup(hopup)">
+          {{hopup.name}}
+          <md-tooltip md-direction="right">
+            {{hopup._id}}
+          </md-tooltip>
+        </md-button>
+      </md-list-item>
+    </md-list>
+</md-sidenav>
 
-  </md-sidenav>
-
-  <md-content  ng-show="vm.displayHopups()" flex layout-padding layout="column" md-scroll-y class="seethru">
-
-<div flex>
+<md-content  ng-show="vm.displayHopups()" flex layout-padding layout="column" md-scroll-y class="seethru">
+  <div flex>
     <md-tabs md-selected="selectedIndex" >
-        <md-tab label="Last Week"></md-tab>
-        <md-tab label="Last Day"></md-tab>
-        <md-tab label="Last Hour"></md-tab>
-        <md-tab label="."></md-tab> <!-- This tab needs removing when https://github.com/angular/material/issues/5439 is fixed -->
+      <md-tab label="Last Week"></md-tab>
+      <md-tab label="Last Day"></md-tab>
+      <md-tab label="Last Hour"></md-tab>
+      <md-tab label="."></md-tab> <!-- This tab needs removing when https://github.com/angular/material/issues/5439 is fixed -->
     </md-tabs>
     <div ng-if="selectedIndex==0" flex layout="column" layout-padding>
       <div class="md-whiteframe-z3 leak">
@@ -44,50 +41,9 @@
       </div>
     </div>
   </div>
-    <md-divider></md-divider>
+  <md-divider></md-divider>
 
-<div class="md-whiteframe-z3 leak">
+  <div class="md-whiteframe-z3 leak">
     <div id="chartdiv" flex ></div>
-</div>
-
-      <div flex>
-        <h3>{{site.selectedHopup.name}}
-          <md-tooltip md-direction="right">
-            {{site.selectedHopup._id}}
-          </md-tooltip>
-        </h3>
-        <h4>Triggered {{vm.getActionSessionDataForHopup(site.selectedHopup).length}} times</h4>
-      </div>
-
-      <div flex>
-
-        <div flex>
-          <h3>Attached Actions</h3>
-          <div ng-repeat="action in site.selectedHopup.actions">
-            <h4>{{vm.getActionById(action).name}}</h4>
-            <p> Delivered {{vm.getActionSessionDataForAction(action).length}} times.</p>
-          </div>
-        </div>
-
-        <div flex>
-          <h3>Actions delivered</h3>
-          <div ng-repeat="actionSessionData in vm.getActionSessionDataForHopup(site.selectedHopup)">
-              <div ng-repeat="action in vm.getAction(actionSessionData)">
-                <h4>{{action.name}} ({{action._id}}) - {{actionSessionData.date}}</h4>
-              </div>
-              Responce count - {{vm.getSessionDataFromActionInstance(actionSessionData).length }}
-              <div ng-repeat="response in vm.getSessionDataFromActionInstance(actionSessionData)">
-                {{response | json}}
-                {{vm.getEventById(response.event) | json}}
-              </div>
-          </div>
-        </div>
-
-      </div>
-
-
-        <div ng-repeat="sd in site.sessiondata" >
-            {{sd | json}}
-        </div>
-
-  </md-content>
+  </div>
+</md-content>

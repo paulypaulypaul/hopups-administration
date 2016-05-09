@@ -72,6 +72,7 @@ angular.module('adminApp')
     refresh();
 
     this.getActionSessionDataForHopup = function(hopup){
+      console.log('getActionSessionDataForHopup');
       if (hopup){
         var actionsessiondatas = [];
         for (var i = 0; i < $scope.site.actionsessiondata.length; i++){
@@ -85,6 +86,7 @@ angular.module('adminApp')
     };
 
     this.getActionSessionDataForAction = function(actionId){
+      console.log('getActionSessionDataForAction');
       if (actionId){
         var actionsessiondatas = [];
         for (var i = 0; i < $scope.site.actionsessiondata.length; i++){
@@ -101,6 +103,7 @@ angular.module('adminApp')
 
 
     this.getAction = function(actionsessiondata){
+      console.log('getActionSessionDataForAction');
       var actions = [];
       for (var i = 0; i < $scope.site.actions.length; i++){
         var action = $scope.site.actions[i];
@@ -254,9 +257,9 @@ angular.module('adminApp')
 
       $scope.chartObjectDay = this.buildChartData(hopup, chartObjectDayColumns, chartObjectDayOptions, 'days', 'day', 7, 'dddd');
 
-    //  $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
+      $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
 
-  //    $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
+      $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
 
     };
 

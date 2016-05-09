@@ -32,12 +32,16 @@ $( document ).ready(function() {
 		 //if template value equals
 		 if ('{{templateAttributes.tabTeaser}}' != ''){
 
+			 var currentScroll = jQuery(this).scrollTop();
+
 			 $(window).scroll(function() {
-				if (jQuery(this).scrollTop() > 100) {
+				 if (jQuery(this).scrollTop() > currentScroll + 100 && currentScroll < jQuery(this).scrollTop()) {
+        	currentScroll = jQuery(this).scrollTop();
 					if (!panel.hasClass("visible")) {
 						 scrollTo(panel, '-260', '-150');
 					}
-				} else {
+				} else if (currentScroll > jQuery(this).scrollTop()) {
+					currentScroll = jQuery(this).scrollTop();
 					if (!panel.hasClass("visible")) {
 						scrollTo(panel, '-300','-86');
 					}

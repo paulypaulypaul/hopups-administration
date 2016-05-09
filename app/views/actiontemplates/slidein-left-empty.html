@@ -2,6 +2,14 @@
 $( document ).ready(function() {
 	 var panel = $('#slide-panel-{{_id}}');
 	 var scrollpx = '-300';
+	 var scrollTo = function(panel, value){
+		if (scrollpx != value){
+			scrollpx = value;
+			panel.animate({
+				 'left': scrollpx + 'px'
+			}, 500);
+		}
+	 }
 
 	 $('#opener-{{_id}}').on('click', function () {
 
@@ -23,28 +31,22 @@ $( document ).ready(function() {
 	 //if template value equals
 	 if ('{{templateAttributes.tabTeaser}}' != ''){
 
-		 var scrollTo = function(panel, value){
-			if (scrollpx != value){
-				scrollpx = value;
-				panel.animate({
-					 'left': scrollpx + 'px'
-				}, 500);
-			}
-		 }
+		 var currentScroll = jQuery(this).scrollTop();
 
-		 $(window).scroll(function() {
-			if (jQuery(this).scrollTop() > 100) {
-				if (!panel.hasClass("visible")) {
-					 console.log('trigger 260')
-					 scrollTo(panel, '-260');
-				}
-			} else {
-				if (!panel.hasClass("visible")) {
-					console.log('trigger 300')
-					scrollTo(panel, '-300');
-				}
-			}
-		 });
+ 		 $(window).scroll(function() {
+         if (jQuery(this).scrollTop() > currentScroll + 100 && currentScroll < jQuery(this).scrollTop()) {
+           currentScroll = jQuery(this).scrollTop();
+           if (!panel.hasClass("visible")) {
+              scrollTo(panel, '-260', '-150');
+           }
+         } else if (currentScroll > jQuery(this).scrollTop()) {
+           currentScroll = jQuery(this).scrollTop();
+           if (!panel.hasClass("visible")) {
+             scrollTo(panel, '-300', '-86');
+           }
+         }
+ 		 });
+
 	 }
 
  });

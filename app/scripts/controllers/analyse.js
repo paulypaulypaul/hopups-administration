@@ -32,6 +32,7 @@ angular.module('adminApp')
       hopups: [],
       sessiondata: [],
       actionsessiondata: [],
+      actionsessiondata2: [],
       actionsessiondatatimeseries: [],
       selectedHopup: null
     };
@@ -46,7 +47,7 @@ angular.module('adminApp')
         Array.prototype.push.apply($scope.site.actionsessiondata, actionsessiondata);
       });
       hopups.fetch($scope.site.siteId, 'actionsessiondatatimeseries').then( function(actionsessiondatatimeseries) {
-        $scope.site.actionsessiondata.length = 0; // Cheeky way to empty the array.
+        $scope.site.actionsessiondatatimeseries.length = 0; // Cheeky way to empty the array.
         Array.prototype.push.apply($scope.site.actionsessiondatatimeseries, actionsessiondatatimeseries);
       });
       hopups.fetch($scope.site.siteId, 'events').then( function(events) {
@@ -253,9 +254,9 @@ angular.module('adminApp')
 
       $scope.chartObjectDay = this.buildChartData(hopup, chartObjectDayColumns, chartObjectDayOptions, 'days', 'day', 7, 'dddd');
 
-      $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
+    //  $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
 
-      $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
+  //    $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
 
     };
 
@@ -277,7 +278,7 @@ angular.module('adminApp')
       chartData.data.rows = chartRowsAndHighestNumber.rows
 
       chartObjectOptions.series = this.buildSeriesFromHopup(hopup);
-      chartObjectOptions.vAxis.viewWindow.max = chartRowsAndHighestNumber.highestNumber;
+      chartObjectOptions.vAxis.viewWindow.max = chartRowsAndHighestNumber.highestNumber > 0 ? chartRowsAndHighestNumber.highestNumber : 1 ;
 
       chartData.options = google.charts.Bar.convertOptions(chartObjectOptions);
 

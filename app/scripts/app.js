@@ -47,6 +47,12 @@ angular
       controllerAs: 'vm',
       url: '/site/:siteId'
     })
+    .state('hopups', {
+      templateUrl: 'views/hopups.html',
+      controller: 'HopupsCtrl',
+      controllerAs: 'vm',
+      url: '/hopups/:siteId'
+    })
     .state('site-analysis', {
       templateUrl: 'views/analyse.html',
       controller: 'AnalyseCtrl',

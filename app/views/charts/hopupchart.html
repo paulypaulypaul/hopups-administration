@@ -1,0 +1,23 @@
+<div flex>
+  <md-tabs ng-if="!simple" md-selected="selectedIndex" >
+    <md-tab label="Last Week"></md-tab>
+    <md-tab label="Last Day"></md-tab>
+    <md-tab label="Last Hour"></md-tab>
+    <md-tab label="."></md-tab> <!-- This tab needs removing when https://github.com/angular/material/issues/5439 is fixed -->
+  </md-tabs>
+  <div ng-if="selectedIndex==0 || simple" flex layout="column" layout-padding>
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectDay" ></div>
+    </div>
+  </div>
+  <div ng-if="selectedIndex==1" flex layout="column" layout-padding>
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectHour" ></div>
+    </div>
+  </div>
+  <div ng-if="selectedIndex==2" flex layout="column" layout-padding>
+    <div class="md-whiteframe-z3 leak">
+      <div google-chart chart="chartObjectMin" ></div>
+    </div>
+  </div>
+</div>

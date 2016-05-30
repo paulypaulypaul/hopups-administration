@@ -17,7 +17,7 @@ angular.module('adminApp')
       var events = $scope.site.events;
       for (var event in events){
         if (events[event]._id == eventId){
-          return events[event].name;
+          return events[event].name + ' - ' + events[event].selector;
         }
       }
       return 'not found';

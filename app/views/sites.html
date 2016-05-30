@@ -32,6 +32,7 @@
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
       <md-button class="md-primary" ui-sref="site({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="build" id="configure{{$index}}"></md-icon> Configure</md-button>
+      <md-button class="md-primary" ui-sref="hopups({siteId: site._id})">Hopups</md-button>
       <md-button class="md-primary" ui-sref="site-analysis({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="chart"></md-icon> Analyse</md-button>
       <md-button class="md-primary" ui-sref="user-analysis({siteId: site._id})"><md-icon md-menu-origin md-svg-icon="face"></md-icon> Users</md-button>
       <md-switch ng-model="site.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>

@@ -1,0 +1,55 @@
+<md-content class="md-padding" layout-xs="column" layout="row">
+
+<div flex-xs flex-gt-xs="50" layout="column" ng-repeat="hopup in site.hopups track by hopup._id">
+
+<md-card>
+  <md-card-header>
+    <md-card-avatar>
+    </md-card-avatar>
+    <md-card-header-text>
+      <span class="md-title">{{hopup.name}}</span>
+      <span class="md-subhead">{{hopup.description}}</span>
+    </md-card-header-text>
+  </md-card-header>
+
+  <hopup-chart site="site" hopup="hopup" simple="'true'" timeout="$index" flex layout>
+  </hopup-chart>
+
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">In-card mixed actions</span>
+      <span class="md-subhead">Reversed</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-actions layout="row" layout-align="start center">
+    <md-switch ng-model="hopup.active" aria-label="Active?" class="md-cyan-theme flex" >Active</md-switch>
+    <md-button>Action 2</md-button>
+    <md-card-icon-actions>
+      <md-button class="md-icon-button" aria-label="toggle">
+        <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+      </md-button>
+    </md-card-icon-actions>
+  </md-card-actions>
+  <md-card-content>
+    <p>
+      The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+      two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+    </p>
+  </md-card-content>
+</md-card>
+
+</div>
+</md-content>
+
+<md-fab-speed-dial id="createnewsite" md-direction="up" class="md-scale md-fab-bottom-right" md-open="apps.fabIsOpen" ng-mouseenter="apps.fabIsOpen=true" ng-mouseleave="apps.fabIsOpen=false">
+  <md-fab-trigger>
+      <md-button aria-label="Add" class="md-fab" ng-click="createNewHopup()">
+          <md-icon md-svg-icon="plus"></md-icon>
+      </md-button>
+  </md-fab-trigger>
+  <md-fab-actions>
+      <md-button aria-label="import" class="md-fab md-raised md-mini md-accent" ng-click="import()">
+          <md-icon md-svg-icon="import"></md-icon>
+      </md-button>
+  </md-fab-actions>
+</md-fab-speed-dial>

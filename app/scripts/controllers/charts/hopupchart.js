@@ -2,74 +2,14 @@
 
 /**
  * @ngdoc function
- * @name adminApp.controller:AnalyseCtrl
+ * @name adminApp.controller:ChartsHopupchartCtrl
  * @description
- * # AnalyseCtrl
+ * # ChartsHopupchartCtrl
  * Controller of the adminApp
  */
-
-//this shoulnt be here - just here so we can use the options converter for the new material charts
-google.load('visualization', '1.1', {packages:['bar']});
-
-(function(){
-    angular.module('googlechart')
-        .value('googleChartApiConfig', {
-            version: '1.1',
-            optionalSettings: {
-                packages: ['bar', 'line']
-            }
-        });
-})();
-
 angular.module('adminApp')
-  .controller('AnalyseCtrl', [ '$scope', 'hopups', '$stateParams', function ($scope, hopups, $stateParams) {
+  .controller('HopupChartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
 
-    $scope.site = {
-      siteId: $stateParams.siteId,
-      events: [],
-      segments: [],
-      actions: [],
-      hopups: [],
-      sessiondata: [],
-      actionsessiondata: [],
-      actionsessiondata2: [],
-      actionsessiondatatimeseries: [],
-      selectedHopup: null
-    };
-
-    function refresh() {
-      hopups.fetch($scope.site.siteId, 'sessiondata').then( function(sessiondata) {
-        $scope.site.sessiondata.length = 0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.sessiondata, sessiondata);
-      });
-      hopups.fetch($scope.site.siteId, 'actionsessiondata').then( function(actionsessiondata) {
-        $scope.site.actionsessiondata.length = 0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.actionsessiondata, actionsessiondata);
-      });
-      hopups.fetch($scope.site.siteId, 'actionsessiondatatimeseries').then( function(actionsessiondatatimeseries) {
-        $scope.site.actionsessiondatatimeseries.length = 0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.actionsessiondatatimeseries, actionsessiondatatimeseries);
-      });
-      hopups.fetch($scope.site.siteId, 'events').then( function(events) {
-        $scope.site.events.length =0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.events, events);
-      });
-      hopups.fetch($scope.site.siteId, 'segments').then( function(segments) {
-        $scope.site.segments.length =0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.segments, segments);
-      });
-      hopups.fetch($scope.site.siteId, 'actions').then( function(actions) {
-        $scope.site.actions.length =0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.actions, actions);
-      });
-      hopups.fetch($scope.site.siteId, 'hopups').then( function(hopups) {
-        $scope.site.hopups.length =0; // Cheeky way to empty the array.
-        Array.prototype.push.apply($scope.site.hopups, hopups);
-      });
-
-    }
-
-    refresh();
 
     this.getActionSessionDataForHopup = function(hopup){
       console.log('getActionSessionDataForHopup');
@@ -148,7 +88,7 @@ angular.module('adminApp')
       //return 'none';
     }
 
-  /*  var data = new google.visualization.DataTable();
+    /*  var data = new google.visualization.DataTable();
     data.addColumn('string', 'Day');
     data.addColumn('number', 'Delivered - hopup1');
     data.addColumn('number', 'Action - hopup1');
@@ -193,7 +133,8 @@ angular.module('adminApp')
 
     $scope.chartObjectDay = {};
     var chartObjectDayOptions = {
-        isStacked: true,
+        isStacked: !$scope.simple,
+        legend: { position: "none" },
         axisTitlesPosition: 'out',
         chart: {
             title: 'Hopups last week',
@@ -254,7 +195,7 @@ angular.module('adminApp')
 
 
     this.selectHopup = function(hopup) {
-      $scope.site.selectedHopup = hopup;
+
       totals = {};
 
       //have to do this for some reason to get thye hopup in the range by loop below
@@ -262,14 +203,13 @@ angular.module('adminApp')
 
       $scope.chartObjectDay = this.buildChartData(hopup, chartObjectDayColumns, chartObjectDayOptions, 'days', 'day', 7, 'dddd');
 
-      $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
+    //  $scope.chartObjectHour = this.buildChartData(hopup, chartObjectHourColumns, chartObjectHourOptions, 'hours', 'hour', 24, 'HH');
 
-      $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
-
-
+    //  $scope.chartObjectMin = this.buildChartData(hopup, chartObjectMinColumns, chartObjectMinOptions, 'minute', 'minute', 60, 'mm');
 
       $scope.calcStatSigString = this.calcStatSig();
     };
+
 
     this.buildChartData = function(hopup, chartObjectColumns, chartObjectOptions, timeSlicePl, timeSlice, range, format){
 
@@ -540,72 +480,9 @@ angular.module('adminApp')
         }
     }
 
+    var self = this;
+    $timeout(function(){
+      self.selectHopup($scope.hopup);
+    }, 500 * $scope.timeout);
 
-
-  }])
-  .value('googleChartApiConfig', {
-      version: '1.1',
-      optionalSettings: {
-        packages: ['bar'],
-        language: 'en'
-      }
-    });
-
-
-/*
-function NormalP(x) {
-    var d1 = 0.0498673470
-      , d2 = 0.0211410061
-      , d3 = 0.0032776263
-      , d4 = 0.0000380036
-      , d5 = 0.0000488906
-      , d6 = 0.0000053830;
-    var a = Math.abs(x);
-    var t = 1.0 + a * (d1 + a * (d2 + a * (d3 + a * (d4 + a * (d5 + a * d6)))));
-    t *= t;
-    t *= t;
-    t *= t;
-    t *= t;
-    t = 1.0 / (t + t);
-    if (x >= 0)
-        t = 1 - t;
-    return t;
-}
-function calculate() {
-    if ($("#control_trials").val() == "" || $("#variation_trials").val() == "" || $("#control_conversions").val() == "" || $("#variation_conversions").val() == "") {
-        alert("Control and variation fields cannot be left blank. Please enter a number there.");
-        return;
-    }
-    else if (isNaN(parseInt($("#control_trials").val())) || isNaN(parseInt($("#variation_trials").val())) || isNaN(parseInt($("#control_conversions").val())) || isNaN(parseInt($("#variation_conversions").val()))) {
-        alert("Please enter a number in control and variation fields.");
-        return;
-    }
-    var c_t = parseInt($("#control_trials").val());
-    var v_t = parseInt($("#variation_trials").val());
-    var c_c = parseInt($("#control_conversions").val());
-    var v_c = parseInt($("#variation_conversions").val());
-    if (c_t < 15) {
-        alert("There must be at least 15 control trials for this tool to produce any results.");
-        return;
-    }
-    if (v_t < 15) {
-        alert("There must be at least 15 variation trials for this tool to produce any results.");
-        return;
-    }
-    var c_p = c_c / c_t;
-    var v_p = v_c / v_t;
-    var std_error = Math.sqrt((c_p * (1 - c_p) / c_t) + (v_p * (1 - v_p) / v_t));
-    var z_value = (v_p - c_p) / std_error;
-    var p_value = NormalP(z_value);
-    if (p_value > 0.5)
-        p_value = 1 - p_value;
-    p_value = Math.round(p_value * 1000) / 1000;
-    $("#p_value").val(p_value);
-    if (p_value < 0.05) {
-        $("#significant").val("Yes!");
-    }
-    else {
-        $("#significant").val("No");
-    }
-}
-*/
+  }]);

@@ -103,3 +103,40 @@ defineExpose({ load, submitCreate, submitRename, submitDelete, startEdit, confir
     </Dialog>
   </div>
 </template>
+
+<style scoped>
+.sites-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sites-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.site-name {
+  font-weight: 500;
+  flex: 1;
+}
+
+.sites-list a {
+  color: var(--hopups-purple);
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.sites-list a:hover {
+  text-decoration: underline;
+}
+</style>
+

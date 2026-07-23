@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, watch } from "vue";
 import { getEvents, getRollups, type ActionEvent, type RollupBucket, type RollupInterval } from "../api/analytics";
 import { listHopups, type Hopup } from "../api/hopups";
+import SiteNav from "../components/layout/SiteNav.vue";
 
 const props = defineProps<{ siteId: string }>();
 
@@ -54,6 +55,7 @@ defineExpose({ refetch });
 
 <template>
   <div class="analytics-view">
+    <SiteNav :site-id="siteId" active="analytics" />
     <h1>Analytics</h1>
 
     <div class="filters">

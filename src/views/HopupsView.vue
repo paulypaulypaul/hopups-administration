@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import { deleteHopup, listHopups, type Hopup } from "../api/hopups";
 import HopupEditor from "../components/HopupEditor.vue";
+import SiteNav from "../components/layout/SiteNav.vue";
 
 const props = defineProps<{ siteId: string }>();
 
@@ -45,6 +46,7 @@ async function submitDelete(): Promise<void> {
 
 <template>
   <div class="hopups-view">
+    <SiteNav :site-id="siteId" active="hopups" />
     <div class="toolbar">
       <h1>Hopups</h1>
       <Button label="New hopup" data-testid="new-hopup" @click="showCreateDialog = true" />
@@ -78,3 +80,30 @@ async function submitDelete(): Promise<void> {
     </Dialog>
   </div>
 </template>
+
+<style scoped>
+.hopups-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hopups-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.hopups-list li > span:first-child {
+  font-weight: 500;
+  color: var(--hopups-teal);
+}
+</style>
+

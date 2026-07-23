@@ -1,0 +1,77 @@
+:root {
+  --hopups-teal: rgb(0, 187, 206);
+  --hopups-purple: rgb(102, 57, 187);
+  --hopups-pink: rgb(255, 64, 129);
+  --hopups-blue: #03a9f4;
+  --hopups-gray: #dedede;
+  --hopups-text-on-dark: #fff;
+  --hopups-text: #212121;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--hopups-text);
+  background: #fafafa;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--hopups-purple);
+}
+
+h1 {
+  font-size: 1.25em;
+  font-weight: 500;
+  margin: 0;
+}
+
+h3 {
+  font-weight: 500;
+  color: var(--hopups-purple);
+}
+
+.field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.empty-state,
+.loading-state {
+  padding: 2rem;
+  text-align: center;
+  color: #757575;
+}
+
+.hint {
+  color: #757575;
+  font-size: 0.9em;
+}
+
+.error {
+  color: #c62828;
+}

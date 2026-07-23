@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { getPhonePool, updatePhonePool } from "../api/phonePool";
+import SiteNav from "../components/layout/SiteNav.vue";
 
 const props = defineProps<{ siteId: string }>();
 
@@ -46,6 +47,7 @@ defineExpose({ load, addNumber, removeNumber, save });
 
 <template>
   <div class="phone-pool-view">
+    <SiteNav :site-id="siteId" active="phone-pool" />
     <h1>Phone pool</h1>
 
     <h3>Numbers</h3>

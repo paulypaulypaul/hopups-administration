@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import AnalyticsView from "../../src/views/AnalyticsView.vue";
 import { mountWithPlugins } from "../helpers/mount";
+import { createTestRouter } from "../helpers/testRouter";
 
 vi.mock("../../src/api/analytics", () => ({
   getEvents: vi.fn(async () => []),
@@ -22,9 +23,13 @@ describe("AnalyticsView rollup chart", () => {
   afterEach(() => vi.clearAllMocks());
 
   it("renders the fetched rollup buckets as chart data", async () => {
+    const router = createTestRouter();
+    router.push("/sites/site-1/analytics");
+    await router.isReady();
+
     const wrapper = mountWithPlugins(AnalyticsView, {
       props: { siteId: "site-1" },
-      global: { components: { Chart: ChartStub } }
+      global: { components: { Chart: ChartStub }, plugins: [router] }
     });
     await flushPromises();
 

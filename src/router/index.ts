@@ -5,6 +5,7 @@ import SitesView from "../views/SitesView.vue";
 import HopupsView from "../views/HopupsView.vue";
 import PhonePoolView from "../views/PhonePoolView.vue";
 import AnalyticsView from "../views/AnalyticsView.vue";
+import DemoSiteView from "../views/DemoSiteView.vue";
 
 export function resolveGuardRedirect(
   toName: RouteLocationNormalized["name"],
@@ -26,7 +27,8 @@ export const router = createRouter({
     { path: "/", name: "sites", component: SitesView },
     { path: "/sites/:siteId/hopups", name: "hopups", component: HopupsView, props: true },
     { path: "/sites/:siteId/phone-pool", name: "phone-pool", component: PhonePoolView, props: true },
-    { path: "/sites/:siteId/analytics", name: "analytics", component: AnalyticsView, props: true }
+    { path: "/sites/:siteId/analytics", name: "analytics", component: AnalyticsView, props: true },
+    { path: "/demo-site", name: "demo-site", component: DemoSiteView }
   ]
 });
 

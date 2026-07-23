@@ -9,14 +9,15 @@ export interface ActionFormValue {
 const props = defineProps<{ modelValue: ActionFormValue }>();
 const emit = defineEmits<{ (e: "update:modelValue", value: ActionFormValue): void }>();
 
-const ACTION_TYPES: ActionType[] = ["modal", "banner", "phoneNumberSwap", "redirect", "customHtml"];
+const ACTION_TYPES: ActionType[] = ["modal", "banner", "phoneNumberSwap", "redirect", "customHtml", "sidebar"];
 
 const EMPTY_PAYLOADS: Record<ActionType, Record<string, unknown>> = {
   modal: { title: "", body: "", ctaLabel: "", ctaUrl: "" },
   banner: { message: "", ctaLabel: "", ctaUrl: "" },
   phoneNumberSwap: { selector: "" },
   redirect: { url: "", delayMs: undefined },
-  customHtml: { html: "" }
+  customHtml: { html: "" },
+  sidebar: { position: "right", title: "", message: "", ctaLabel: "", ctaUrl: "" }
 };
 
 function setType(type: ActionType): void {
@@ -117,6 +118,39 @@ defineExpose({ setType, setField, EMPTY_PAYLOADS });
         data-testid="field-html"
         :model-value="modelValue.payload.html as string"
         @update:model-value="(v) => setField('html', v)"
+      />
+    </template>
+
+    <template v-else-if="modelValue.type === 'sidebar'">
+      <Select
+        :options="['left', 'right']"
+        data-testid="field-position"
+        :model-value="modelValue.payload.position as string"
+        @update:model-value="(v) => setField('position', v)"
+      />
+      <InputText
+        placeholder="Title (optional)"
+        data-testid="field-title"
+        :model-value="modelValue.payload.title as string"
+        @update:model-value="(v) => setField('title', v)"
+      />
+      <InputText
+        placeholder="Message"
+        data-testid="field-message"
+        :model-value="modelValue.payload.message as string"
+        @update:model-value="(v) => setField('message', v)"
+      />
+      <InputText
+        placeholder="CTA label"
+        data-testid="field-ctaLabel"
+        :model-value="modelValue.payload.ctaLabel as string"
+        @update:model-value="(v) => setField('ctaLabel', v)"
+      />
+      <InputText
+        placeholder="CTA URL"
+        data-testid="field-ctaUrl"
+        :model-value="modelValue.payload.ctaUrl as string"
+        @update:model-value="(v) => setField('ctaUrl', v)"
       />
     </template>
   </div>

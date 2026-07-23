@@ -1,6 +1,6 @@
 import { apiRequest } from "./client";
 
-export type ActionType = "modal" | "banner" | "phoneNumberSwap" | "redirect" | "customHtml";
+export type ActionType = "modal" | "banner" | "phoneNumberSwap" | "redirect" | "customHtml" | "sidebar";
 
 export interface Action {
   id: string;

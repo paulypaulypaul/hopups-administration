@@ -19,7 +19,7 @@ The core CRUD surface for a site's targeting rules, mirroring `hopups-server`'s
 type Operator = "eq" | "neq" | "gt" | "gte" | "lt" | "lte" | "in" | "matches";
 interface Condition { signal: string; operator: Operator; value: unknown; }
 
-type ActionType = "modal" | "banner" | "phoneNumberSwap" | "redirect" | "customHtml";
+type ActionType = "modal" | "banner" | "phoneNumberSwap" | "redirect" | "customHtml" | "sidebar";
 interface Action { id: string; hopupId: string; type: ActionType; payload: unknown; }
 
 interface Hopup {
@@ -69,7 +69,8 @@ function deleteAction(id: string): Promise<void>;
 
 - Selecting an action `type` renders the matching form: modal (`title`, `body`, optional `ctaLabel`/
   `ctaUrl`), banner (`message`, optional `ctaLabel`/`ctaUrl`), phoneNumberSwap (`selector`), redirect
-  (`url`, optional `delayMs`), customHtml (`html`).
+  (`url`, optional `delayMs`), customHtml (`html`), sidebar (`position` — left/right, optional
+  `title`, `message`, optional `ctaLabel`/`ctaUrl`).
   `[@test] ../tests/components/action-editor-renders-fields-per-type.test.ts`
 - Changing `type` after fields were filled resets the payload to that type's empty shape rather than
   carrying over incompatible fields.

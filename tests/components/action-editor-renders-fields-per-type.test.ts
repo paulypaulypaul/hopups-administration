@@ -39,4 +39,13 @@ describe("ActionEditor field rendering per type", () => {
     });
     expect(wrapper.find('[data-testid="field-html"]').exists()).toBe(true);
   });
+
+  it("renders sidebar fields", () => {
+    const wrapper = mountWithPlugins(ActionEditor, {
+      props: { modelValue: { type: "sidebar", payload: { position: "right", message: "" } } }
+    });
+    expect(wrapper.find('[data-testid="field-position"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="field-title"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="field-message"]').exists()).toBe(true);
+  });
 });

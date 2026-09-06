@@ -1,0 +1,99 @@
+{
+  "instruction": "Follow Vue 3 Composition API best practices with correct reactivity patterns, composable structure, Pinia setup stores, and accessibility",
+  "relevant_when": "Agent builds or reviews Vue 3 components, composables, or Pinia stores",
+  "context": "Vue 3 components should use <script setup lang='ts'> with typed props/emits, composables should follow the useThing pattern with onMounted and try/catch/finally, Pinia stores should use setup syntax with computed for derived values and watch for side effects, and all interactive elements must be accessible.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/vue-best-practices/SKILL.md",
+      "tile": "tessl-labs/vue-best-practices@0.2.0"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "script-setup-typescript",
+      "rule": "Agent uses <script setup lang='ts'> on every .vue component file",
+      "relevant_when": "Agent creates or modifies Vue single-file components"
+    },
+    {
+      "name": "typed-props",
+      "rule": "Agent types props with defineProps<T>() using a TypeScript interface, not runtime defineProps({ prop: String }) syntax",
+      "relevant_when": "Agent creates Vue components that accept props"
+    },
+    {
+      "name": "typed-emits",
+      "rule": "Agent types emits with defineEmits<{ event: [payloadType] }>() using object-and-tuple generic syntax",
+      "relevant_when": "Agent creates Vue components that emit events"
+    },
+    {
+      "name": "composable-structure",
+      "rule": "Agent places composables in composables/ directory, names them useThing, returns refs and a reload/retry function",
+      "relevant_when": "Agent extracts reusable logic into composable functions"
+    },
+    {
+      "name": "composable-onMounted",
+      "rule": "Agent uses onMounted() inside composables to trigger initial data fetching, not a bare function call at setup time",
+      "relevant_when": "Agent writes composables that fetch data"
+    },
+    {
+      "name": "composable-error-handling",
+      "rule": "Agent clears error ref before each fetch attempt (error.value = null before try) and sets loading false in finally block",
+      "relevant_when": "Agent writes async composables with loading/error state"
+    },
+    {
+      "name": "template-state-chain",
+      "rule": "Agent handles loading/error/success states with v-if/v-else-if/v-else chain in templates",
+      "relevant_when": "Agent creates components that display async data"
+    },
+    {
+      "name": "ref-for-primitives",
+      "rule": "Agent uses ref() for primitive values and arrays, never destructures reactive() without toRefs()",
+      "relevant_when": "Agent declares reactive state in components or composables"
+    },
+    {
+      "name": "no-reactive-reassignment",
+      "rule": "Agent never reassigns reactive objects directly; uses Object.assign() or property mutation instead",
+      "relevant_when": "Agent resets or bulk-updates reactive object state"
+    },
+    {
+      "name": "pinia-setup-store",
+      "rule": "Agent uses Pinia Setup Store pattern: defineStore('name', () => { ... return { ... } }) not Options Store syntax",
+      "relevant_when": "Agent creates Pinia stores"
+    },
+    {
+      "name": "computed-for-derived",
+      "rule": "Agent uses computed() for derived values inside Pinia stores and components",
+      "relevant_when": "Agent creates values derived from reactive state"
+    },
+    {
+      "name": "watch-for-side-effects",
+      "rule": "Agent uses watch() for side effects (redirects, toasts, localStorage) triggered by state changes, not embedded in action functions",
+      "relevant_when": "Agent implements reactive side effects in stores or components"
+    },
+    {
+      "name": "storeToRefs-destructuring",
+      "rule": "Agent uses storeToRefs() when destructuring state/getters from Pinia stores; actions are destructured directly",
+      "relevant_when": "Agent accesses Pinia store state in components"
+    },
+    {
+      "name": "store-folder-placement",
+      "rule": "Agent places Pinia store files in a stores/ directory",
+      "relevant_when": "Agent creates Pinia store files"
+    },
+    {
+      "name": "local-vs-shared-state",
+      "rule": "Agent uses Pinia for cross-component state and local ref() for component-only state (form fields, toggles)",
+      "relevant_when": "Agent decides where to place state"
+    },
+    {
+      "name": "aria-label-buttons",
+      "rule": "Agent adds :aria-label with descriptive text on all interactive elements (buttons, links), including retry buttons in error states",
+      "relevant_when": "Agent creates interactive elements in Vue templates"
+    },
+    {
+      "name": "role-alert-errors",
+      "rule": "Agent adds role='alert' on error display containers for screen reader accessibility",
+      "relevant_when": "Agent creates error display regions in Vue templates"
+    }
+  ]
+}

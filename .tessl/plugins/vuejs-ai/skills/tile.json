@@ -1,0 +1,22 @@
+{
+  "name": "vuejs-ai/skills",
+  "version": "c9d355ff23f654309dd02006be671859df0a134c",
+  "summary": "Auto-generated plugin from GitHub (8 skills)",
+  "private": true,
+  "skills": {
+    "vue-router-best-practices": {
+      "path": "skills/vue-router-best-practices/SKILL.md"
+    }
+  },
+  "excludes": {
+    "skills": [
+      "create-adaptable-composable",
+      "vue-best-practices",
+      "vue-debug-guides",
+      "vue-jsx-best-practices",
+      "vue-options-api-best-practices",
+      "vue-pinia-best-practices",
+      "vue-testing-best-practices"
+    ]
+  }
+}

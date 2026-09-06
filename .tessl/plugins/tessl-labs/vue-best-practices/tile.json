@@ -1,0 +1,11 @@
+{
+  "name": "tessl-labs/vue-best-practices",
+  "version": "0.1.4",
+  "summary": "Vue 3 patterns — Composition API, composables, reactivity, component design,",
+  "skills": {
+    "vue-best-practices": {
+      "path": "skills/vue-best-practices/SKILL.md"
+    }
+  },
+  "private": false
+}

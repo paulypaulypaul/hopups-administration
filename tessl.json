@@ -1,0 +1,36 @@
+{
+  "name": "hopups-administration",
+  "mode": "vendored",
+  "dependencies": {
+    "tessl-labs/vue-best-practices": {
+      "version": "0.1.4"
+    },
+    "vuejs-ai/skills": {
+      "version": "c9d355ff23f654309dd02006be671859df0a134c",
+      "source": "https://github.com/vuejs-ai/skills",
+      "include": {
+        "skills": [
+          "vue-router-best-practices"
+        ]
+      }
+    },
+    "JetBrains/skills": {
+      "version": "e0f258b5cfed145015cb3e48da9a97947f7c4ed7",
+      "source": "https://github.com/JetBrains/skills",
+      "include": {
+        "skills": [
+          "vite"
+        ]
+      }
+    },
+    "antfu/skills": {
+      "version": "a74f281a27dadc02397bc1a174b0f2c97531b6ae",
+      "source": "https://github.com/antfu/skills",
+      "include": {
+        "skills": [
+          "vitest"
+        ]
+      }
+    }
+  }
+}
